@@ -34,28 +34,12 @@ def main():
     print(f"Log file: {log_file}")
     print(f"{'='*60}\n")
 
-    # Example 1: Single region analysis
-    print("\n" + "="*60)
-    print("EXAMPLE 1: Single Region Analysis")
-    print("="*60)
-
     heidelberg_analysis = analyze_region('Heidelberg', BBOXES['heidelberg'])
-
     if heidelberg_analysis is not None:
         print("\nHeidelberg Analysis Results:")
         print(heidelberg_analysis.to_string())
 
-    # Example 2: Node distribution visualization
-    # print("\n" + "="*60)
-    # print("EXAMPLE 2: Node Distribution Visualization")
-    # print("="*60)
-    # # Uncomment to generate plot:
     # plot_node_distribution(BBOXES['heidelberg'], 'Heidelberg')
-
-    # Example 3: Multi-region comparison
-    # print("\n" + "="*60)
-    # print("EXAMPLE 3: Multi-Region Comparison")
-    # print("="*60)
 
     # Compare subset of regions (uncomment to run full comparison)
     # comparison_regions = {
@@ -63,17 +47,10 @@ def main():
     #     'paris': BBOXES['paris'],
     #     'beit_shemesh': BBOXES['beit_shemesh']
     # }
-    #
     # comparison = compare_regions(comparison_regions)
-
     # if comparison is not None:
-    #     print("\nComparison Results:")
+    #    print("\nComparison Results:")
     #     print(comparison.to_string())
-
-    # Example 4: Save results to file
-    # print("\n" + "="*60)
-    # print("EXAMPLE 4: Save Data to File")
-    # print("="*60)
 
     # Uncomment to save data:
     # vertices_with_save = get_vertices(
@@ -83,14 +60,9 @@ def main():
     #     filename="heidelberg_vertices.json"
     # )
 
-    # print("\nTo save data, uncomment the save example in main.py")
-
-    print("EXAMPLE 5: Building Convex Hull Analysis (Optional)")
+    print("Building Convex Hull Analysis")
     print("\n" + "="*60)
     print("="*60)
-    building_metrics = get_poly_coords(BBOXES['heidelberg'], time_param='2025-01-01')
-
-    # Uncomment to run:
     building_metrics = get_poly_coords(
         BBOXES['heidelberg'],
         filter="type:way and building=*",
@@ -99,7 +71,6 @@ def main():
     if building_metrics is not None:
         print("\nBuilding Convex Hull Metrics:")
         print(building_metrics.to_string())
-
 
 if __name__ == "__main__":
     main()
