@@ -7,6 +7,7 @@ using the Ohsome API, focusing on geometrical complexity metrics.
 
 import os
 import json
+import logging
 import requests
 import pandas as pd
 import numpy as np
@@ -18,6 +19,56 @@ import pyproj
 from math import radians, sin, cos, sqrt, atan2
 import time
 import geopandas as gpd
+
+
+# ============================================================================
+# Logging Configuration
+# ============================================================================
+
+def setup_logging(log_file='geometrical_complexity_analysis.log', log_level=logging.DEBUG,
+                  console_level=logging.INFO):
+    """
+    Configure logging for the analysis module.
+
+    Args:
+        log_file: Path to log file
+        log_level: File logging level (default: DEBUG)
+        console_level: Console logging level (default: INFO)
+    """
+    # Create logger
+    logger = logging.getLogger('geometrical_complexity_analysis')
+    logger.setLevel(logging.DEBUG)  # Capture all levels
+
+    # Prevent duplicate handlers if called multiple times
+    if logger.handlers:
+        return logger
+
+    # File handler - detailed logging
+    file_handler = logging.FileHandler(log_file, encoding='utf-8')
+    file_handler.setLevel(log_level)
+    file_formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
+    file_handler.setFormatter(file_formatter)
+
+    # Console handler - less verbose
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(console_level)
+    console_formatter = logging.Formatter(
+        '%(levelname)s: %(message)s'
+    )
+    console_handler.setFormatter(console_formatter)
+
+    # Add handlers
+    logger.addHandler(file_handler)
+    logger.addHandler(console_handler)
+
+    return logger
+
+
+# Initialize logger
+logger = setup_logging()
 
 
 # ============================================================================
@@ -43,26 +94,40 @@ def _call_ohsome_api(endpoint, bounds, filter_query, time_param, return_type='da
 
     params = {
         "bboxes": bounds,
-        #"format": "json",
         "time": time_param,
         "filter": filter_query
     }
 
-    response = requests.get(url, params=params)
-    api_time = time.time() - start_time
+    logger.debug(f"Calling Ohsome API endpoint: {endpoint}")
+    logger.debug(f"Parameters: bounds={bounds}, filter={filter_query}, time={time_param}")
 
-    if response.status_code == 200:
-        parse_start = time.time()
-        data = response.json()
-        parse_time = time.time() - parse_start
+    try:
+        response = requests.get(url, params=params, timeout=300)
+        api_time = time.time() - start_time
 
-        print(f"  ⏱ API call ({endpoint}): {api_time:.2f}s (network: {api_time:.2f}s, parse: {parse_time:.3f}s)")
+        if response.status_code == 200:
+            parse_start = time.time()
+            data = response.json()
+            parse_time = time.time() - parse_start
 
-        if return_type == 'dataframe':
-            return pd.json_normalize(data['result']) if 'result' in data else data
-        return data
-    else:
-        print(f"Error {response.status_code}: {response.text}")
+            logger.debug(f"API call ({endpoint}): {api_time:.2f}s (network: {api_time:.2f}s, parse: {parse_time:.3f}s)")
+            logger.info(f"Successfully retrieved data from {endpoint} endpoint")
+
+            if return_type == 'dataframe':
+                return pd.json_normalize(data['result']) if 'result' in data else data
+            return data
+        else:
+            logger.error(f"API request failed with status {response.status_code}: {response.text}")
+            return None
+
+    except requests.exceptions.Timeout:
+        logger.error(f"API request timed out for endpoint {endpoint} (>300s)")
+        return None
+    except requests.exceptions.RequestException as e:
+        logger.error(f"API request failed for endpoint {endpoint}: {str(e)}")
+        return None
+    except json.JSONDecodeError as e:
+        logger.error(f"Failed to parse JSON response from {endpoint}: {str(e)}")
         return None
 
 
@@ -79,16 +144,25 @@ def _save_to_file(data, path, filename, data_format='json'):
     if not path or not filename:
         return
 
-    os.makedirs(path, exist_ok=True)
-    file_path = os.path.join(path, filename)
+    try:
+        os.makedirs(path, exist_ok=True)
+        file_path = os.path.join(path, filename)
 
-    if data_format == 'json':
-        with open(file_path, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-    elif data_format == 'csv':
-        data.to_csv(file_path, index=False)
+        if data_format == 'json':
+            with open(file_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+        elif data_format == 'csv':
+            data.to_csv(file_path, index=False)
+        else:
+            logger.warning(f"Unknown data format: {data_format}, skipping save")
+            return
 
-    print(f"Data saved to {file_path}")
+        logger.info(f"Data saved to {file_path}")
+
+    except OSError as e:
+        logger.error(f"Failed to save file {file_path}: {str(e)}")
+    except Exception as e:
+        logger.error(f"Unexpected error saving file {file_path}: {str(e)}")
 
 
 # ============================================================================
@@ -127,26 +201,32 @@ def _extract_node_counts(features):
         NumPy array of node counts
     """
     if not features:
-        print("Ohsome API returned no elements")
+        logger.warning("Ohsome API returned no elements")
         return np.array([0], dtype=int)
 
-    print("Successfully extracted vertices")
+    logger.debug(f"Extracting node counts from {len(features)} features")
 
     node_counts = []
+    geometry_types = {}
+
     for f in features:
         geom_type = f['geometry']['type']
         coords = f['geometry']['coordinates']
+
+        # Track geometry type distribution
+        geometry_types[geom_type] = geometry_types.get(geom_type, 0) + 1
 
         if geom_type == 'LineString':
             node_counts.append(len(coords))
         elif geom_type == 'MultiLineString':
             node_counts.append(sum(len(line) for line in coords))
         elif geom_type == 'Polygon':
-            # For Polygon, count nodes in all rings (outer + inner)
             node_counts.append(sum(len(ring) for ring in coords))
         elif geom_type == 'MultiPolygon':
-            # For MultiPolygon, count nodes in all polygons and all rings
             node_counts.append(sum(len(ring) for polygon in coords for ring in polygon))
+
+    logger.debug(f"Geometry type distribution: {geometry_types}")
+    logger.info(f"Successfully extracted {len(node_counts)} node count values")
 
     return np.array(node_counts, dtype=int)
 
@@ -193,14 +273,14 @@ def _extract_comprehensive_metrics(features, bounds):
     start_time = time.time()
 
     if not features:
-        print("Ohsome API returned no elements")
+        logger.warning("No features returned for comprehensive metrics extraction")
         return {
             'node_counts': np.array([0], dtype=int),
             'road_count': 0,
             'cumulative_road_length': 0.0
         }
 
-    print(f"Successfully extracted geometry data ({len(features)} features)")
+    logger.info(f"Extracting comprehensive metrics from {len(features)} features")
 
     node_counts = []
     total_length = 0.0
@@ -256,7 +336,17 @@ def _extract_comprehensive_metrics(features, bounds):
             length_calc_time += time.time() - length_start
 
     total_time = time.time() - start_time
-    print(f"  ⏱ Metrics extraction: {total_time:.2f}s (counting: {geometry_count_time:.3f}s, length: {length_calc_time:.2f}s)")
+    num_features = len(node_counts)
+    features_per_sec = num_features / total_time if total_time > 0 else 0
+
+    logger.debug(f"Metrics extraction: {total_time:.2f}s [{num_features:,} features @ {features_per_sec:.1f} feat/s]")
+    logger.debug(f"  - Node counting: {geometry_count_time:.3f}s")
+    if length_calc_time > 0:
+        logger.debug(f"  - Length calculation: {length_calc_time:.2f}s ({num_features/length_calc_time:.1f} feat/s)")
+    else:
+        logger.debug(f"  - Length calculation: {length_calc_time:.2f}s")
+
+    logger.info(f"Metrics extraction complete: {num_features} features processed in {total_time:.2f}s")
 
     return {
         'node_counts': np.array(node_counts, dtype=int),
@@ -279,8 +369,10 @@ def _calculate_convex_hull_metrics_vectorized(features, bounds):
     start_time = time.time()
 
     if not features:
-        print("No geometries returned")
+        logger.warning("No polygon features returned for convex hull calculation")
         return None
+
+    logger.info(f"Calculating convex hull metrics for {len(features)} polygon features (vectorized)")
 
     # Calculate UTM projection parameters
     min_lon, min_lat, max_lon, max_lat = map(float, bounds.split(','))
@@ -326,15 +418,15 @@ def _calculate_convex_hull_metrics_vectorized(features, bounds):
     }, geometry=geometries, crs="EPSG:4326")
     gdf_time = time.time() - gdf_start
 
-    # Vectorized convex hull computation
-    hull_start = time.time()
-    gdf['convex_hull_geom'] = gdf.geometry.convex_hull
-    hull_time = time.time() - hull_start
-
-    # Vectorized coordinate transformation
+    # Vectorized coordinate transformation (BEFORE convex hull to avoid CRS issues)
     transform_start = time.time()
     gdf_utm = gdf.to_crs(utm_crs)
     transform_time = time.time() - transform_start
+
+    # Vectorized convex hull computation (in UTM projection)
+    hull_start = time.time()
+    gdf_utm['convex_hull_geom'] = gdf_utm.geometry.convex_hull
+    hull_time = time.time() - hull_start
 
     # Vectorized area calculations
     area_start = time.time()
@@ -348,13 +440,22 @@ def _calculate_convex_hull_metrics_vectorized(features, bounds):
     result = gdf_utm[['way_id', 'area_m2', 'convex_hull_m2', 'ratio', 'is_multipolygon', 'inner_ring_count']].copy()
 
     total_time = time.time() - start_time
+    features_per_sec = len(geometries) / total_time if total_time > 0 else 0
 
-    print(f"  ⏱ Convex hull calculation (VECTORIZED): {total_time:.2f}s")
-    print(f"    - Data preparation: {prep_time:.3f}s")
-    print(f"    - GeoDataFrame creation: {gdf_time:.3f}s")
-    print(f"    - Convex hull computation: {hull_time:.3f}s")
-    print(f"    - Coordinate transformation: {transform_time:.3f}s")
-    print(f"    - Area calculation: {area_time:.3f}s")
+    logger.debug(f"Convex hull calculation (VECTORIZED): {total_time:.2f}s [{len(geometries):,} features @ {features_per_sec:.1f} feat/s]")
+    if prep_time > 0:
+        logger.debug(f"  - Data preparation: {prep_time:.3f}s ({len(geometries)/prep_time:.1f} feat/s)")
+    else:
+        logger.debug(f"  - Data preparation: {prep_time:.3f}s")
+    logger.debug(f"  - GeoDataFrame creation: {gdf_time:.3f}s")
+    logger.debug(f"  - Coordinate transformation: {transform_time:.3f}s")
+    if hull_time > 0:
+        logger.debug(f"  - Convex hull computation: {hull_time:.3f}s ({len(geometries)/hull_time:.1f} feat/s)")
+    else:
+        logger.debug(f"  - Convex hull computation: {hull_time:.3f}s")
+    logger.debug(f"  - Area calculation: {area_time:.3f}s")
+
+    logger.info(f"Convex hull metrics calculated for {len(geometries)} features in {total_time:.2f}s")
 
     return result
 
@@ -378,8 +479,10 @@ def _calculate_convex_hull_metrics(features, bounds, use_vectorized=True):
     start_time = time.time()
 
     if not features:
-        print("No geometries returned")
+        logger.warning("No polygon features returned for convex hull calculation")
         return None
+
+    logger.info(f"Calculating convex hull metrics for {len(features)} polygon features (loop-based)")
 
     # Calculate UTM projection parameters from bounding box center
     min_lon, min_lat, max_lon, max_lat = map(float, bounds.split(','))
@@ -447,14 +550,21 @@ def _calculate_convex_hull_metrics(features, bounds, use_vectorized=True):
 
     total_time = time.time() - start_time
     geometry_total = point_extraction_time + convex_hull_time + transformation_time + area_calc_time
+    num_features = len(rows)
+    features_per_sec = num_features / total_time if total_time > 0 else 0
 
-    print(f"  ⏱ Convex hull calculation (LOOP): {total_time:.2f}s")
-    print(f"    - Projection setup: {proj_time:.3f}s")
-    print(f"    - Point extraction: {point_extraction_time:.3f}s")
-    print(f"    - Convex hull computation: {convex_hull_time:.2f}s")
-    print(f"    - Coordinate transformation: {transformation_time:.2f}s")
-    print(f"    - Area calculation: {area_calc_time:.3f}s")
-    print(f"    - Other overhead: {(total_time - proj_time - geometry_total):.3f}s")
+    logger.debug(f"Convex hull calculation (LOOP): {total_time:.2f}s [{num_features:,} features @ {features_per_sec:.1f} feat/s]")
+    logger.debug(f"  - Projection setup: {proj_time:.3f}s")
+    logger.debug(f"  - Point extraction: {point_extraction_time:.3f}s")
+    if convex_hull_time > 0:
+        logger.debug(f"  - Convex hull computation: {convex_hull_time:.2f}s ({num_features/convex_hull_time:.1f} feat/s)")
+    else:
+        logger.debug(f"  - Convex hull computation: {convex_hull_time:.2f}s")
+    logger.debug(f"  - Coordinate transformation: {transformation_time:.2f}s")
+    logger.debug(f"  - Area calculation: {area_calc_time:.3f}s")
+    logger.debug(f"  - Other overhead: {(total_time - proj_time - geometry_total):.3f}s")
+
+    logger.info(f"Convex hull metrics calculated for {num_features} features in {total_time:.2f}s")
 
     return pd.DataFrame(rows)
 
@@ -478,15 +588,18 @@ def get_count(bounds, filter="type:way and highway=*", time="2008-01-01/2025-01-
     Returns:
         DataFrame with count results, None on error
     """
+    logger.info(f"Fetching feature counts for bounds: {bounds}")
     result = _call_ohsome_api('count', bounds, filter, time)
 
     if result is not None:
-        print("Successfully extracted counts")
+        logger.info("Count data successfully retrieved")
 
         # Save raw JSON if requested
         if path and filename:
             response = _call_ohsome_api('count', bounds, filter, time, return_type='json')
             _save_to_file(response, path, filename, data_format='json')
+    else:
+        logger.error("Failed to retrieve count data")
 
     return result
 
@@ -505,15 +618,18 @@ def get_len(bounds, filter="type:way and highway=*", time="2008-01-01/2025-01-01
     Returns:
         DataFrame with length results, None on error
     """
+    logger.info(f"Fetching feature lengths for bounds: {bounds}")
     result = _call_ohsome_api('length', bounds, filter, time)
 
     if result is not None:
-        print("Successfully extracted lengths")
+        logger.info("Length data successfully retrieved")
 
         # Save raw JSON if requested
         if path and filename:
             response = _call_ohsome_api('length', bounds, filter, time, return_type='json')
             _save_to_file(response, path, filename, data_format='json')
+    else:
+        logger.error("Failed to retrieve length data")
 
     return result
 
@@ -533,15 +649,18 @@ def get_area(bounds, filter="type:way and building=*", time="2008-01-01/2025-01-
     Returns:
         DataFrame with area results, None on error
     """
+    logger.info(f"Fetching feature areas for bounds: {bounds}")
     result = _call_ohsome_api('area', bounds, filter, time)
 
     if result is not None:
-        print("Successfully extracted areas")
+        logger.info("Area data successfully retrieved")
 
         # Save raw JSON if requested
         if path and filename:
             response = _call_ohsome_api('area', bounds, filter, time, return_type='json')
             _save_to_file(response, path, filename, data_format='json')
+    else:
+        logger.error("Failed to retrieve area data")
 
     return result
 
@@ -672,15 +791,16 @@ def analyze_region(region_name, bbox, timestamp="2025-01-01", filter="type:way a
     """
     total_start = time.time()
 
-    print(f"\n{'='*60}")
-    print(f"Analyzing: {region_name}")
-    print(f"{'='*60}\n")
+    logger.info(f"=" * 60)
+    logger.info(f"Starting analysis for region: {region_name}")
+    logger.info(f"Bounding box: {bbox}")
+    logger.info(f"=" * 60)
 
     # Single API call to get geometry data
     data = _call_ohsome_api('geometry', bbox, filter, timestamp, return_type='json')
 
     if data is None:
-        print(f"Failed to extract data for {region_name}")
+        logger.error(f"Failed to extract data for region: {region_name}")
         return None
 
     features = data.get("features", [])
@@ -715,9 +835,13 @@ def analyze_region(region_name, bbox, timestamp="2025-01-01", filter="type:way a
     derived_time = time.time() - derived_start
 
     total_time = time.time() - total_start
-    print(f"  ⏱ Statistics calculation: {stats_time:.3f}s")
-    print(f"  ⏱ Derived metrics: {derived_time:.3f}s")
-    print(f"\n⏱ TOTAL ANALYSIS TIME: {total_time:.2f}s\n")
+    features_per_sec = metrics['road_count'] / total_time if total_time > 0 else 0
+
+    logger.debug(f"Statistics calculation: {stats_time:.3f}s")
+    logger.debug(f"Derived metrics: {derived_time:.3f}s")
+    logger.info(f"TOTAL ANALYSIS TIME: {total_time:.2f}s [{metrics['road_count']:,} features @ {features_per_sec:.1f} feat/s]")
+    logger.info(f"Analysis complete for region: {region_name}")
+    logger.info("=" * 60)
 
     return result
 
@@ -732,12 +856,12 @@ def plot_node_distribution(bbox, region_name, bins=100, xlim=(0, 70)):
         bins: Number of histogram bins
         xlim: X-axis limits tuple
     """
-    print(f"\nGenerating node distribution plot for {region_name}...")
+    logger.info(f"Generating node distribution plot for {region_name}")
 
     node_distribution = get_vertices(bbox, distribution=True)
 
     if node_distribution is None or len(node_distribution) == 0:
-        print(f"No data available for plotting {region_name}")
+        logger.warning(f"No data available for plotting {region_name}")
         return
 
     plt.figure(figsize=(10, 6))
@@ -771,9 +895,10 @@ def compare_regions(regions_dict, timestamp="2025-01-01"):
             results.append(result)
 
     if not results:
-        print("No results to compare")
+        logger.error("No results to compare - all regions failed")
         return None
 
+    logger.info(f"Comparison complete for {len(results)} regions")
     comparison = pd.concat(results, ignore_index=True)
     return comparison
 

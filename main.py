@@ -5,9 +5,9 @@ This script demonstrates usage of the refactored API functions to analyze
 OSM road network complexity for different geographical regions.
 """
 
-
+import logging
 from functions import (get_count, get_len, get_area, get_vertices, get_poly_coords,
-                        analyze_region,plot_node_distribution, compare_regions)
+                       analyze_region, plot_node_distribution, compare_regions, setup_logging)
 
 
 # ============================================================================
@@ -25,6 +25,14 @@ BBOXES = {
 
 def main():
     """Main execution function."""
+
+    # Initialize logging
+    log_file = 'geometrical_complexity_analysis.log'
+    setup_logging(log_file=log_file, log_level=logging.DEBUG, console_level=logging.INFO)
+    print(f"\n{'='*60}")
+    print(f"OSM Geometrical Complexity Analysis")
+    print(f"Log file: {log_file}")
+    print(f"{'='*60}\n")
 
     # Example 1: Single region analysis
     print("\n" + "="*60)
