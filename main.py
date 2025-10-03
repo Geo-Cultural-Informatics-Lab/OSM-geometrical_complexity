@@ -1,0 +1,97 @@
+"""
+Main script for OSM Geometrical Complexity Analysis
+
+This script demonstrates usage of the refactored API functions to analyze
+OSM road network complexity for different geographical regions.
+"""
+
+
+from functions import (get_count, get_len, get_area, get_vertices, get_poly_coords,
+                        analyze_region,plot_node_distribution, compare_regions)
+
+
+# ============================================================================
+# Sample Bounding Boxes
+# ============================================================================
+
+BBOXES = {
+    'heidelberg': "8.1543,49.1757,9.1351,49.6884",
+    'paris': "2.255031,48.813564,2.426418,48.904637",
+    'hainan': "108.4078,18.0357,111.1148,20.1493",
+    'thailand': "99.6253,9.3452,100.201,10.1602",
+    'beit_shemesh': "34.938188,31.689471,35.035005,31.786876"
+}
+
+
+def main():
+    """Main execution function."""
+
+    # Example 1: Single region analysis
+    print("\n" + "="*60)
+    print("EXAMPLE 1: Single Region Analysis")
+    print("="*60)
+
+    heidelberg_analysis = analyze_region('Heidelberg', BBOXES['heidelberg'])
+
+    if heidelberg_analysis is not None:
+        print("\nHeidelberg Analysis Results:")
+        print(heidelberg_analysis.to_string())
+
+    # Example 2: Node distribution visualization
+    # print("\n" + "="*60)
+    # print("EXAMPLE 2: Node Distribution Visualization")
+    # print("="*60)
+    # # Uncomment to generate plot:
+    # plot_node_distribution(BBOXES['heidelberg'], 'Heidelberg')
+
+    # Example 3: Multi-region comparison
+    # print("\n" + "="*60)
+    # print("EXAMPLE 3: Multi-Region Comparison")
+    # print("="*60)
+
+    # Compare subset of regions (uncomment to run full comparison)
+    # comparison_regions = {
+    #     'heidelberg': BBOXES['heidelberg'],
+    #     'paris': BBOXES['paris'],
+    #     'beit_shemesh': BBOXES['beit_shemesh']
+    # }
+    #
+    # comparison = compare_regions(comparison_regions)
+
+    # if comparison is not None:
+    #     print("\nComparison Results:")
+    #     print(comparison.to_string())
+
+    # Example 4: Save results to file
+    # print("\n" + "="*60)
+    # print("EXAMPLE 4: Save Data to File")
+    # print("="*60)
+
+    # Uncomment to save data:
+    # vertices_with_save = get_vertices(
+    #     BBOXES['heidelberg'],
+    #     time="2025-01-01",
+    #     path="./output",
+    #     filename="heidelberg_vertices.json"
+    # )
+
+    # print("\nTo save data, uncomment the save example in main.py")
+
+    print("EXAMPLE 5: Building Convex Hull Analysis (Optional)")
+    print("\n" + "="*60)
+    print("="*60)
+    building_metrics = get_poly_coords(BBOXES['heidelberg'], time_param='2025-01-01')
+
+    # Uncomment to run:
+    building_metrics = get_poly_coords(
+        BBOXES['heidelberg'],
+        filter="type:way and building=*",
+        time_param="2025-01-01"
+    )
+    if building_metrics is not None:
+        print("\nBuilding Convex Hull Metrics:")
+        print(building_metrics.to_string())
+
+
+if __name__ == "__main__":
+    main()
