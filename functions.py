@@ -149,10 +149,14 @@ def _save_to_file(data, path, filename, data_format='json'):
         file_path = os.path.join(path, filename)
 
         if data_format == 'json':
-            with open(file_path, 'w', encoding='utf-8') as f:
+            with open(file_path, 'a', encoding='utf-8') as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
         elif data_format == 'csv':
-            data.to_csv(file_path, index=False)
+            header = False
+            if not os.path.exists(file_path):
+                header=True # write header only if file doesn't exist
+            data.to_csv(file_path, index=False, mode="a", header=header)
+
         else:
             logger.warning(f"Unknown data format: {data_format}, skipping save")
             return
@@ -706,7 +710,7 @@ def get_vertices(bounds, filter="type:way and highway=*", time="2025-01-01",
     return _calculate_node_statistics(node_counts, bounds)
 
 
-def get_poly_coords(bounds, filter="type:way and building=*", time_param="2025-01-01",
+def get_poly_coords(region_name, bounds, filter="type:way and building=*", time_param="2025-01-01",
                     path=None, filename=None, distribution=False, use_vectorized=True):
     """
     Extract polygon coordinates and calculate convex hull metrics.
@@ -722,6 +726,7 @@ def get_poly_coords(bounds, filter="type:way and building=*", time_param="2025-0
 
     Returns:
         DataFrame with convex hull metrics or summary statistics
+        :param region_name:
     """
     start_time = time.time()
 
@@ -732,22 +737,24 @@ def get_poly_coords(bounds, filter="type:way and building=*", time_param="2025-0
 
     features = data.get("features", [])
     df = _calculate_convex_hull_metrics(features, bounds, use_vectorized=use_vectorized)
+    cols = df.columns.tolist()
+    df["region_name"] = region_name
+    df["bbox"] = bounds
+    df = df[["region_name", "bbox"] + cols]
 
     if df is None:
         return None
 
-    # Save raw data if requested
-    if path and filename:
-        _save_to_file(df, path, filename, data_format='csv')
+
 
     # Return full distribution if requested
     if distribution:
-        print(f"⏱ Total get_poly_coords time: {time.time() - start_time:.2f}s\n")
+        print(f"Total get_poly_coords time: {time.time() - start_time:.2f}s\n")
         return df
 
     # Return summary statistics
-    summary_start = time.time()
-    result = pd.DataFrame({
+    summary_statistics = pd.DataFrame({
+        'region': region_name,
         'bbox': [bounds],
         'sum_chull_area': [df['convex_hull_m2'].sum()],
         'mean_chull_area': [df['convex_hull_m2'].mean()],
@@ -763,12 +770,16 @@ def get_poly_coords(bounds, filter="type:way and building=*", time_param="2025-0
         'total_inner_rings': [df['inner_ring_count'].sum()],
         'mean_inner_rings': [df['inner_ring_count'].mean()]
     })
-    summary_time = time.time() - summary_start
 
-    print(f"  ⏱ Summary statistics: {summary_time:.3f}s")
-    print(f"⏱ Total get_poly_coords time: {time.time() - start_time:.2f}s\n")
+    print(f"Summary statistics:")
+    # Save raw data if requested
+    if path and filename:
+        _save_to_file(df, path, filename, data_format='csv')
+        _save_to_file(summary_statistics, path, os.path.basename(filename)+"_summary.csv", data_format='csv')
+    
+    print(f"Total get_poly_coords time: {time.time() - start_time:.2f}s\n")
 
-    return result
+    return summary_statistics
 
 
 # ============================================================================
