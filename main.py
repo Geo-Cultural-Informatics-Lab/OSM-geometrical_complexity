@@ -1,74 +1,129 @@
 """
 Main script for OSM Geometrical Complexity Analysis
+
 This script demonstrates usage of the refactored API functions to analyze
-OSM road network complexity for different geographical regions.
+OSM road network complexity and building geometry completeness for different regions.
 """
 
 import logging
-from functions import (get_count, get_len, get_area, get_vertices, get_poly_coords,
-                       analyze_region, plot_node_distribution, compare_regions, setup_logging)
+from pathlib import Path
 
-BBOXES = {
-    'heidelberg': "8.1543,49.1757,9.1351,49.6884",
-    'paris': "2.255031,48.813564,2.426418,48.904637",
-    'hainan': "108.4078,18.0357,111.1148,20.1493",
-    'thailand': "99.6253,9.3452,100.201,10.1602",
-    'beit_shemesh': "34.938188,31.689471,35.035005,31.786876"
-}
+# Import from refactored modules
+from api_helpers import setup_logging
+from geometry_analysis import (
+    get_count, get_len, get_area, get_vertices, get_poly_coords,
+    analyze_region, plot_node_distribution, compare_regions
+)
+from bbox_utils import BBOXES, get_bbox_by_city, bbox_by_location
+from visualization import (
+    plot_completeness_metrics, plot_area_comparison,
+    plot_summary_dashboard, print_completeness_summary
+)
+
 
 def main():
-    """Main execution function."""
 
     # Initialize logging
     log_file = 'geometrical_complexity_analysis.log'
-    loger = setup_logging(log_file=log_file, log_level=logging.DEBUG, console_level=logging.INFO)
+    logger = setup_logging(log_file=log_file, log_level=logging.DEBUG, console_level=logging.INFO)
 
-    print(f"\n{'='*60}")
-    print(f"OSM Geometrical Complexity Analysis")
+    print(f"\n{'='*80}")
+    print(f"OSM GEOMETRICAL COMPLEXITY ANALYSIS")
     print(f"Log file: {log_file}")
-    print(f"{'='*60}\n")
+    print(f"{'='*80}\n")
 
-    # heidelberg_analysis = analyze_region('Heidelberg', BBOXES['heidelberg'])
-    # if heidelberg_analysis is not None:
-    #     print("\nHeidelberg Analysis Results:")
-    #     print(heidelberg_analysis.to_string())
-    # plot_node_distribution(BBOXES['heidelberg'], 'Heidelberg')
-
-    # Compare subset of regions (uncomment to run full comparison)
+    # Define regions for analysis
     comparison_regions = {
-        'heidelberg': BBOXES['heidelberg'],
-        'paris': BBOXES['paris'],
-        'beit_shemesh': BBOXES['beit_shemesh']
+        #'heidelberg': BBOXES['heidelberg'],
+        #'paris': BBOXES['paris'],
+        #'beit_shemesh': BBOXES['beit_shemesh'],
+        'london_15km': get_bbox_by_city("London", radius_km=15),
+        'jerusalem_15km': get_bbox_by_city("Jerusalem", radius_km=15),
+        'london_30km': get_bbox_by_city("London", radius_km=30),
+        'jerusalem_30km': get_bbox_by_city("Jerusalem", radius_km=30)
     }
-    # comparison = compare_regions(comparison_regions)
-    # if comparison is not None:
-    #     print("\nComparison Results:")
-    #     print(comparison.to_string())
 
-    # # Uncomment to save data:
-    # vertices_with_save = get_vertices(
-    #     BBOXES['heidelberg'],
-    #     time="2025-01-01",
-    #     path="./output",
-    #     filename="heidelberg_vertices.json"
-    # )
+    # Output directory
+    output_dir = Path(__file__).parent
+    output_file = "convex-hull-analysis.csv"
 
-    print("Building Convex Hull Analysis")
-    print("="*60)
+    # ========================================================================
+    # Building Convex Hull Analysis
+    # ========================================================================
+    print("\nBuilding Convex Hull Analysis")
+    print("="*80)
+
+    summary_list = []
+
     for location in comparison_regions.keys():
-        loger.info(f"{location}: {comparison_regions[location]}")
+        logger.info(f"Analyzing {location}: {comparison_regions[location]}")
+        print(f"\nProcessing: {location.upper()}")
+        print("-"*80)
+
         building_metrics = get_poly_coords(
             location,
-            comparison_regions[location], #BBOXES['heidelberg'],
+            comparison_regions[location],
             filter="type:way and building=*",
             time_param="2025-10-01",
-            path=r"H:\.shortcut-targets-by-id\1vC82Zl3hhtFy63TpICgdDiHqTHm5dv0h\OSM Projects\Code\Quality measures\Geometrical complexity\complex-geometry-scale",
-            filename="convex-hull-analysis.csv"
-
+            path=str(output_dir),
+            filename=output_file
         )
+
         if building_metrics is not None:
             print("\nBuilding Convex Hull Metrics:")
             print(building_metrics.to_string())
+            summary_list.append(building_metrics)
+        else:
+            logger.error(f"Failed to retrieve metrics for {location}")
+
+    # ========================================================================
+    # Visualization
+    # ========================================================================
+    if summary_list:
+        print("\n" + "="*80)
+        print("GENERATING COMPLETENESS VISUALIZATIONS")
+        print("="*80 + "\n")
+
+        # Print text summary
+        print_completeness_summary(summary_list[0] if len(summary_list) == 1 else
+                                  __import__('pandas').concat(summary_list, ignore_index=True))
+
+        # Generate plots
+        plot_summary_dashboard(summary_list, save_path=str(output_dir / "completeness_dashboard.png"))
+
+    # ========================================================================
+    # Optional: Road Network Analysis
+    # ========================================================================
+    # Uncomment to run road network analysis
+    # print("\n" + "="*80)
+    # print("ROAD NETWORK ANALYSIS")
+    # print("="*80 + "\n")
+    #
+    # comparison = compare_regions(comparison_regions)
+    # if comparison is not None:
+    #     print("\nRoad Network Comparison Results:")
+    #     print(comparison.to_string())
+    #     comparison.to_csv(output_dir / "road_network_analysis.csv", index=False)
+
+    # ========================================================================
+    # Optional: Dynamic Bounding Box Generation
+    # ========================================================================
+    # Example: Generate bbox for a new city
+    # print("\n" + "="*80)
+    # print("DYNAMIC BBOX GENERATION EXAMPLE")
+    # print("="*80 + "\n")
+    #
+    # new_city_bbox = get_bbox_by_city("London", radius_km=15)
+    # if new_city_bbox:
+    #     print(f"London bbox: {new_city_bbox}")
+    #
+    # custom_bbox = bbox_by_location(51.5074, -0.1278, radius_km=10)
+    # print(f"Custom location bbox: {custom_bbox}")
+
+    print("\n" + "="*80)
+    print("ANALYSIS COMPLETE")
+    print("="*80 + "\n")
+
 
 if __name__ == "__main__":
     main()
