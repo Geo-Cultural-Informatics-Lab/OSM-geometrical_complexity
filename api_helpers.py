@@ -30,9 +30,11 @@ def setup_logging(log_file='geometrical_complexity_analysis.log', log_level=logg
     logger = logging.getLogger('geometrical_complexity_analysis')
     logger.setLevel(logging.DEBUG)  # Capture all levels
 
-    # Prevent duplicate handlers if called multiple times
+    # Remove existing handlers to allow reconfiguration with new log file
     if logger.handlers:
-        return logger
+        for handler in logger.handlers[:]:  # Use slice to avoid modifying list during iteration
+            handler.close()
+            logger.removeHandler(handler)
 
     # File handler - detailed logging
     file_handler = logging.FileHandler(log_file, encoding='utf-8')

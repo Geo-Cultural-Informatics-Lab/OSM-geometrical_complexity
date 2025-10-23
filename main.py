@@ -23,29 +23,29 @@ from visualization import (
 
 def main():
 
-    # Initialize logging
-    log_file = 'geometrical_complexity_analysis.log'
-    logger = setup_logging(log_file=log_file, log_level=logging.DEBUG, console_level=logging.INFO)
 
     print(f"\n{'='*80}")
     print(f"OSM GEOMETRICAL COMPLEXITY ANALYSIS")
-    print(f"Log file: {log_file}")
-    print(f"{'='*80}\n")
 
     # Define regions for analysis
     comparison_regions = {
         #'heidelberg': BBOXES['heidelberg'],
         #'paris': BBOXES['paris'],
         #'beit_shemesh': BBOXES['beit_shemesh'],
-        'london_15km': get_bbox_by_city("London", radius_km=15),
-        'jerusalem_15km': get_bbox_by_city("Jerusalem", radius_km=15),
-        'london_30km': get_bbox_by_city("London", radius_km=30),
-        'jerusalem_30km': get_bbox_by_city("Jerusalem", radius_km=30)
+        'london_1000km': get_bbox_by_city("London",
+                                          radius_km=1000),
+        # 'jerusalem_1000km': get_bbox_by_city("Jerusalem",
+        #                                      radius_km=1),
+        # 'london_1000km': get_bbox_by_city("London", radius_km=1000),
+        # 'jerusalem_30km': get_bbox_by_city("Jerusalem", radius_km=30)
     }
 
     # Output directory
     output_dir = Path(__file__).parent
-    output_file = "convex-hull-analysis.csv"
+    output_file = "results/convex-hull-analysis.csv"
+
+    # Create logs directory
+    (output_dir / "logs").mkdir(exist_ok=True)
 
     # ========================================================================
     # Building Convex Hull Analysis
@@ -56,6 +56,11 @@ def main():
     summary_list = []
 
     for location in comparison_regions.keys():
+        # Initialize logging
+        log_file = f'logs/geometrical_complexity_analysis_{location}.log'
+        logger = setup_logging(log_file=log_file, log_level=logging.DEBUG, console_level=logging.INFO)
+        print(f"Log file: {log_file}")
+        print(f"{'='*80}\n")
         logger.info(f"Analyzing {location}: {comparison_regions[location]}")
         print(f"\nProcessing: {location.upper()}")
         print("-"*80)
