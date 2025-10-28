@@ -163,3 +163,206 @@ def save_to_file(data, path, filename, data_format='json'):
         logger.error(f"Failed to save file {file_path}: {str(e)}")
     except Exception as e:
         logger.error(f"Unexpected error saving file {file_path}: {str(e)}")
+
+
+# ============================================================================
+# Chunk Processing and Aggregation
+# ============================================================================
+
+def save_chunk_data(data, region_name, chunk_id, path, base_filename):
+    """
+    Save chunk data with metadata for later aggregation.
+
+    Args:
+        data: DataFrame or dict to save
+        region_name: Name of the region
+        chunk_id: Unique chunk identifier
+        path: Directory path for chunks
+        base_filename: Base filename (chunk_id will be appended)
+
+    Returns:
+        Path to saved chunk file
+    """
+    if not path or not base_filename:
+        return None
+
+    try:
+        # Create chunks subdirectory
+        chunk_dir = os.path.join(path, "chunks")
+        os.makedirs(chunk_dir, exist_ok=True)
+
+        # Generate chunk filename
+        name_without_ext = os.path.splitext(base_filename)[0]
+        chunk_filename = f"{name_without_ext}_chunk_{chunk_id}.csv"
+        chunk_path = os.path.join(chunk_dir, chunk_filename)
+
+        # Save chunk data
+        if hasattr(data, 'to_csv'):
+            data.to_csv(chunk_path, index=False)
+        else:
+            pd.DataFrame(data).to_csv(chunk_path, index=False)
+
+        logger.debug(f"Chunk {chunk_id} saved to {chunk_path}")
+        return chunk_path
+
+    except Exception as e:
+        logger.error(f"Failed to save chunk {chunk_id}: {str(e)}")
+        return None
+
+
+def load_and_aggregate_chunks(path, base_filename, aggregation_func=None):
+    """
+    Load all chunk files and aggregate them.
+
+    Args:
+        path: Directory path where chunks are stored
+        base_filename: Base filename to match chunk files
+        aggregation_func: Optional custom aggregation function.
+                         If None, concatenates all chunks.
+                         Function signature: func(list_of_dataframes) -> aggregated_dataframe
+
+    Returns:
+        Aggregated DataFrame or None if no chunks found
+    """
+    chunk_dir = os.path.join(path, "chunks")
+
+    if not os.path.exists(chunk_dir):
+        logger.warning(f"Chunk directory not found: {chunk_dir}")
+        return None
+
+    try:
+        # Find all chunk files matching the base filename
+        name_without_ext = os.path.splitext(base_filename)[0]
+        chunk_pattern = f"{name_without_ext}_chunk_*.csv"
+
+        import glob
+        chunk_files = glob.glob(os.path.join(chunk_dir, chunk_pattern))
+
+        if not chunk_files:
+            logger.warning(f"No chunk files found matching {chunk_pattern}")
+            return None
+
+        logger.info(f"Loading {len(chunk_files)} chunk files for aggregation")
+
+        # Load all chunks
+        chunks = []
+        for chunk_file in sorted(chunk_files):
+            try:
+                chunk_df = pd.read_csv(chunk_file)
+                chunks.append(chunk_df)
+                logger.debug(f"Loaded chunk: {os.path.basename(chunk_file)} ({len(chunk_df)} rows)")
+            except Exception as e:
+                logger.error(f"Failed to load chunk {chunk_file}: {str(e)}")
+                continue
+
+        if not chunks:
+            logger.error("No chunks successfully loaded")
+            return None
+
+        # Aggregate chunks
+        if aggregation_func:
+            result = aggregation_func(chunks)
+        else:
+            # Default: concatenate all chunks
+            result = pd.concat(chunks, ignore_index=True)
+
+        logger.info(f"Aggregated {len(chunks)} chunks into {len(result)} total rows")
+        return result
+
+    except Exception as e:
+        logger.error(f"Error during chunk aggregation: {str(e)}")
+        return None
+
+
+def save_processing_status(status_file, completed_chunks, total_chunks, metadata=None):
+    """
+    Save processing status for resume capability.
+
+    Args:
+        status_file: Path to status JSON file
+        completed_chunks: List of completed chunk IDs
+        total_chunks: Total number of chunks
+        metadata: Optional dict with additional metadata
+    """
+    try:
+        status = {
+            'completed_chunks': completed_chunks,
+            'total_chunks': total_chunks,
+            'progress': len(completed_chunks) / total_chunks if total_chunks > 0 else 0,
+            'timestamp': pd.Timestamp.now().isoformat()
+        }
+
+        if metadata:
+            status['metadata'] = metadata
+
+        with open(status_file, 'w', encoding='utf-8') as f:
+            json.dump(status, f, indent=2)
+
+        logger.debug(f"Processing status saved: {len(completed_chunks)}/{total_chunks} chunks complete")
+
+    except Exception as e:
+        logger.error(f"Failed to save processing status: {str(e)}")
+
+
+def load_processing_status(status_file):
+    """
+    Load processing status from JSON file.
+
+    Args:
+        status_file: Path to status JSON file
+
+    Returns:
+        Dict with status information or None if file doesn't exist
+    """
+    if not os.path.exists(status_file):
+        return None
+
+    try:
+        with open(status_file, 'r', encoding='utf-8') as f:
+            status = json.load(f)
+
+        logger.info(f"Loaded processing status: {len(status.get('completed_chunks', []))}/{status.get('total_chunks', 0)} chunks complete")
+        return status
+
+    except Exception as e:
+        logger.error(f"Failed to load processing status: {str(e)}")
+        return None
+
+
+def cleanup_chunks(path, base_filename, keep_status=False):
+    """
+    Clean up chunk files after successful aggregation.
+
+    Args:
+        path: Directory path where chunks are stored
+        base_filename: Base filename to match chunk files
+        keep_status: If True, keep status file (default: False)
+    """
+    chunk_dir = os.path.join(path, "chunks")
+
+    if not os.path.exists(chunk_dir):
+        return
+
+    try:
+        import glob
+
+        # Remove chunk files
+        name_without_ext = os.path.splitext(base_filename)[0]
+        chunk_pattern = f"{name_without_ext}_chunk_*.csv"
+        chunk_files = glob.glob(os.path.join(chunk_dir, chunk_pattern))
+
+        for chunk_file in chunk_files:
+            os.remove(chunk_file)
+            logger.debug(f"Removed chunk file: {os.path.basename(chunk_file)}")
+
+        logger.info(f"Cleaned up {len(chunk_files)} chunk files")
+
+        # Remove status file if requested
+        if not keep_status:
+            status_files = glob.glob(os.path.join(path, f".chunk_status_{name_without_ext}*.json"))
+            for status_file in status_files:
+                os.remove(status_file)
+                logger.debug(f"Removed status file: {os.path.basename(status_file)}")
+
+    except Exception as e:
+        logger.error(f"Error during chunk cleanup: {str(e)}")

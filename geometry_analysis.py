@@ -632,6 +632,219 @@ def get_poly_coords(region_name, bounds, filter="type:way and building=*", time_
     return summary_statistics
 
 
+def get_poly_coords_chunked(region_name, bounds, filter="type:way and building=*",
+                            time_param="2025-01-01", path=None, filename=None,
+                            chunk_size_km=50, use_adaptive_chunking=True,
+                            max_features_per_chunk=50000, building_density=2000,
+                            resume=True, cleanup_after=True):
+    """
+    Extract polygon coordinates using spatial chunking for large regions.
+
+    This function automatically splits large bounding boxes into smaller chunks
+    to prevent API timeouts and memory issues. Results are saved incrementally
+    to disk and aggregated at the end.
+
+    Args:
+        region_name: Name of the region for reference
+        bounds: Bounding box as "min_lon,min_lat,max_lon,max_lat"
+        filter: OSM filter query (default: building tags)
+        time_param: ISO-8601 timestamp (default: 2025-01-01)
+        path: Directory path to save results (required for chunked processing)
+        filename: Filename for final results (required for chunked processing)
+        chunk_size_km: Fixed chunk size in km (default: 50, used if not adaptive)
+        use_adaptive_chunking: If True, estimate optimal chunk size (default: True)
+        max_features_per_chunk: Target max features per chunk for adaptive sizing
+        building_density: Estimated buildings per km² for adaptive sizing
+        resume: If True, resume from previous incomplete run (default: True)
+        cleanup_after: If True, remove chunk files after aggregation (default: True)
+
+    Returns:
+        DataFrame with summary statistics (same format as get_poly_coords)
+
+    Example:
+        >>> # Analyze entire UK with automatic chunking
+        >>> uk_bbox = get_bbox_by_city("London", radius_km=500)
+        >>> summary = get_poly_coords_chunked(
+        ...     "uk", uk_bbox,
+        ...     path="./data",
+        ...     filename="uk_buildings.csv"
+        ... )
+    """
+    import os
+    from chunking_utils import (
+        split_bbox_into_grid, adaptive_chunk_split,
+        bbox_area_km2, print_chunk_summary
+    )
+    from api_helpers import (
+        save_chunk_data, load_and_aggregate_chunks,
+        save_processing_status, load_processing_status, cleanup_chunks
+    )
+
+    start_time = time.time()
+
+    # Validate required parameters
+    if not path or not filename:
+        logger.error("path and filename are required for chunked processing")
+        return None
+
+    logger.info(f"=" * 80)
+    logger.info(f"Starting chunked analysis for region: {region_name}")
+    logger.info(f"Bounding box: {bounds}")
+    logger.info(f"Area: {bbox_area_km2(bounds):.0f} km²")
+    logger.info(f"=" * 80)
+
+    # Generate chunks
+    if use_adaptive_chunking:
+        logger.info("Using adaptive chunking based on building density estimate")
+        chunks = adaptive_chunk_split(
+            bounds,
+            max_features_per_chunk=max_features_per_chunk,
+            default_density=building_density
+        )
+    else:
+        logger.info(f"Using fixed chunk size: {chunk_size_km} km")
+        chunks = split_bbox_into_grid(bounds, chunk_size_km=chunk_size_km)
+
+    print_chunk_summary(chunks)
+
+    # Check for existing progress
+    status_file = os.path.join(path, f".chunk_status_{region_name}.json")
+    completed_chunks = []
+
+    if resume:
+        status = load_processing_status(status_file)
+        if status:
+            completed_chunks = status.get('completed_chunks', [])
+            logger.info(f"Resuming from previous run: {len(completed_chunks)}/{len(chunks)} chunks already completed")
+
+    # Process each chunk
+    logger.info(f"\nProcessing {len(chunks)} chunks...")
+    failed_chunks = []
+
+    for i, chunk in enumerate(chunks):
+        chunk_id = chunk['chunk_id']
+
+        # Skip if already completed
+        if chunk_id in completed_chunks:
+            logger.debug(f"Skipping chunk {chunk_id} (already completed)")
+            continue
+
+        logger.info(f"\n[{i+1}/{len(chunks)}] Processing chunk {chunk_id} (row={chunk['row']}, col={chunk['col']})")
+        logger.debug(f"  Bbox: {chunk['bbox']}")
+        logger.debug(f"  Center: ({chunk['center_lat']:.4f}, {chunk['center_lon']:.4f})")
+
+        try:
+            # Call get_poly_coords for this chunk (returns summary statistics)
+            chunk_result = get_poly_coords(
+                region_name=f"{region_name}_chunk_{chunk_id}",
+                bounds=chunk['bbox'],
+                filter=filter,
+                time_param=time_param,
+                path=path,  # This will save the raw data
+                filename=filename,  # Raw data will be appended
+                distribution=False,  # We want summary stats per chunk
+                use_vectorized=True
+            )
+
+            if chunk_result is not None:
+                # Save chunk summary with metadata
+                chunk_result['chunk_id'] = chunk_id
+                chunk_result['chunk_row'] = chunk['row']
+                chunk_result['chunk_col'] = chunk['col']
+
+                save_chunk_data(
+                    chunk_result,
+                    region_name,
+                    chunk_id,
+                    path,
+                    filename + "_summary.csv"
+                )
+
+                completed_chunks.append(chunk_id)
+                logger.info(f"  ✓ Chunk {chunk_id} completed successfully")
+            else:
+                logger.warning(f"  ✗ Chunk {chunk_id} returned no data")
+                failed_chunks.append(chunk_id)
+
+        except Exception as e:
+            logger.error(f"  ✗ Chunk {chunk_id} failed: {str(e)}")
+            failed_chunks.append(chunk_id)
+            continue
+
+        # Save progress after each chunk
+        save_processing_status(
+            status_file,
+            completed_chunks,
+            len(chunks),
+            metadata={
+                'region_name': region_name,
+                'bounds': bounds,
+                'failed_chunks': failed_chunks
+            }
+        )
+
+    # Report results
+    logger.info(f"\n" + "=" * 80)
+    logger.info(f"Chunk processing complete:")
+    logger.info(f"  Successful: {len(completed_chunks)}/{len(chunks)}")
+    logger.info(f"  Failed: {len(failed_chunks)}/{len(chunks)}")
+    if failed_chunks:
+        logger.warning(f"  Failed chunk IDs: {', '.join(failed_chunks)}")
+    logger.info(f"=" * 80)
+
+    # Aggregate chunk summaries
+    logger.info("\nAggregating chunk summaries...")
+    chunk_summaries = load_and_aggregate_chunks(path, filename + "_summary.csv")
+
+    if chunk_summaries is None or len(chunk_summaries) == 0:
+        logger.error("Failed to load chunk summaries for aggregation")
+        return None
+
+    # Calculate overall summary statistics from chunk summaries
+    # We need to properly aggregate the statistics (can't just average means)
+    import numpy as np
+
+    final_summary = pd.DataFrame({
+        'region': [region_name],
+        'bbox': [bounds],
+        'num_chunks': [len(completed_chunks)],
+        'failed_chunks': [len(failed_chunks)],
+        # For sums, we sum across chunks
+        'sum_chull_area': [chunk_summaries['sum_chull_area'].sum()],
+        'sum_area': [chunk_summaries['sum_area'].sum()],
+        'sum_ratio': [chunk_summaries['sum_ratio'].sum()],
+        'total_inner_rings': [chunk_summaries['total_inner_rings'].sum()],
+        'multipolygon_count': [chunk_summaries['multipolygon_count'].sum()],
+        # For means, we take weighted average (weight by feature count if available)
+        # For now, simple mean of chunk means (approximation)
+        'mean_chull_area': [chunk_summaries['mean_chull_area'].mean()],
+        'mean_area': [chunk_summaries['mean_area'].mean()],
+        'mean_ratio': [chunk_summaries['mean_ratio'].mean()],
+        'mean_inner_rings': [chunk_summaries['mean_inner_rings'].mean()],
+        'multipolygon_ratio': [chunk_summaries['multipolygon_ratio'].mean()],
+        # For medians, take median of chunk medians (approximation)
+        'median_chull_area': [chunk_summaries['median_chull_area'].median()],
+        'median_area': [chunk_summaries['median_area'].median()],
+        'median_ratio': [chunk_summaries['median_ratio'].median()],
+    })
+
+    # Save final summary
+    summary_path = os.path.join(path, os.path.splitext(filename)[0] + "_final_summary.csv")
+    final_summary.to_csv(summary_path, index=False)
+    logger.info(f"Final summary saved to {summary_path}")
+
+    # Cleanup chunk files if requested
+    if cleanup_after:
+        logger.info("Cleaning up chunk files...")
+        cleanup_chunks(path, filename + "_summary.csv", keep_status=True)
+
+    total_time = time.time() - start_time
+    logger.info(f"\nTotal chunked analysis time: {total_time:.2f}s ({total_time/60:.1f} minutes)")
+    logger.info(f"Average time per chunk: {total_time/len(completed_chunks):.2f}s")
+
+    return final_summary
+
+
 # ============================================================================
 # Analysis Functions
 # ============================================================================

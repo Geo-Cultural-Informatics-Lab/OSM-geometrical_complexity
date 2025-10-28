@@ -388,3 +388,309 @@ def print_completeness_summary(summary_df):
     print("  - MultiPolygon Ratio: Percentage of buildings with multiple parts")
     print("  - Inner Rings: Average number of holes/courtyards per building")
     print("="*80 + "\n")
+
+
+# ============================================================================
+# Time Series Visualization Functions
+# ============================================================================
+
+def plot_time_series_complexity(ts_df, metric='mean_ratio', region_column='region',
+                                timestamp_column='timestamp', save_path=None,
+                                title="Geometrical Complexity Evolution Over Time"):
+    """
+    Plot time series line chart showing complexity metric evolution.
+
+    Args:
+        ts_df: Time series DataFrame
+        metric: Metric column to plot (default: 'mean_ratio')
+        region_column: Column containing region names
+        timestamp_column: Column containing timestamps
+        save_path: Optional path to save the plot
+        title: Plot title
+
+    Returns:
+        matplotlib figure object
+    """
+    import matplotlib.pyplot as plt
+    import matplotlib.dates as mdates
+    from datetime import datetime
+
+    # Convert timestamp strings to datetime
+    ts_df = ts_df.copy()
+    ts_df[timestamp_column] = pd.to_datetime(ts_df[timestamp_column])
+
+    # Get unique regions
+    regions = ts_df[region_column].unique()
+
+    # Create figure
+    fig, ax = plt.subplots(figsize=(14, 8))
+
+    # Plot line for each region
+    for region in regions:
+        region_data = ts_df[ts_df[region_column] == region].sort_values(timestamp_column)
+        ax.plot(region_data[timestamp_column], region_data[metric],
+               marker='o', linewidth=2, markersize=6, label=region, alpha=0.8)
+
+    # Formatting
+    ax.set_xlabel('Time', fontsize=12, fontweight='bold')
+    ax.set_ylabel(f'{metric.replace("_", " ").title()}', fontsize=12, fontweight='bold')
+    ax.set_title(title, fontsize=14, fontweight='bold', pad=20)
+    ax.legend(loc='best', fontsize=10)
+    ax.grid(True, alpha=0.3, linestyle='--')
+
+    # Format x-axis dates
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
+    ax.xaxis.set_major_locator(mdates.YearLocator())
+    plt.xticks(rotation=45, ha='right')
+
+    # Add reference lines if it's a ratio metric
+    if 'ratio' in metric:
+        ax.axhline(y=0.1, color='red', linestyle=':', alpha=0.3, label='Simple (0.1)')
+        ax.axhline(y=0.2, color='orange', linestyle=':', alpha=0.3, label='Moderate (0.2)')
+        ax.axhline(y=0.3, color='green', linestyle=':', alpha=0.3, label='Complex (0.3)')
+
+    plt.tight_layout()
+
+    if save_path:
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        print(f"Time series plot saved to {save_path}")
+
+    return fig
+
+
+def plot_time_series_heatmap(ts_df, metric='mean_ratio', region_column='region',
+                             timestamp_column='timestamp', save_path=None,
+                             title="Temporal Evolution Heatmap"):
+    """
+    Create heatmap showing metric values across regions and time.
+
+    Args:
+        ts_df: Time series DataFrame
+        metric: Metric column to plot (default: 'mean_ratio')
+        region_column: Column containing region names
+        timestamp_column: Column containing timestamps
+        save_path: Optional path to save the plot
+        title: Plot title
+
+    Returns:
+        matplotlib figure object
+    """
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+
+    # Pivot data for heatmap
+    pivot_data = ts_df.pivot(index=region_column, columns=timestamp_column, values=metric)
+
+    # Create figure
+    fig, ax = plt.subplots(figsize=(16, len(pivot_data) * 0.8 + 2))
+
+    # Create heatmap
+    sns.heatmap(pivot_data, annot=True, fmt='.3f', cmap='RdYlGn', center=0.2,
+               cbar_kws={'label': metric.replace('_', ' ').title()},
+               linewidths=0.5, ax=ax)
+
+    # Formatting
+    ax.set_title(title, fontsize=14, fontweight='bold', pad=20)
+    ax.set_xlabel('Time', fontsize=12, fontweight='bold')
+    ax.set_ylabel('Region', fontsize=12, fontweight='bold')
+    plt.xticks(rotation=45, ha='right')
+    plt.yticks(rotation=0)
+
+    plt.tight_layout()
+
+    if save_path:
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        print(f"Heatmap saved to {save_path}")
+
+    return fig
+
+
+def plot_growth_comparison(ts_df, metric='mean_ratio', region_column='region',
+                          timestamp_column='timestamp', save_path=None):
+    """
+    Create multi-panel comparison showing absolute values, changes, and growth rates.
+
+    Args:
+        ts_df: Time series DataFrame
+        metric: Metric column to analyze
+        region_column: Column containing region names
+        timestamp_column: Column containing timestamps
+        save_path: Optional path to save the plot
+
+    Returns:
+        matplotlib figure object
+    """
+    import matplotlib.pyplot as plt
+    import matplotlib.dates as mdates
+    from time_series_analysis import calculate_growth_metrics
+
+    # Convert timestamps
+    ts_df = ts_df.copy()
+    ts_df[timestamp_column] = pd.to_datetime(ts_df[timestamp_column])
+
+    # Calculate growth metrics for each region
+    regions = ts_df[region_column].unique()
+    growth_data = []
+
+    for region in regions:
+        region_data = ts_df[ts_df[region_column] == region].sort_values(timestamp_column)
+        region_growth = calculate_growth_metrics(region_data, metric)
+        growth_data.append(region_growth)
+
+    growth_df = pd.concat(growth_data, ignore_index=True)
+
+    # Create figure with 3 subplots
+    fig, axes = plt.subplots(3, 1, figsize=(14, 12))
+
+    # Plot 1: Absolute values
+    for region in regions:
+        region_data = growth_df[growth_df[region_column] == region]
+        axes[0].plot(region_data[timestamp_column], region_data[metric],
+                    marker='o', linewidth=2, label=region, alpha=0.8)
+
+    axes[0].set_ylabel(f'{metric.replace("_", " ").title()}', fontsize=11, fontweight='bold')
+    axes[0].set_title('Absolute Metric Values Over Time', fontsize=12, fontweight='bold')
+    axes[0].legend(loc='best')
+    axes[0].grid(True, alpha=0.3)
+
+    # Plot 2: Absolute change
+    for region in regions:
+        region_data = growth_df[growth_df[region_column] == region]
+        axes[1].plot(region_data[timestamp_column], region_data[f'{metric}_change'],
+                    marker='s', linewidth=2, label=region, alpha=0.8)
+
+    axes[1].axhline(y=0, color='black', linestyle='-', alpha=0.3)
+    axes[1].set_ylabel(f'Change in {metric.replace("_", " ").title()}', fontsize=11, fontweight='bold')
+    axes[1].set_title('Period-over-Period Change', fontsize=12, fontweight='bold')
+    axes[1].legend(loc='best')
+    axes[1].grid(True, alpha=0.3)
+
+    # Plot 3: Percentage change
+    for region in regions:
+        region_data = growth_df[growth_df[region_column] == region]
+        axes[2].plot(region_data[timestamp_column], region_data[f'{metric}_pct_change'],
+                    marker='^', linewidth=2, label=region, alpha=0.8)
+
+    axes[2].axhline(y=0, color='black', linestyle='-', alpha=0.3)
+    axes[2].set_ylabel('Percentage Change (%)', fontsize=11, fontweight='bold')
+    axes[2].set_xlabel('Time', fontsize=11, fontweight='bold')
+    axes[2].set_title('Percentage Change Over Time', fontsize=12, fontweight='bold')
+    axes[2].legend(loc='best')
+    axes[2].grid(True, alpha=0.3)
+
+    # Format x-axis dates for all subplots
+    for ax in axes:
+        ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
+        ax.xaxis.set_major_locator(mdates.YearLocator())
+        plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha='right')
+
+    plt.tight_layout()
+
+    if save_path:
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        print(f"Growth comparison plot saved to {save_path}")
+
+    return fig
+
+
+def plot_time_series_dashboard(ts_df, metric='mean_ratio', save_path=None):
+    """
+    Create comprehensive dashboard with multiple time series visualizations.
+
+    Args:
+        ts_df: Time series DataFrame
+        metric: Metric to analyze (default: 'mean_ratio')
+        save_path: Optional path to save the plot
+
+    Returns:
+        matplotlib figure object
+    """
+    import matplotlib.pyplot as plt
+    import matplotlib.dates as mdates
+
+    # Convert timestamps
+    ts_df = ts_df.copy()
+    ts_df['timestamp'] = pd.to_datetime(ts_df['timestamp'])
+
+    regions = ts_df['region'].unique()
+    n_regions = len(regions)
+
+    # Create figure with multiple subplots
+    fig = plt.figure(figsize=(18, 12))
+    gs = fig.add_gridspec(3, 2, hspace=0.3, wspace=0.3)
+
+    # 1. Main time series (large, spans top row)
+    ax1 = fig.add_subplot(gs[0, :])
+    for region in regions:
+        region_data = ts_df[ts_df['region'] == region].sort_values('timestamp')
+        ax1.plot(region_data['timestamp'], region_data[metric],
+                marker='o', linewidth=2.5, markersize=7, label=region, alpha=0.85)
+
+    ax1.set_ylabel(f'{metric.replace("_", " ").title()}', fontsize=12, fontweight='bold')
+    ax1.set_title('Geometrical Complexity Evolution Over Time', fontsize=14, fontweight='bold', pad=15)
+    ax1.legend(loc='best', fontsize=10, ncol=min(3, n_regions))
+    ax1.grid(True, alpha=0.3, linestyle='--')
+    ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+    ax1.xaxis.set_major_locator(mdates.YearLocator())
+
+    # 2. Distribution by region (box plot)
+    ax2 = fig.add_subplot(gs[1, 0])
+    data_for_box = [ts_df[ts_df['region'] == r][metric].values for r in regions]
+    bp = ax2.boxplot(data_for_box, labels=regions, patch_artist=True)
+    for patch in bp['boxes']:
+        patch.set_facecolor('lightblue')
+        patch.set_alpha(0.7)
+    ax2.set_ylabel(metric.replace('_', ' ').title(), fontsize=11, fontweight='bold')
+    ax2.set_title('Distribution by Region', fontsize=12, fontweight='bold')
+    ax2.grid(True, alpha=0.3, axis='y')
+    plt.setp(ax2.xaxis.get_majorticklabels(), rotation=45, ha='right')
+
+    # 3. Change over time (bar chart showing start vs end)
+    ax3 = fig.add_subplot(gs[1, 1])
+    start_values = []
+    end_values = []
+    for region in regions:
+        region_data = ts_df[ts_df['region'] == region].sort_values('timestamp')
+        start_values.append(region_data[metric].iloc[0])
+        end_values.append(region_data[metric].iloc[-1])
+
+    x = range(len(regions))
+    width = 0.35
+    ax3.bar([i - width/2 for i in x], start_values, width, label='Start', alpha=0.8, color='coral')
+    ax3.bar([i + width/2 for i in x], end_values, width, label='End', alpha=0.8, color='skyblue')
+    ax3.set_ylabel(metric.replace('_', ' ').title(), fontsize=11, fontweight='bold')
+    ax3.set_title('Start vs End Comparison', fontsize=12, fontweight='bold')
+    ax3.set_xticks(x)
+    ax3.set_xticklabels(regions, rotation=45, ha='right')
+    ax3.legend()
+    ax3.grid(True, alpha=0.3, axis='y')
+
+    # 4. Cumulative improvement (if data shows improvement)
+    ax4 = fig.add_subplot(gs[2, :])
+    for region in regions:
+        region_data = ts_df[ts_df['region'] == region].sort_values('timestamp')
+        if len(region_data) > 1:
+            start_val = region_data[metric].iloc[0]
+            cumulative_change = region_data[metric] - start_val
+            ax4.plot(region_data['timestamp'], cumulative_change,
+                    marker='o', linewidth=2, label=region, alpha=0.8)
+
+    ax4.axhline(y=0, color='black', linestyle='-', alpha=0.5, linewidth=1)
+    ax4.set_ylabel(f'Cumulative Change in {metric.replace("_", " ").title()}',
+                  fontsize=11, fontweight='bold')
+    ax4.set_xlabel('Time', fontsize=11, fontweight='bold')
+    ax4.set_title('Cumulative Change from Baseline', fontsize=12, fontweight='bold')
+    ax4.legend(loc='best', fontsize=10)
+    ax4.grid(True, alpha=0.3, linestyle='--')
+    ax4.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+    ax4.xaxis.set_major_locator(mdates.YearLocator())
+    plt.setp(ax4.xaxis.get_majorticklabels(), rotation=45, ha='right')
+
+    plt.suptitle('OSM Geometrical Complexity: Time Series Analysis Dashboard',
+                fontsize=16, fontweight='bold', y=0.995)
+
+    if save_path:
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        print(f"Time series dashboard saved to {save_path}")
+
+    return fig

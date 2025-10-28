@@ -12,9 +12,10 @@ from pathlib import Path
 from api_helpers import setup_logging
 from geometry_analysis import (
     get_count, get_len, get_area, get_vertices, get_poly_coords,
-    analyze_region, plot_node_distribution, compare_regions
+    get_poly_coords_chunked, analyze_region, plot_node_distribution, compare_regions
 )
 from bbox_utils import BBOXES, get_bbox_by_city, bbox_by_location
+from chunking_utils import bbox_area_km2
 from visualization import (
     plot_completeness_metrics, plot_area_comparison,
     plot_summary_dashboard, print_completeness_summary
@@ -65,14 +66,36 @@ def main():
         print(f"\nProcessing: {location.upper()}")
         print("-"*80)
 
-        building_metrics = get_poly_coords(
-            location,
-            comparison_regions[location],
-            filter="type:way and building=*",
-            time_param="2025-10-01",
-            path=str(output_dir),
-            filename=output_file
-        )
+        # Determine if we need chunked processing based on bbox area
+        bbox = comparison_regions[location]
+        area_km2 = bbox_area_km2(bbox)
+        use_chunked = area_km2 > 5000  # Use chunked processing for areas > 5000 km²
+
+        if use_chunked:
+            logger.info(f"Large region detected ({area_km2:.0f} km²) - using chunked processing")
+            building_metrics = get_poly_coords_chunked(
+                location,
+                bbox,
+                filter="type:way and building=*",
+                time_param="2025-10-01",
+                path=str(output_dir),
+                filename=output_file,
+                use_adaptive_chunking=True,
+                max_features_per_chunk=50000,
+                building_density=2000,
+                resume=True,
+                cleanup_after=False
+            )
+        else:
+            logger.info(f"Small region ({area_km2:.0f} km²) - using direct processing")
+            building_metrics = get_poly_coords(
+                location,
+                bbox,
+                filter="type:way and building=*",
+                time_param="2025-10-01",
+                path=str(output_dir),
+                filename=output_file
+            )
 
         if building_metrics is not None:
             print("\nBuilding Convex Hull Metrics:")
