@@ -1,0 +1,64 @@
+# Complete Configuration Template
+name: full_analysis
+description: Complete configuration with all options
+version: "1.0"
+
+analysis:
+  type: snapshot  # or 'time_series'
+
+  snapshot:
+    timestamp: "2025-08-01"
+
+  time_series:
+    start_year: 2015
+    end_year: 2025
+    interval: yearly
+
+regions:
+  # Country-level analysis
+  - name: israel
+    type: country
+    country: Israel
+    notes: "Full country analysis"
+
+  # City-level analysis
+  - name: jerusalem
+    type: city
+    city: Jerusalem
+    radius_km: 30
+
+  # Custom coordinates
+  - name: west_bank
+    type: coordinates
+    lat: 31.9
+    lon: 35.2
+    radius_km: 40
+
+  # Custom bounding box
+  - name: custom_area
+    type: bbox
+    bbox: "34.5,31.0,35.5,32.5"
+
+processing:
+  filter: "type:way and building=*"
+  use_adaptive_chunking: true
+  chunk_size_km: 50
+  max_features_per_chunk: 50000
+  building_density: 2000
+  resume: true
+  cleanup_chunks: true
+
+output:
+  base_dir: "./results"
+  structure: by_analysis_type
+  generate_plots: true
+  generate_reports: false
+  report_format: markdown
+  log_level: INFO
+
+advanced:
+  parallel_processing: false
+  max_workers: 2
+  api_timeout: 300
+  retry_failed: true
+  max_retries: 3

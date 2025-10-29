@@ -1,0 +1,29 @@
+# OSM Geometrical Complexity Batch Analysis Configuration
+name: basic_analysis
+description: Basic batch analysis configuration
+
+analysis:
+  type: snapshot  # 'snapshot' or 'time_series'
+
+  snapshot:
+    timestamp: "2025-08-01"
+
+regions:
+  - name: example_country
+    type: country
+    country: Israel
+
+  - name: example_city
+    type: city
+    city: Jerusalem
+    radius_km: 30
+
+processing:
+  filter: "type:way and building=*"
+  use_adaptive_chunking: true
+  resume: true
+
+output:
+  base_dir: "./results"
+  generate_plots: true
+  log_level: INFO

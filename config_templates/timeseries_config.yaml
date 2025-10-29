@@ -1,0 +1,31 @@
+# Time Series Analysis Configuration
+name: time_series_analysis
+description: Analyze complexity evolution over time
+
+analysis:
+  type: time_series
+
+  time_series:
+    start_year: 2015
+    end_year: 2025
+    interval: yearly  # 'yearly', 'quarterly', 'monthly'
+
+regions:
+  - name: israel
+    type: country
+    country: Israel
+
+  - name: palestine
+    type: country
+    country: Palestine
+
+processing:
+  filter: "type:way and building=*"
+  use_adaptive_chunking: true
+  chunk_size_km: 50
+  resume: true
+
+output:
+  base_dir: "./results/time_series"
+  generate_plots: true
+  log_level: INFO
