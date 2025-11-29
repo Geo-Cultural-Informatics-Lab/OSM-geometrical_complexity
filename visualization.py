@@ -790,10 +790,6 @@ def plot_users_vs_complexity(summary_df, save_path=None, show_labels=True):
         x_trend = np.linspace(df['user_count'].min(), df['user_count'].max(), 100)
         ax.plot(x_trend, p(x_trend), "r--", alpha=0.5, linewidth=2, label=f'Trend: y={z[0]:.2e}x+{z[1]:.3f}')
 
-    # Add colorbar
-    cbar = plt.colorbar(scatter, ax=ax)
-    cbar.set_label('Mean Complexity Ratio', rotation=270, labelpad=20, fontweight='bold')
-
     # Labels and title
     ax.set_xlabel('Number of Contributors/Users', fontsize=12, fontweight='bold')
     ax.set_ylabel('Mean Complexity Ratio', fontsize=12, fontweight='bold')
