@@ -2,6 +2,9 @@
 Configuration Loader for OSM Geometrical Complexity Analysis
 
 This module provides functions to load and validate YAML configuration files.
+Uses a layered configuration approach:
+1. System defaults (config/defaults.yaml)
+2. User config (config/user_config.yaml or provided path)
 """
 
 import yaml
@@ -9,32 +12,119 @@ from pathlib import Path
 from api_helpers import logger
 
 
-def load_config(config_path):
+def load_yaml_file(file_path):
     """
-    Load configuration from YAML file.
+    Load a YAML file and return its contents.
 
     Args:
-        config_path: Path to YAML configuration file
+        file_path: Path to YAML file
 
     Returns:
-        Dictionary with configuration parameters or None on error
+        Dictionary with file contents or None on error
     """
     try:
-        with open(config_path, 'r') as f:
-            config = yaml.safe_load(f)
-
-        logger.info(f"Loaded configuration from {config_path}")
-        return config
-
+        with open(file_path, 'r') as f:
+            return yaml.safe_load(f)
     except FileNotFoundError:
-        logger.error(f"Configuration file not found: {config_path}")
+        logger.error(f"Configuration file not found: {file_path}")
         return None
     except yaml.YAMLError as e:
-        logger.error(f"Error parsing YAML configuration: {str(e)}")
+        logger.error(f"Error parsing YAML file: {str(e)}")
         return None
     except Exception as e:
-        logger.error(f"Unexpected error loading configuration: {str(e)}")
+        logger.error(f"Unexpected error loading file: {str(e)}")
         return None
+
+
+def load_defaults():
+    """
+    Load system defaults from config/defaults.yaml
+
+    Returns:
+        Dictionary with default configuration values
+    """
+    defaults_path = Path(__file__).parent / 'config' / 'defaults.yaml'
+
+    if not defaults_path.exists():
+        logger.warning(f"Defaults file not found at {defaults_path}, using minimal defaults")
+        return {
+            'analysis': {'mode': 'snapshot', 'timestamp': '2025-08-01'},
+            'analysis_options': {
+                'filter': 'type:way and building=*',
+                'chunked_threshold_km2': 5000,
+                'include_building_count': True,
+                'include_user_count': True,
+                'resume': True
+            },
+            'output': {
+                'directory': './results',
+                'data_directory': './data',
+                'logs_directory': './logs'
+            }
+        }
+
+    defaults = load_yaml_file(defaults_path)
+    if defaults:
+        logger.info(f"Loaded system defaults from {defaults_path}")
+    return defaults or {}
+
+
+def load_config(config_path=None):
+    """
+    Load configuration by layering user config over system defaults.
+
+    Args:
+        config_path: Path to user YAML configuration file
+                    If None, tries config/user_config.yaml
+
+    Returns:
+        Dictionary with merged configuration parameters
+    """
+    # Load system defaults first
+    config = load_defaults()
+
+    # Determine user config path
+    if config_path is None:
+        user_config_path = Path(__file__).parent / 'config' / 'user_config.yaml'
+        if not user_config_path.exists():
+            logger.warning("No user config found, using defaults only")
+            logger.info("Create config/user_config.yaml to customize settings")
+            return config
+    else:
+        user_config_path = Path(config_path)
+
+    # Load and merge user config
+    user_config = load_yaml_file(user_config_path)
+    if user_config:
+        logger.info(f"Loaded user configuration from {user_config_path}")
+        config = merge_configs(config, user_config)
+
+    return config
+
+
+def merge_configs(base, override):
+    """
+    Recursively merge two configuration dictionaries.
+    Override values take precedence over base values.
+
+    Args:
+        base: Base configuration dictionary
+        override: Configuration to overlay on top
+
+    Returns:
+        Merged configuration dictionary
+    """
+    if not isinstance(base, dict) or not isinstance(override, dict):
+        return override
+
+    result = base.copy()
+    for key, value in override.items():
+        if key in result and isinstance(result[key], dict) and isinstance(value, dict):
+            result[key] = merge_configs(result[key], value)
+        else:
+            result[key] = value
+
+    return result
 
 
 def validate_config(config):
@@ -91,71 +181,29 @@ def validate_config(config):
         elif not isinstance(countries, list) or len(countries) == 0:
             return False, "Countries must be a list of ISO codes or a configuration dict"
 
-    else:  # snapshot or default
+    else:  # snapshot mode
         if 'regions' not in config and 'countries' not in config:
             return False, "snapshot mode requires either 'regions' or 'countries' configuration"
 
     return True, None
 
 
+# Deprecated functions kept for backwards compatibility
 def get_default_config():
     """
+    DEPRECATED: Use load_defaults() instead.
     Get default configuration template.
 
     Returns:
         Dictionary with default configuration values
     """
-    return {
-        'analysis': {
-            'mode': 'snapshot',
-            'timestamp': '2025-08-01'
-        },
-        'regions': {
-            'test_region': {
-                'type': 'city',
-                'name': 'London',
-                'radius_km': 15
-            }
-        },
-        'time_series': {
-            'start_year': 2015,
-            'end_year': 2025,
-            'interval': 'yearly'
-        },
-        'countries': {
-            'source': 'list',  # or 'csv'
-            'iso_codes': ['DEU', 'GBR', 'FRA'],
-            'csv_path': './World_Countries.csv',
-            'geojson_path': './countries_polygons/World_Countries.geojson'
-        },
-        'analysis_options': {
-            'filter': 'type:way and building=*',
-            'chunked_threshold_km2': 5000,
-            'include_building_count': True,
-            'include_user_count': True,
-            'resume': True
-        },
-        'output': {
-            'directory': './results',
-            'data_directory': './data',
-            'logs_directory': './logs',
-            'export_shapefile': True,
-            'export_individual_buildings': False,
-            'sample_complex_buildings': 10
-        },
-        'visualization': {
-            'create_dashboards': True,
-            'create_time_series_plots': True,
-            'create_user_correlation_plot': True,
-            'create_box_plots': True,
-            'create_qualitative_samples': True,
-            'dpi': 300
-        }
-    }
+    logger.warning("get_default_config() is deprecated, use load_defaults() instead")
+    return load_defaults()
 
 
 def merge_with_defaults(config):
     """
+    DEPRECATED: Use merge_configs(load_defaults(), config) instead.
     Merge user configuration with default values.
 
     Args:
@@ -164,19 +212,8 @@ def merge_with_defaults(config):
     Returns:
         Merged configuration with defaults filled in
     """
-    defaults = get_default_config()
-
-    def deep_merge(base, override):
-        """Recursively merge dictionaries."""
-        result = base.copy()
-        for key, value in override.items():
-            if key in result and isinstance(result[key], dict) and isinstance(value, dict):
-                result[key] = deep_merge(result[key], value)
-            else:
-                result[key] = value
-        return result
-
-    return deep_merge(defaults, config)
+    logger.warning("merge_with_defaults() is deprecated, use load_config() instead")
+    return merge_configs(load_defaults(), config)
 
 
 def save_config_template(output_path, config_type='basic'):
@@ -190,72 +227,19 @@ def save_config_template(output_path, config_type='basic'):
     Returns:
         Boolean indicating success
     """
-    templates = {
-        'basic': {
-            'analysis': {
-                'mode': 'snapshot',
-                'timestamp': '2025-08-01'
-            },
-            'regions': {
-                'london': {
-                    'type': 'city',
-                    'name': 'London',
-                    'radius_km': 15
-                }
-            },
-            'output': {
-                'directory': './results'
-            }
-        },
-        'time_series': {
-            'analysis': {
-                'mode': 'time_series'
-            },
-            'regions': {
-                'london': {
-                    'type': 'city',
-                    'name': 'London',
-                    'radius_km': 15
-                }
-            },
-            'time_series': {
-                'start_year': 2015,
-                'end_year': 2025,
-                'interval': 'yearly'
-            },
-            'output': {
-                'directory': './results',
-                'data_directory': './data/time_series'
-            }
-        },
-        'batch': {
-            'analysis': {
-                'mode': 'batch_countries'
-            },
-            'countries': {
-                'source': 'list',
-                'iso_codes': ['DEU', 'GBR', 'FRA', 'USA', 'ITA']
-            },
-            'time_series': {
-                'enabled': False
-            },
-            'output': {
-                'directory': './results/batch_countries',
-                'export_shapefile': True
-            }
-        },
-        'full': get_default_config()
-    }
+    # Use the example user config as the template
+    example_path = Path(__file__).parent / 'config' / 'user_config.example.yaml'
 
-    config = templates.get(config_type, templates['basic'])
+    if not example_path.exists():
+        logger.error(f"Example config not found at {example_path}")
+        return False
 
     try:
-        with open(output_path, 'w') as f:
-            yaml.dump(config, f, default_flow_style=False, sort_keys=False, indent=2)
-
-        logger.info(f"Saved {config_type} configuration template to {output_path}")
+        # Just copy the example file
+        import shutil
+        shutil.copy(example_path, output_path)
+        logger.info(f"Saved configuration template to {output_path}")
         return True
-
     except Exception as e:
         logger.error(f"Error saving configuration template: {str(e)}")
         return False

@@ -350,34 +350,17 @@ def analyze_countries_batch(countries_df, geojson_path, output_dir,
 def create_batch_config_example():
     """
     Create example YAML configuration for batch country analysis.
+    Note: This is deprecated. Use config/user_config.example.yaml instead.
 
     Returns:
         Dictionary with example configuration
     """
-    return {
-        'analysis': {
-            'mode': 'batch_countries',
-        },
-        'countries': {
-            'source': 'csv',  # 'csv' or 'list'
-            'csv_path': './World_Countries.csv',
-            'geojson_path': './countries_polygons/World_Countries.geojson',
-            'iso_filter': ['USA', 'DEU', 'GBR', 'FRA', 'ITA'],  # None for all
-        },
-        'time_series': {
-            'enabled': False,
-            'start_year': 2015,
-            'end_year': 2025,
-            'interval': 'yearly'
-        },
-        'analysis_options': {
-            'filter': 'type:way and building=*',
-            'chunked_threshold_km2': 5000,
-            'include_user_count': True,
-            'resume': True
-        },
-        'output': {
-            'directory': './results/batch_countries',
-            'export_shapefile': True
-        }
-    }
+    from config_loader import load_defaults
+
+    defaults = load_defaults()
+    example = defaults.copy()
+    example['analysis']['mode'] = 'batch_countries'
+    example['countries']['source'] = 'list'
+    example['countries']['iso_codes'] = ['USA', 'DEU', 'GBR', 'FRA', 'ITA']
+
+    return example

@@ -1,0 +1,57 @@
+# ============================================================================
+# OSM Complexity Analysis - User Configuration Example
+# ============================================================================
+# Copy this file to user_config.yaml and customize for your analysis.
+# Only specify the settings you want to change - all others use defaults.
+#
+# Quick Start:
+# 1. cp user_config.example.yaml user_config.yaml
+# 2. Edit the 'regions' section below with your city/area
+# 3. Run: python main.py config/user_config.yaml
+# ============================================================================
+
+# Analysis mode and settings
+analysis:
+  mode: snapshot  # snapshot, time_series, or batch_countries
+  # timestamp: "2025-08-01"  # Uncomment to change default date
+
+# Define your regions to analyze
+regions:
+  my_city:
+    type: city
+    name: Jerusalem  # Change to your city name
+    radius_km: 15  # Analysis radius in kilometers
+
+  # You can define multiple regions:
+  # another_city:
+  #   type: city
+  #   name: Berlin
+  #   radius_km: 20
+
+  # Or use custom bounding box:
+  # custom_area:
+  #   type: bbox
+  #   name: Custom Area
+  #   bbox: [lon_min, lat_min, lon_max, lat_max]
+
+# Uncomment to customize output locations
+# output:
+#   directory: ./my_results
+#   logs_directory: ./my_logs
+
+# Uncomment for time series analysis
+# analysis:
+#   mode: time_series
+#
+# time_series:
+#   start_year: 2020
+#   end_year: 2025
+#   interval: yearly
+
+# Uncomment for batch country analysis
+# analysis:
+#   mode: batch_countries
+#
+# countries:
+#   source: list
+#   iso_codes: ['DEU', 'FRA', 'GBR']  # Germany, France, UK

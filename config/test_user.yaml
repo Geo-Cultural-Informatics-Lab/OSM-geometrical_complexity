@@ -1,0 +1,9 @@
+# Test user config
+analysis:
+  mode: snapshot
+
+regions:
+  heidelberg:
+    type: city
+    name: Heidelberg, Germany
+    radius_km: 20
