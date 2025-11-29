@@ -41,6 +41,16 @@ visualization:
   create_qualitative_samples: true
   dpi: 300  # Plot resolution
 
+  # Visualization merging options (for multi-region/country analyses)
+  merge_visualizations: false  # If true, combine all regions into single plots
+  # When merge_visualizations is false, creates separate plots per region AND a combined plot
+  # When merge_visualizations is true, only creates combined plots (saves space)
+
+  # Fine-grained control (overrides merge_visualizations if specified)
+  merge_dashboards: null  # null = use merge_visualizations, true/false = override
+  merge_time_series: null  # null = use merge_visualizations, true/false = override
+  merge_correlation_plots: null  # null = use merge_visualizations, true/false = override
+
 # Time Series Defaults (when mode: time_series)
 time_series:
   start_year: 2015

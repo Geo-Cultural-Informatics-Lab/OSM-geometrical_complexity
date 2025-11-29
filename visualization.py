@@ -393,10 +393,6 @@ def print_completeness_summary(summary_df):
     print("="*80 + "\n")
 
 
-# ============================================================================
-# Time Series Visualization Functions
-# ============================================================================
-
 def plot_time_series_complexity(ts_df, metric='mean_ratio', region_column='region',
                                 timestamp_column='timestamp', save_path=None,
                                 title="Geometrical Complexity Evolution Over Time"):
@@ -438,7 +434,6 @@ def plot_time_series_complexity(ts_df, metric='mean_ratio', region_column='regio
     ax.set_xlabel('Time', fontsize=12, fontweight='bold')
     ax.set_ylabel(f'{metric.replace("_", " ").title()}', fontsize=12, fontweight='bold')
     ax.set_title(title, fontsize=14, fontweight='bold', pad=20)
-    ax.legend(loc='best', fontsize=10)
     ax.grid(True, alpha=0.3, linestyle='--')
 
     # Format x-axis dates
@@ -448,10 +443,12 @@ def plot_time_series_complexity(ts_df, metric='mean_ratio', region_column='regio
 
     # Add reference lines if it's a ratio metric
     if 'ratio' in metric:
-        ax.axhline(y=0.1, color='red', linestyle=':', alpha=0.3, label='Simple (0.1)')
-        ax.axhline(y=0.2, color='orange', linestyle=':', alpha=0.3, label='Moderate (0.2)')
-        ax.axhline(y=0.3, color='green', linestyle=':', alpha=0.3, label='Complex (0.3)')
+        mean = ts_df['mean_ratio'].mean()
+        ax.axhline(y=mean, color='red', linestyle=':', alpha=0.7, label='Mean')
+    #     ax.axhline(y=0.2, color='orange', linestyle=':', alpha=0.3, label='Moderate (0.2)')
+    #     ax.axhline(y=0.3, color='green', linestyle=':', alpha=0.3, label='Complex (0.3)')
 
+    ax.legend(loc='best', fontsize=10)
     plt.tight_layout()
 
     if save_path:

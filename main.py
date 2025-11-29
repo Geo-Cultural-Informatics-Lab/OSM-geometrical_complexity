@@ -40,6 +40,30 @@ from visualization import (
 
 
 # ============================================================================
+# HELPER FUNCTIONS
+# ============================================================================
+
+def should_merge_viz(viz_opts, viz_type):
+    """
+    Determine if visualizations should be merged based on config.
+
+    Args:
+        viz_opts: Visualization options from config
+        viz_type: Type of visualization ('dashboards', 'time_series', 'correlation_plots')
+
+    Returns:
+        Boolean indicating whether to merge visualizations
+    """
+    # Check for specific override
+    merge_key = f'merge_{viz_type}'
+    if viz_opts.get(merge_key) is not None:
+        return viz_opts[merge_key]
+
+    # Fall back to general merge setting
+    return viz_opts.get('merge_visualizations', False)
+
+
+# ============================================================================
 # COMMAND-LINE INTERFACE
 # ============================================================================
 
@@ -285,12 +309,31 @@ def run_snapshot_analysis(config, output_dir):
 
         # Create dashboards
         if viz_opts.get('create_dashboards', True):
-            print("Creating summary dashboard...")
-            plot_summary_dashboard(
-                summary_list,
-                save_path=str(output_dir / "completeness_dashboard.png")
-            )
-            print("✓ Dashboard saved")
+            merge_dash = should_merge_viz(viz_opts, 'dashboards')
+
+            if merge_dash or len(summary_list) == 1:
+                # Only combined dashboard
+                print("Creating combined summary dashboard...")
+                plot_summary_dashboard(
+                    summary_list,
+                    save_path=str(output_dir / "completeness_dashboard.png")
+                )
+                print("✓ Combined dashboard saved")
+            else:
+                # Separate dashboards per region + combined
+                print("Creating dashboards (separate + combined)...")
+                for i, summary in enumerate(summary_list):
+                    region_name = summary['region'].iloc[0] if 'region' in summary.columns else f"region_{i}"
+                    plot_summary_dashboard(
+                        [summary],
+                        save_path=str(output_dir / f"dashboard_{region_name}.png")
+                    )
+                # Combined dashboard
+                plot_summary_dashboard(
+                    summary_list,
+                    save_path=str(output_dir / "completeness_dashboard_combined.png")
+                )
+                print(f"✓ Dashboards saved (separate per region + combined)")
 
         # User correlation plot
         if viz_opts.get('create_user_correlation_plot', True) and len(summary_list) > 1:
@@ -403,34 +446,67 @@ def run_time_series_analysis(config, output_dir, data_dir):
         print("GENERATING TIME SERIES VISUALIZATIONS")
         print("=" * 80 + "\n")
 
-        for region_name, ts_data in time_series_results.items():
-            # Individual region plot
+        merge_ts = should_merge_viz(viz_opts, 'time_series')
+        merge_dash = should_merge_viz(viz_opts, 'dashboards')
+        merge_corr = should_merge_viz(viz_opts, 'correlation_plots')
+
+        # Individual region plots (if not merging or only one region)
+        if not merge_ts or len(time_series_results) == 1:
+            for region_name, ts_data in time_series_results.items():
+                if viz_opts.get('create_time_series_plots', True):
+                    plot_path = output_dir / f"{region_name}_time_series.png"
+                    plot_time_series_complexity(
+                        ts_data,
+                        title=f"Complexity Evolution - {region_name.replace('_', ' ').title()}",
+                        save_path=str(plot_path)
+                    )
+                    print(f"✓ Time series plot: {plot_path.name}")
+
+        # Individual dashboards (if not merging or only one region)
+        if not merge_dash or len(time_series_results) == 1:
+            for region_name, ts_data in time_series_results.items():
+                if viz_opts.get('create_dashboards', True):
+                    dashboard_path = output_dir / f"{region_name}_ts_dashboard.png"
+                    plot_time_series_dashboard(
+                        ts_data,
+                        save_path=str(dashboard_path)
+                    )
+                    print(f"✓ Dashboard: {dashboard_path.name}")
+
+        # Individual correlation plots (if not merging or only one region)
+        if not merge_corr or len(time_series_results) == 1:
+            for region_name, ts_data in time_series_results.items():
+                if viz_opts.get('create_user_correlation_plot', True) and 'user_count' in ts_data.columns:
+                    corr_path = output_dir / f"{region_name}_user_correlation.png"
+                    plot_users_vs_complexity(
+                        ts_data,
+                        save_path=str(corr_path)
+                    )
+                    print(f"✓ User correlation: {corr_path.name}")
+
+        # Combined plots (if multiple regions)
+        if len(time_series_results) > 1:
+            combined_ts = pd.concat(
+                [data.assign(region=name) for name, data in time_series_results.items()],
+                ignore_index=True
+            )
+
             if viz_opts.get('create_time_series_plots', True):
-                plot_path = output_dir / f"{region_name}_time_series.png"
+                suffix = "" if merge_ts else "_combined"
                 plot_time_series_complexity(
-                    ts_data,
-                    title=f"Complexity Evolution - {region_name.replace('_', ' ').title()}",
-                    save_path=str(plot_path)
+                    combined_ts,
+                    title="Complexity Evolution - All Regions",
+                    save_path=str(output_dir / f"time_series{suffix}.png")
                 )
-                print(f"✓ Time series plot: {plot_path.name}")
+                print(f"✓ Combined time series plot saved")
 
-            # Detailed dashboard
-            if viz_opts.get('create_dashboards', True):
-                dashboard_path = output_dir / f"{region_name}_ts_dashboard.png"
-                plot_time_series_dashboard(
-                    ts_data,
-                    save_path=str(dashboard_path)
-                )
-                print(f"✓ Dashboard: {dashboard_path.name}")
-
-            # User correlation
-            if viz_opts.get('create_user_correlation_plot', True) and 'user_count' in ts_data.columns:
-                corr_path = output_dir / f"{region_name}_user_correlation.png"
+            if viz_opts.get('create_user_correlation_plot', True) and 'user_count' in combined_ts.columns:
+                suffix = "" if merge_corr else "_combined"
                 plot_users_vs_complexity(
-                    ts_data,
-                    save_path=str(corr_path)
+                    combined_ts,
+                    save_path=str(output_dir / f"user_correlation{suffix}.png")
                 )
-                print(f"✓ User correlation: {corr_path.name}")
+                print(f"✓ Combined user correlation plot saved")
 
 
 

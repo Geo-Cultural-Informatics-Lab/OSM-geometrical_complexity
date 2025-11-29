@@ -39,6 +39,14 @@ regions:
 #   directory: ./my_results
 #   logs_directory: ./my_logs
 
+# Uncomment to control visualization merging (for multi-region/country analyses)
+# visualization:
+#   merge_visualizations: true  # true = only combined plots, false = separate + combined
+#   # Or control individually:
+#   # merge_dashboards: true
+#   # merge_time_series: false
+#   # merge_correlation_plots: true
+
 # Uncomment for time series analysis
 # analysis:
 #   mode: time_series
