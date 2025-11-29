@@ -412,23 +412,32 @@ def plot_time_series_complexity(ts_df, metric='mean_ratio', region_column='regio
     """
     import matplotlib.pyplot as plt
     import matplotlib.dates as mdates
+    import matplotlib.cm as cm
+    import numpy as np
     from datetime import datetime
 
     # Convert timestamp strings to datetime
     ts_df = ts_df.copy()
     ts_df[timestamp_column] = pd.to_datetime(ts_df[timestamp_column])
 
-    # Get unique regions
-    regions = ts_df[region_column].unique()
+    # Extract base region name (remove timestamp suffix like "_2020-01-01")
+    ts_df['base_region'] = ts_df[region_column].str.replace(r'_\d{4}-\d{2}-\d{2}$', '', regex=True)
+
+    # Get unique base regions
+    regions = ts_df['base_region'].unique()
 
     # Create figure
     fig, ax = plt.subplots(figsize=(14, 8))
 
-    # Plot line for each region
-    for region in regions:
-        region_data = ts_df[ts_df[region_column] == region].sort_values(timestamp_column)
+    # Plot line for each base region (not individual timestamps)
+    colors = cm.tab10(np.linspace(0, 1, len(regions)))
+
+    for region, color in zip(regions, colors):
+        region_data = ts_df[ts_df['base_region'] == region].sort_values(timestamp_column)
         ax.plot(region_data[timestamp_column], region_data[metric],
-               marker='o', linewidth=2, markersize=6, label=region, alpha=0.8)
+               marker='o', linewidth=2, markersize=6,
+               label=region.replace('_', ' ').title(),
+               color=color, alpha=0.8)
 
     # Formatting
     ax.set_xlabel('Time', fontsize=12, fontweight='bold')
