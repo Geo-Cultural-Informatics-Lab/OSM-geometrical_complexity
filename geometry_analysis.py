@@ -224,7 +224,7 @@ def calculate_convex_hull_metrics_vectorized(features, bounds):
 
     if not features:
         logger.warning("No polygon features returned for convex hull calculation")
-        return None
+        return None, None
 
     logger.info(f"Calculating convex hull metrics for {len(features)} polygon features (vectorized)")
 
@@ -290,8 +290,12 @@ def calculate_convex_hull_metrics_vectorized(features, bounds):
     gdf_utm['ratio'] = gdf_utm['ratio'].fillna(0)  # Handle division by zero
     area_time = time.time() - area_start
 
-    # Extract results
+    # Extract results (metrics only, no geometry to keep CSV small)
     result = gdf_utm[['way_id', 'area_m2', 'convex_hull_m2', 'ratio', 'is_multipolygon', 'inner_ring_count']].copy()
+
+    # Also return original geometries in WGS84 for optional geometry file export
+    # This is kept separate so CSV files remain small
+    result_geom = gdf[['way_id', 'geometry']].copy()  # gdf is still in WGS84
 
     total_time = time.time() - start_time
     features_per_sec = len(geometries) / total_time if total_time > 0 else 0
@@ -311,7 +315,7 @@ def calculate_convex_hull_metrics_vectorized(features, bounds):
 
     logger.info(f"Convex hull metrics calculated for {len(geometries)} features in {total_time:.2f}s")
 
-    return result
+    return result, result_geom
 
 
 def calculate_convex_hull_metrics(features, bounds, use_vectorized=True):
@@ -324,7 +328,9 @@ def calculate_convex_hull_metrics(features, bounds, use_vectorized=True):
         use_vectorized: If True, use geopandas vectorized operations (faster)
 
     Returns:
-        DataFrame with area and convex hull metrics
+        Tuple of (metrics_df, geometry_gdf):
+            - metrics_df: DataFrame with area and convex hull metrics
+            - geometry_gdf: GeoDataFrame with original geometries (for qualitative sampling)
     """
     if use_vectorized:
         return calculate_convex_hull_metrics_vectorized(features, bounds)
@@ -334,7 +340,7 @@ def calculate_convex_hull_metrics(features, bounds, use_vectorized=True):
 
     if not features:
         logger.warning("No polygon features returned for convex hull calculation")
-        return None
+        return None, None
 
     logger.info(f"Calculating convex hull metrics for {len(features)} polygon features (loop-based)")
 
@@ -353,6 +359,7 @@ def calculate_convex_hull_metrics(features, bounds, use_vectorized=True):
     proj_time = time.time() - proj_start
 
     rows = []
+    geom_rows = []  # For storing original geometries
 
     # Granular timing metrics
     point_extraction_time = 0
@@ -363,6 +370,7 @@ def calculate_convex_hull_metrics(features, bounds, use_vectorized=True):
     for feature in features:
         coords = feature["geometry"]["coordinates"]
         geom_type = feature["geometry"]["type"]
+        way_id = feature["properties"].get("osmID", feature.get("id"))
 
         # Extract only exterior ring points for convex hull (performance optimization)
         # Also track polygon complexity indicators
@@ -371,11 +379,15 @@ def calculate_convex_hull_metrics(features, bounds, use_vectorized=True):
             points = coords[0]  # Only exterior ring
             inner_ring_count = len(coords) - 1  # Number of holes
             is_multipolygon = False
+            # Store original geometry
+            original_geom = Polygon(coords[0])
         elif geom_type == "MultiPolygon":
             # For MultiPolygon, use all exterior rings (complexity indicator)
             points = [pt for polygon in coords for pt in polygon[0]]
             inner_ring_count = sum(len(polygon) - 1 for polygon in coords)
             is_multipolygon = True
+            # Store original geometry
+            original_geom = MultiPolygon([Polygon(poly[0]) for poly in coords])
         else:
             continue
         point_extraction_time += time.time() - extract_start
@@ -394,12 +406,18 @@ def calculate_convex_hull_metrics(features, bounds, use_vectorized=True):
         area_calc_time += time.time() - area_start
 
         rows.append({
-            "way_id": feature["properties"].get("osmID", feature.get("id")),
+            "way_id": way_id,
             "area_m2": geom_m.area,
             "convex_hull_m2": convex_hull_area,
             'ratio': 1 - (geom_m.area / convex_hull_area) if convex_hull_area > 0 else 0,
             'is_multipolygon': is_multipolygon,
             'inner_ring_count': inner_ring_count
+        })
+
+        # Store original geometry in WGS84
+        geom_rows.append({
+            "way_id": way_id,
+            "geometry": original_geom
         })
 
     total_time = time.time() - start_time
@@ -420,7 +438,11 @@ def calculate_convex_hull_metrics(features, bounds, use_vectorized=True):
 
     logger.info(f"Convex hull metrics calculated for {num_features} features in {total_time:.2f}s")
 
-    return pd.DataFrame(rows)
+    # Return metrics DataFrame and geometry GeoDataFrame
+    result = pd.DataFrame(rows)
+    result_geom = gpd.GeoDataFrame(geom_rows, geometry='geometry', crs="EPSG:4326")
+
+    return result, result_geom
 
 
 # ============================================================================
@@ -590,7 +612,7 @@ def get_poly_coords(region_name, bounds, filter="type:way and building=*", time_
         return None
 
     features = data.get("features", [])
-    df = calculate_convex_hull_metrics(features, bounds, use_vectorized=use_vectorized)
+    df, geom_gdf = calculate_convex_hull_metrics(features, bounds, use_vectorized=use_vectorized)
 
     if df is None:
         return None
@@ -643,6 +665,13 @@ def get_poly_coords(region_name, bounds, filter="type:way and building=*", time_
     if path and filename:
         save_to_file(df, path, filename, data_format='csv')
         save_to_file(summary_statistics, path, os.path.basename(filename) + "_summary.csv", data_format='csv')
+
+        # Save geometry file for qualitative sampling (as GeoJSON)
+        if geom_gdf is not None and len(geom_gdf) > 0:
+            geom_filename = os.path.basename(filename).replace('.csv', '_geom.geojson')
+            geom_path = os.path.join(path, geom_filename)
+            geom_gdf.to_file(geom_path, driver='GeoJSON')
+            logger.info(f"Saved geometry file: {geom_filename}")
 
     print(f"Total get_poly_coords time: {time.time() - start_time:.2f}s\n")
 

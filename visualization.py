@@ -1000,7 +1000,7 @@ def plot_time_series_boxplots(ts_detailed_df, timestamp_column='timestamp',
 # Qualitative Sampling - Polygon Examples
 # ============================================================================
 
-def plot_sample_polygons(buildings_df, region_name, n_complex=10, n_medium=5, n_simple=5, save_path=None):
+def plot_sample_polygons(buildings_df, region_name, geom_file_path, n_complex=10, n_medium=5, n_simple=5, save_path=None):
     """
     Plot sample polygons showing most complex, medium, and simplest buildings.
 
@@ -1008,9 +1008,10 @@ def plot_sample_polygons(buildings_df, region_name, n_complex=10, n_medium=5, n_
     geometric complexity. Includes coordinates for further investigation.
 
     Args:
-        buildings_df: DataFrame with individual building geometries
-                     Expected columns: 'geometry', 'ratio', 'area_m2', 'convex_hull_m2'
+        buildings_df: DataFrame with building metrics (without geometries)
+                     Expected columns: 'way_id', 'ratio', 'area_m2', 'convex_hull_m2'
         region_name: Name of region for title
+        geom_file_path: Path to GeoJSON file containing building geometries
         n_complex: Number of most complex buildings to sample (default: 10)
         n_medium: Number of medium complexity buildings to sample (default: 5)
         n_simple: Number of simplest buildings to sample (default: 5)
@@ -1022,13 +1023,35 @@ def plot_sample_polygons(buildings_df, region_name, n_complex=10, n_medium=5, n_
     from shapely.geometry import shape
     from shapely.ops import transform
     import json
+    import geopandas as gpd
+    from pathlib import Path
 
     if buildings_df is None or len(buildings_df) == 0:
         logger.warning("No building data available for qualitative sampling")
         return None
 
+    # Load geometry file
+    geom_path = Path(geom_file_path)
+    if not geom_path.exists():
+        logger.error(f"Geometry file not found: {geom_file_path}")
+        return None
+
+    try:
+        geom_gdf = gpd.read_file(geom_file_path)
+        logger.info(f"Loaded {len(geom_gdf)} geometries from {geom_path.name}")
+    except Exception as e:
+        logger.error(f"Failed to load geometry file: {e}")
+        return None
+
+    # Merge building metrics with geometries
+    merged_df = buildings_df.merge(geom_gdf, on='way_id', how='inner')
+
+    if len(merged_df) == 0:
+        logger.warning("No matching geometries found for buildings")
+        return None
+
     # Sort by complexity ratio
-    sorted_df = buildings_df.sort_values('ratio', ascending=False).reset_index(drop=True)
+    sorted_df = merged_df.sort_values('ratio', ascending=False).reset_index(drop=True)
 
     # Select samples
     n_total = len(sorted_df)
@@ -1066,12 +1089,13 @@ def plot_sample_polygons(buildings_df, region_name, n_complex=10, n_medium=5, n_
         ax = axes_flat[idx]
 
         try:
-            # Parse geometry
-            geom_data = building.get('geometry')
-            if isinstance(geom_data, str):
-                geom_data = json.loads(geom_data)
+            # Get geometry (already a shapely object from GeoDataFrame)
+            polygon = building.get('geometry')
 
-            polygon = shape(geom_data)
+            # Handle both shapely objects and GeoJSON strings
+            if isinstance(polygon, str):
+                geom_data = json.loads(polygon)
+                polygon = shape(geom_data)
 
             # Plot actual polygon
             if polygon.geom_type == 'Polygon':

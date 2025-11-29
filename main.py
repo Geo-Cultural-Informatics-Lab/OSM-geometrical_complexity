@@ -371,8 +371,9 @@ def run_snapshot_analysis(config, output_dir):
             for region_name in regions_config.keys():
                 # Load detailed building data if it exists
                 buildings_file = results_dir / f"{region_name}_buildings.csv"
+                geom_file = results_dir / f"{region_name}_buildings_geom.geojson"
 
-                if buildings_file.exists():
+                if buildings_file.exists() and geom_file.exists():
                     try:
                         buildings_df = pd.read_csv(buildings_file)
 
@@ -381,6 +382,7 @@ def run_snapshot_analysis(config, output_dir):
                             plot_sample_polygons(
                                 buildings_df,
                                 region_name.replace('_', ' ').title(),
+                                geom_file_path=str(geom_file),
                                 n_complex=n_complex,
                                 n_medium=n_medium,
                                 n_simple=n_simple,
@@ -389,6 +391,8 @@ def run_snapshot_analysis(config, output_dir):
                             print(f"✓ Qualitative samples: {sample_path.name}")
                     except Exception as e:
                         logger.warning(f"Could not generate qualitative samples for {region_name}: {e}")
+                elif not geom_file.exists():
+                    logger.info(f"Geometry file not found for {region_name}, skipping qualitative samples")
                 else:
                     logger.info(f"No detailed building data found for {region_name}, skipping qualitative samples")
 
