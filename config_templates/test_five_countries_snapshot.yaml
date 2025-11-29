@@ -1,0 +1,40 @@
+# Test 5 countries in SNAPSHOT mode (no time series)
+# Much faster - just analyzes current state
+# Run with: python main.py --config config_templates/test_five_countries_snapshot.yaml
+
+analysis:
+  mode: batch_countries
+
+countries:
+  source: list
+  iso_codes:
+    - DEU  # Germany
+    - GBR  # United Kingdom
+    - FRA  # France
+    - NLD  # Netherlands
+    - BEL  # Belgium
+
+  geojson_path: ./countries_polygons/World_Countries.geojson
+
+# SNAPSHOT MODE - Current state only, no historical analysis
+time_series:
+  enabled: false  # Set to false for faster processing
+
+analysis_options:
+  filter: "type:way and building=*"
+  chunked_threshold_km2: 5000
+  include_building_count: true
+  include_user_count: true
+  resume: true
+
+output:
+  directory: ./results/five_countries_snapshot
+  data_directory: ./data/five_countries_snapshot
+  export_shapefile: true
+  export_individual_buildings: false
+
+visualization:
+  create_dashboards: true
+  create_user_correlation_plot: true
+  create_box_plots: true
+  dpi: 300

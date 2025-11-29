@@ -1,0 +1,35 @@
+# Quick test - Single country snapshot (Belgium)
+# Run with: python main.py --config config_templates/test_single_country.yaml
+# Expected time: 10-30 minutes
+
+analysis:
+  mode: batch_countries
+
+countries:
+  source: list
+  iso_codes:
+    - BEL  # Belgium
+
+  geojson_path: ./countries_polygons/World_Countries.geojson
+
+time_series:
+  enabled: false  # Snapshot mode only
+
+analysis_options:
+  filter: "type:way and building=*"
+  chunked_threshold_km2: 5000
+  include_building_count: true
+  include_user_count: true
+  resume: true
+
+output:
+  directory: ./results/test_single_country
+  data_directory: ./data/test_single_country
+  export_shapefile: true
+  export_individual_buildings: false
+
+visualization:
+  create_dashboards: true
+  create_user_correlation_plot: true
+  create_box_plots: true
+  dpi: 300

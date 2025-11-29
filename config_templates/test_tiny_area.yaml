@@ -1,0 +1,33 @@
+# Ultra-fast test - Tiny area in Heidelberg
+# Run with: python main.py --config config_templates/test_tiny_area.yaml
+# Expected time: ~30 seconds
+
+analysis:
+  mode: time_series
+  timestamp: "2025-08-01"
+
+time_series:
+  start_year: 2015
+  end_year: 2025
+  interval: yearly  # 'yearly', 'quarterly', 'monthly'
+
+
+regions:
+  heidelberg_tiny:
+    type: bbox
+    bbox: "8.68,49.40,8.72,49.42"
+
+analysis_options:
+  filter: "type:way and building=*"
+  chunked_threshold_km2: 5000
+  include_building_count: true
+  include_user_count: true
+  resume: true
+
+output:
+  directory: ./results/tiny_test
+  export_shapefile: false
+
+visualization:
+  create_dashboards: true
+  dpi: 150

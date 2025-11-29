@@ -247,8 +247,15 @@ def analyze_region_time_series(region_name, bbox, start_year=2008, end_year=2025
 
     # Create final time series DataFrame
     if not results:
-        logger.error("No time series data collected")
-        return None
+        # Check if analysis was already completed - load existing final file
+        final_file = os.path.join(path, f"{region_name}_time_series_{interval}.csv")
+        if os.path.exists(final_file):
+            logger.info(f"All time points already processed - loading existing results from {final_file}")
+            ts_df = pd.read_csv(final_file)
+            return ts_df
+        else:
+            logger.error("No time series data collected")
+            return None
 
     ts_df = pd.DataFrame(results)
 

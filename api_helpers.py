@@ -68,7 +68,8 @@ logger = setup_logging()
 # API Functions
 # ============================================================================
 
-def call_ohsome_api(endpoint, bounds, filter_query, time_param, return_type='dataframe'):
+def call_ohsome_api(endpoint, bounds, filter_query, time_param, return_type='dataframe',
+                    api_version='elements'):
     """
     Base function for calling Ohsome API endpoints.
 
@@ -78,12 +79,13 @@ def call_ohsome_api(endpoint, bounds, filter_query, time_param, return_type='dat
         filter_query: OSM filter query
         time_param: ISO-8601 timestamp or interval
         return_type: 'dataframe' or 'json'
+        api_version: API category ('elements' or 'users')
 
     Returns:
         DataFrame or dict depending on return_type, None on error
     """
     start_time = time.time()
-    url = f"https://api.ohsome.org/v1/elements/{endpoint}"
+    url = f"https://api.ohsome.org/v1/{api_version}/{endpoint}"
 
     params = {
         "bboxes": bounds,
@@ -91,7 +93,7 @@ def call_ohsome_api(endpoint, bounds, filter_query, time_param, return_type='dat
         "filter": filter_query
     }
 
-    logger.debug(f"Calling Ohsome API endpoint: {endpoint}")
+    logger.debug(f"Calling Ohsome API endpoint: {api_version}/{endpoint}")
     logger.debug(f"Parameters: bounds={bounds}, filter={filter_query}, time={time_param}")
 
     try:
@@ -103,8 +105,8 @@ def call_ohsome_api(endpoint, bounds, filter_query, time_param, return_type='dat
             data = response.json()
             parse_time = time.time() - parse_start
 
-            logger.debug(f"API call ({endpoint}): {api_time:.2f}s (network: {api_time:.2f}s, parse: {parse_time:.3f}s)")
-            logger.info(f"Successfully retrieved data from {endpoint} endpoint")
+            logger.debug(f"API call ({api_version}/{endpoint}): {api_time:.2f}s (network: {api_time:.2f}s, parse: {parse_time:.3f}s)")
+            logger.info(f"Successfully retrieved data from {api_version}/{endpoint} endpoint")
 
             if return_type == 'dataframe':
                 return pd.json_normalize(data['result']) if 'result' in data else data
@@ -122,6 +124,83 @@ def call_ohsome_api(endpoint, bounds, filter_query, time_param, return_type='dat
     except json.JSONDecodeError as e:
         logger.error(f"Failed to parse JSON response from {endpoint}: {str(e)}")
         return None
+
+
+def get_element_count(bounds, filter_query, time_param):
+    """
+    Get count of OSM elements matching the filter.
+
+    Args:
+        bounds: Bounding box as "min_lon,min_lat,max_lon,max_lat"
+        filter_query: OSM filter query (e.g., "type:way and building=*")
+        time_param: ISO-8601 timestamp or interval
+
+    Returns:
+        Integer count of elements, or None on error
+
+    Example:
+        >>> count = get_element_count(bbox, "type:way and building=*", "2025-01-01")
+        >>> print(f"Found {count} buildings")
+    """
+    result = call_ohsome_api('count', bounds, filter_query, time_param, return_type='json')
+
+    if result and 'result' in result:
+        # Extract count from result array
+        # Result format: {'result': [{'timestamp': '...', 'value': count}]}
+        results = result['result']
+        if results and len(results) > 0:
+            count = results[0].get('value', 0)
+            logger.info(f"Element count: {count:,}")
+            return count
+
+    logger.warning("Could not extract element count from API response")
+    return None
+
+
+def get_user_count(bounds, filter_query, time_param):
+    """
+    Get count of unique users/contributors who edited elements matching the filter.
+
+    Note: The /v1/users/count endpoint requires a time interval, not a single timestamp.
+    If a single timestamp is provided, it will be converted to an interval from OSM start (2007-10-08).
+
+    Args:
+        bounds: Bounding box as "min_lon,min_lat,max_lon,max_lat"
+        filter_query: OSM filter query (e.g., "type:way and building=*")
+        time_param: ISO-8601 timestamp or interval
+                    Single timestamp (e.g., "2025-01-01") will be converted to interval
+                    "2007-10-08/2025-01-01" to count all users up to that date
+
+    Returns:
+        Integer count of unique users, or None on error
+
+    Example:
+        >>> user_count = get_user_count(bbox, "type:way and building=*", "2025-01-01")
+        >>> print(f"{user_count} users contributed to buildings")
+    """
+    # Convert single timestamp to interval if needed
+    # The users/count endpoint requires an interval, not a single timestamp
+    if '/' not in time_param:
+        # Create interval from OSM history start to the specified timestamp
+        osm_start = "2007-10-08"  # OSM planet history starts around this date
+        time_interval = f"{osm_start}/{time_param}"
+        logger.debug(f"Converting timestamp to interval for user count: {time_interval}")
+    else:
+        time_interval = time_param
+
+    result = call_ohsome_api('count', bounds, filter_query, time_interval,
+                            return_type='json', api_version='users')
+
+    if result and 'result' in result:
+        # Extract count from result array (take the last value if multiple)
+        results = result['result']
+        if results and len(results) > 0:
+            count = results[-1].get('value', 0)  # Last value in the interval
+            logger.info(f"User count: {count:,}")
+            return count
+
+    logger.warning("Could not extract user count from API response")
+    return None
 
 
 # ============================================================================

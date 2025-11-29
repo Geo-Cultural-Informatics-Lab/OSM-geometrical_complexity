@@ -1,0 +1,38 @@
+# Example configuration for snapshot analysis
+# Run with: python main.py --config config_templates/example_snapshot.yaml
+
+analysis:
+  mode: snapshot  # snapshot, time_series, or batch_countries
+  timestamp: "2025-08-01"  # ISO-8601 date for snapshot
+
+# Define regions to analyze
+regions:
+  london_15km:
+    type: city
+    name: London
+    radius_km: 15
+
+  jerusalem_15km:
+    type: city
+    name: Jerusalem
+    radius_km: 15
+
+analysis_options:
+  filter: "type:way and building=*"
+  chunked_threshold_km2: 5000  # Use chunking for regions > 5000 km²
+  include_building_count: true
+  include_user_count: true
+  resume: true
+
+output:
+  directory: ./results
+  export_shapefile: true
+  export_individual_buildings: false  # Set to true for full building-level shapefile
+  sample_complex_buildings: 10
+
+visualization:
+  create_dashboards: true
+  create_user_correlation_plot: true
+  create_box_plots: true
+  create_qualitative_samples: true
+  dpi: 300

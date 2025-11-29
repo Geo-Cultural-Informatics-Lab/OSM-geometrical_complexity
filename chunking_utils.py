@@ -145,6 +145,7 @@ def split_bbox_into_grid(bbox: str, chunk_size_km: float = 50) -> List[Dict[str,
 
     # Generate chunks
     chunks = []
+    skipped_chunks = 0
     for row in range(num_rows):
         for col in range(num_cols):
             # Calculate chunk boundaries
@@ -153,6 +154,14 @@ def split_bbox_into_grid(bbox: str, chunk_size_km: float = 50) -> List[Dict[str,
 
             chunk_min_lon = min_lon + (col * lon_chunk_degrees)
             chunk_max_lon = min(min_lon + ((col + 1) * lon_chunk_degrees), max_lon)
+
+            # Skip chunks with zero or near-zero width/height (floating-point precision issues)
+            lon_diff = chunk_max_lon - chunk_min_lon
+            lat_diff = chunk_max_lat - chunk_min_lat
+            if lon_diff < 1e-9 or lat_diff < 1e-9:
+                logger.debug(f"Skipping zero-area chunk at row={row}, col={col} (lon_diff={lon_diff:.2e}, lat_diff={lat_diff:.2e})")
+                skipped_chunks += 1
+                continue
 
             # Create chunk bbox string
             chunk_bbox = coords_to_bbox(chunk_min_lon, chunk_min_lat, chunk_max_lon, chunk_max_lat)
@@ -170,7 +179,9 @@ def split_bbox_into_grid(bbox: str, chunk_size_km: float = 50) -> List[Dict[str,
                 'center_lon': chunk_center_lon
             })
 
-    logger.debug(f"Generated {len(chunks)} chunks")
+    if skipped_chunks > 0:
+        logger.info(f"Skipped {skipped_chunks} zero-area chunks due to floating-point precision")
+    logger.debug(f"Generated {len(chunks)} valid chunks")
     return chunks
 
 

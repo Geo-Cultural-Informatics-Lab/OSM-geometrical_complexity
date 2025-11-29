@@ -17,7 +17,7 @@ from math import radians, sin, cos, sqrt, atan2
 import time
 import geopandas as gpd
 
-from api_helpers import call_ohsome_api, save_to_file, logger
+from api_helpers import call_ohsome_api, save_to_file, get_element_count, get_user_count, logger
 
 
 # ============================================================================
@@ -562,7 +562,8 @@ def get_vertices(bounds, filter="type:way and highway=*", time="2025-01-01",
 
 
 def get_poly_coords(region_name, bounds, filter="type:way and building=*", time_param="2025-01-01",
-                    path=None, filename=None, distribution=False, use_vectorized=True):
+                    path=None, filename=None, distribution=False, use_vectorized=True,
+                    include_counts=True, include_user_count=True):
     """
     Extract polygon coordinates and calculate convex hull metrics.
 
@@ -575,6 +576,8 @@ def get_poly_coords(region_name, bounds, filter="type:way and building=*", time_
         filename: Optional filename for saved results
         distribution: If True, return full DataFrame instead of summary statistics
         use_vectorized: If True, use geopandas vectorized operations (default, much faster)
+        include_counts: If True, include actual building count from API (default: True)
+        include_user_count: If True, include contributor count from API (default: True)
 
     Returns:
         DataFrame with convex hull metrics or summary statistics
@@ -602,10 +605,24 @@ def get_poly_coords(region_name, bounds, filter="type:way and building=*", time_
         print(f"Total get_poly_coords time: {time.time() - start_time:.2f}s\n")
         return df
 
+    # Get building and user counts from API
+    building_count = None
+    user_count = None
+
+    if include_counts:
+        logger.info("Fetching building count from API...")
+        building_count = get_element_count(bounds, filter, time_param)
+
+    if include_user_count:
+        logger.info("Fetching user/contributor count from API...")
+        user_count = get_user_count(bounds, filter, time_param)
+
     # Return summary statistics
     summary_statistics = pd.DataFrame({
         'region': region_name,
         'bbox': [bounds],
+        'building_count': [building_count if building_count is not None else len(df)],
+        'user_count': [user_count],
         'sum_chull_area': [df['convex_hull_m2'].sum()],
         'mean_chull_area': [df['convex_hull_m2'].mean()],
         'median_chull_area': [np.median(df['convex_hull_m2'])],
@@ -809,6 +826,9 @@ def get_poly_coords_chunked(region_name, bounds, filter="type:way and building=*
         'bbox': [bounds],
         'num_chunks': [len(completed_chunks)],
         'failed_chunks': [len(failed_chunks)],
+        # Building and user counts - sum across chunks
+        'building_count': [chunk_summaries['building_count'].sum() if 'building_count' in chunk_summaries.columns else None],
+        'user_count': [chunk_summaries['user_count'].sum() if 'user_count' in chunk_summaries.columns else None],
         # For sums, we sum across chunks
         'sum_chull_area': [chunk_summaries['sum_chull_area'].sum()],
         'sum_area': [chunk_summaries['sum_area'].sum()],

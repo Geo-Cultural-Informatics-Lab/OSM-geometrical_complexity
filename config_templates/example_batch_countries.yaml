@@ -1,0 +1,53 @@
+# Example configuration for batch country analysis
+# Run with: python main.py --config config_templates/example_batch_countries.yaml
+
+analysis:
+  mode: batch_countries
+
+# Define countries to analyze
+countries:
+  source: list  # 'list' for manual ISO codes, 'csv' to load from file
+  # Option 1: Manual list of ISO codes
+  iso_codes:
+    - DEU  # Germany
+    - GBR  # United Kingdom
+    - FRA  # France
+    - NLD  # Netherlands
+    - BEL  # Belgium
+
+  # Option 2: Load from CSV (uncomment to use)
+  # source: csv
+  # csv_path: ./World_Countries.csv
+  # iso_filter:  # Optional: filter specific countries from CSV
+  #   - USA
+  #   - CAN
+  #   - MEX
+
+  # Required for both options
+  geojson_path: ./countries_polygons/World_Countries.geojson
+
+# Optional: Enable time series for each country
+time_series:
+  enabled: true  # Set to true for time series analysis
+  start_year: 2015
+  end_year: 2025
+  interval: yearly  # yearly, monthly, or quarterly
+
+analysis_options:
+  filter: "type:way and building=*"
+  chunked_threshold_km2: 5000
+  include_building_count: true
+  include_user_count: true
+  resume: true  # Resume interrupted batch runs
+
+output:
+  directory: ./results/batch_countries
+  data_directory: ./data/batch_countries
+  export_shapefile: true
+  export_individual_buildings: false
+
+visualization:
+  create_dashboards: true
+  create_user_correlation_plot: true
+  create_box_plots: true
+  dpi: 300

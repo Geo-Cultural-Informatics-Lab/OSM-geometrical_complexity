@@ -49,12 +49,15 @@ def plot_completeness_metrics(summary_df, save_path=None):
     regions = summary_df['region'].tolist()
     x_pos = np.arange(len(regions))
 
-    # Try to get building counts if available (calculated from sum fields)
-    # This will help users understand sample sizes
+    # Get building counts - use actual count if available, otherwise estimate
     building_counts = []
     for idx, row in summary_df.iterrows():
-        # Estimate building count from total area / mean area (rough approximation)
-        if 'sum_area' in summary_df.columns and 'mean_area' in summary_df.columns:
+        # Use actual building count if available
+        if 'building_count' in summary_df.columns and pd.notna(row['building_count']):
+            count = int(row['building_count'])
+            building_counts.append(f"n={count:,}")
+        # Fallback: estimate from total area / mean area
+        elif 'sum_area' in summary_df.columns and 'mean_area' in summary_df.columns:
             if row['mean_area'] > 0:
                 count = int(row['sum_area'] / row['mean_area'])
                 building_counts.append(f"n≈{count:,}")
@@ -692,5 +695,269 @@ def plot_time_series_dashboard(ts_df, metric='mean_ratio', save_path=None):
     if save_path:
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
         print(f"Time series dashboard saved to {save_path}")
+
+    return fig
+
+
+# ============================================================================
+# User Count Analysis
+# ============================================================================
+
+def plot_users_vs_complexity(summary_df, save_path=None):
+    """
+    Create scatter plot showing relationship between number of users and complexity.
+
+    Args:
+        summary_df: DataFrame with user_count and mean_ratio columns
+        save_path: Optional path to save the plot
+
+    Returns:
+        matplotlib figure object
+    """
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    # Filter to rows with user count data
+    df = summary_df.copy()
+    if 'user_count' not in df.columns or 'mean_ratio' not in df.columns:
+        logger.warning("user_count or mean_ratio column not found in summary DataFrame")
+        return None
+
+    # Remove rows with missing data
+    df = df.dropna(subset=['user_count', 'mean_ratio'])
+
+    if len(df) == 0:
+        logger.warning("No data available for user count vs complexity plot")
+        return None
+
+    fig, ax = plt.subplots(figsize=(12, 8))
+
+    # Create scatter plot
+    scatter = ax.scatter(
+        df['user_count'],
+        df['mean_ratio'],
+        s=100,
+        alpha=0.6,
+        c=df['mean_ratio'],
+        cmap='RdYlGn',
+        edgecolors='black',
+        linewidths=1
+    )
+
+    # Add region labels
+    for idx, row in df.iterrows():
+        ax.annotate(
+            row['region'],
+            (row['user_count'], row['mean_ratio']),
+            xytext=(5, 5),
+            textcoords='offset points',
+            fontsize=9,
+            alpha=0.8
+        )
+
+    # Add trend line if enough points
+    if len(df) >= 3:
+        z = np.polyfit(df['user_count'], df['mean_ratio'], 1)
+        p = np.poly1d(z)
+        x_trend = np.linspace(df['user_count'].min(), df['user_count'].max(), 100)
+        ax.plot(x_trend, p(x_trend), "r--", alpha=0.5, linewidth=2, label=f'Trend: y={z[0]:.2e}x+{z[1]:.3f}')
+
+    # Add colorbar
+    cbar = plt.colorbar(scatter, ax=ax)
+    cbar.set_label('Mean Complexity Ratio', rotation=270, labelpad=20, fontweight='bold')
+
+    # Labels and title
+    ax.set_xlabel('Number of Contributors/Users', fontsize=12, fontweight='bold')
+    ax.set_ylabel('Mean Complexity Ratio', fontsize=12, fontweight='bold')
+    ax.set_title('OSM Building Complexity vs. Number of Contributors', fontsize=14, fontweight='bold')
+    ax.grid(True, alpha=0.3, linestyle='--')
+
+    # Add reference lines for complexity thresholds
+    ax.axhline(y=0.30, color='green', linestyle='--', alpha=0.4, label='High complexity')
+    ax.axhline(y=0.15, color='orange', linestyle='--', alpha=0.4, label='Medium complexity')
+
+    ax.legend(loc='best', fontsize=10)
+
+    plt.tight_layout()
+
+    if save_path:
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        logger.info(f"User count vs complexity plot saved to {save_path}")
+
+    return fig
+
+
+# ============================================================================
+# Box Plot Distributions
+# ============================================================================
+
+def plot_complexity_boxplots(data_df, region_column='region', save_path=None):
+    """
+    Create box plots showing distribution of complexity ratios across regions.
+
+    This shows the full distribution (quartiles, outliers) rather than just mean/median.
+
+    Args:
+        data_df: DataFrame with detailed building data (distribution=True from get_poly_coords)
+                Must have 'region_name' or region_column and 'ratio' columns
+        region_column: Column name containing region identifiers
+        save_path: Optional path to save the plot
+
+    Returns:
+        matplotlib figure object
+    """
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    if region_column not in data_df.columns or 'ratio' not in data_df.columns:
+        logger.warning(f"Required columns not found. Need '{region_column}' and 'ratio'")
+        return None
+
+    # Prepare data for box plot
+    regions = data_df[region_column].unique()
+    data_by_region = [data_df[data_df[region_column] == r]['ratio'].values for r in regions]
+
+    fig, ax = plt.subplots(figsize=(14, 8))
+
+    # Create box plot
+    bp = ax.boxplot(data_by_region,
+                    labels=regions,
+                    patch_artist=True,
+                    showmeans=True,
+                    meanline=True,
+                    notch=True,
+                    vert=True)
+
+    # Color the boxes by median complexity
+    for patch, region_data in zip(bp['boxes'], data_by_region):
+        median_val = np.median(region_data)
+        if median_val > 0.30:
+            color = '#2ecc71'  # Green - high complexity
+        elif median_val > 0.15:
+            color = '#f39c12'  # Orange - medium
+        else:
+            color = '#e74c3c'  # Red - low
+        patch.set_facecolor(color)
+        patch.set_alpha(0.6)
+
+    # Styling
+    ax.set_xlabel('Region', fontsize=12, fontweight='bold')
+    ax.set_ylabel('Complexity Ratio', fontsize=12, fontweight='bold')
+    ax.set_title('Distribution of Building Complexity Ratios', fontsize=14, fontweight='bold')
+    ax.grid(axis='y', alpha=0.3, linestyle='--')
+
+    # Add reference lines
+    ax.axhline(y=0.30, color='green', linestyle='--', alpha=0.4, linewidth=1.5, label='High complexity threshold')
+    ax.axhline(y=0.15, color='orange', linestyle='--', alpha=0.4, linewidth=1.5, label='Medium complexity threshold')
+
+    # Rotate labels if many regions
+    if len(regions) > 5:
+        plt.xticks(rotation=45, ha='right')
+
+    ax.legend(loc='upper right', fontsize=10)
+
+    plt.tight_layout()
+
+    if save_path:
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        logger.info(f"Box plot saved to {save_path}")
+
+    return fig
+
+
+def plot_time_series_boxplots(ts_detailed_df, timestamp_column='timestamp',
+                               region_column='region_name', save_path=None):
+    """
+    Create box plots showing how complexity distribution evolves over time.
+
+    Args:
+        ts_detailed_df: DataFrame with full building data across multiple timestamps
+                       Must have timestamp, region_name, and ratio columns
+        timestamp_column: Column containing timestamps
+        region_column: Column containing region names
+        save_path: Optional path to save the plot
+
+    Returns:
+        matplotlib figure object
+    """
+    import matplotlib.pyplot as plt
+    import matplotlib.dates as mdates
+    import numpy as np
+
+    if timestamp_column not in ts_detailed_df.columns or 'ratio' not in ts_detailed_df.columns:
+        logger.warning(f"Required columns not found for time series box plot")
+        return None
+
+    # Convert timestamps
+    ts_detailed_df = ts_detailed_df.copy()
+    ts_detailed_df[timestamp_column] = pd.to_datetime(ts_detailed_df[timestamp_column])
+
+    # Get unique timestamps and regions
+    timestamps = sorted(ts_detailed_df[timestamp_column].unique())
+    regions = ts_detailed_df[region_column].unique() if region_column in ts_detailed_df.columns else [None]
+
+    # Create subplot for each region
+    n_regions = len(regions)
+    fig, axes = plt.subplots(n_regions, 1, figsize=(14, 6*n_regions), squeeze=False)
+
+    for idx, region in enumerate(regions):
+        ax = axes[idx, 0]
+
+        # Filter data for this region
+        if region:
+            region_data = ts_detailed_df[ts_detailed_df[region_column] == region]
+            title = f'Complexity Distribution Evolution - {region}'
+        else:
+            region_data = ts_detailed_df
+            title = 'Complexity Distribution Evolution'
+
+        # Prepare data for each timestamp
+        data_by_time = [region_data[region_data[timestamp_column] == ts]['ratio'].values
+                       for ts in timestamps]
+
+        # Create box plot
+        positions = np.arange(len(timestamps))
+        bp = ax.boxplot(data_by_time,
+                       positions=positions,
+                       patch_artist=True,
+                       showmeans=True,
+                       widths=0.6)
+
+        # Color boxes by trend (green if improving, red if declining)
+        medians = [np.median(d) if len(d) > 0 else 0 for d in data_by_time]
+        for i, (patch, median_val) in enumerate(zip(bp['boxes'], medians)):
+            if i == 0:
+                color = '#3498db'  # Blue for first
+            elif median_val > medians[i-1]:
+                color = '#2ecc71'  # Green - improving
+            elif median_val < medians[i-1]:
+                color = '#e74c3c'  # Red - declining
+            else:
+                color = '#95a5a6'  # Gray - stable
+
+            patch.set_facecolor(color)
+            patch.set_alpha(0.6)
+
+        # Styling
+        ax.set_xlabel('Time', fontsize=11, fontweight='bold')
+        ax.set_ylabel('Complexity Ratio', fontsize=11, fontweight='bold')
+        ax.set_title(title, fontsize=12, fontweight='bold')
+        ax.grid(axis='y', alpha=0.3, linestyle='--')
+
+        # Set x-axis labels as dates
+        ax.set_xticks(positions)
+        ax.set_xticklabels([ts.strftime('%Y-%m') for ts in timestamps], rotation=45, ha='right')
+
+        # Add reference lines
+        ax.axhline(y=0.30, color='green', linestyle='--', alpha=0.3, linewidth=1)
+        ax.axhline(y=0.15, color='orange', linestyle='--', alpha=0.3, linewidth=1)
+
+    plt.suptitle('OSM Building Complexity: Distribution Over Time',
+                fontsize=14, fontweight='bold', y=0.995)
+    plt.tight_layout()
+
+    if save_path:
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        logger.info(f"Time series box plots saved to {save_path}")
 
     return fig
