@@ -1043,12 +1043,27 @@ def plot_sample_polygons(buildings_df, region_name, geom_file_path, n_complex=10
         logger.error(f"Failed to load geometry file: {e}")
         return None
 
-    # Ensure way_id types match for merge (convert both to string to be safe)
-    buildings_df['way_id'] = buildings_df['way_id'].astype(str)
-    geom_gdf['way_id'] = geom_gdf['way_id'].astype(str)
+    # Merge by index (both DataFrames come from same API call in same order)
+    # Reset index to ensure alignment
+    buildings_df = buildings_df.reset_index(drop=True)
+    geom_gdf = geom_gdf.reset_index(drop=True)
 
-    # Merge building metrics with geometries
-    merged_df = buildings_df.merge(geom_gdf, on='way_id', how='inner')
+    # Check if we have way_id values that are not null
+    buildings_has_ids = 'way_id' in buildings_df.columns and buildings_df['way_id'].notna().any()
+    geom_has_ids = 'way_id' in geom_gdf.columns and geom_gdf['way_id'].notna().any()
+
+    if buildings_has_ids and geom_has_ids:
+        # Try merging by way_id first
+        buildings_df['way_id'] = buildings_df['way_id'].astype(str)
+        geom_gdf['way_id'] = geom_gdf['way_id'].astype(str)
+        merged_df = buildings_df.merge(geom_gdf[['way_id', 'geometry']], on='way_id', how='inner')
+    else:
+        # Fall back to index-based merge (assumes same order)
+        logger.info("way_id not available, using index-based merge")
+        if len(buildings_df) != len(geom_gdf):
+            logger.warning(f"Length mismatch: {len(buildings_df)} buildings vs {len(geom_gdf)} geometries")
+        merged_df = buildings_df.copy()
+        merged_df['geometry'] = geom_gdf['geometry'].values[:len(buildings_df)]
 
     if len(merged_df) == 0:
         logger.warning("No matching geometries found for buildings")

@@ -241,7 +241,7 @@ def calculate_convex_hull_metrics_vectorized(features, bounds):
     is_multipolygons = []
     inner_ring_counts = []
 
-    for feature in features:
+    for idx, feature in enumerate(features):
         coords = feature["geometry"]["coordinates"]
         geom_type = feature["geometry"]["type"]
 
@@ -259,7 +259,9 @@ def calculate_convex_hull_metrics_vectorized(features, bounds):
             continue
 
         geometries.append(geom)
-        way_ids.append(feature["properties"].get("osmID", feature.get("id")))
+        # Use OSM ID if available, otherwise use feature index
+        osm_id = feature["properties"].get("@osmId") or feature["properties"].get("osmID") or feature.get("id")
+        way_ids.append(osm_id if osm_id is not None else idx)
 
     prep_time = time.time() - prep_start
 
@@ -367,10 +369,13 @@ def calculate_convex_hull_metrics(features, bounds, use_vectorized=True):
     transformation_time = 0
     area_calc_time = 0
 
-    for feature in features:
+    for idx, feature in enumerate(features):
         coords = feature["geometry"]["coordinates"]
         geom_type = feature["geometry"]["type"]
-        way_id = feature["properties"].get("osmID", feature.get("id"))
+
+        # Use OSM ID if available, otherwise use feature index
+        osm_id = feature["properties"].get("@osmId") or feature["properties"].get("osmID") or feature.get("id")
+        way_id = osm_id if osm_id is not None else idx
 
         # Extract only exterior ring points for convex hull (performance optimization)
         # Also track polygon complexity indicators
