@@ -356,6 +356,42 @@ def run_snapshot_analysis(config, output_dir):
             )
             print("✓ Shapefile exported")
 
+        # Qualitative samples - plot example polygons
+        if viz_opts.get('create_qualitative_samples', True):
+            from visualization import plot_sample_polygons
+            import os
+
+            print("\nGenerating qualitative polygon samples...")
+
+            n_samples = config['output'].get('sample_complex_buildings', 10)
+            n_complex = n_samples
+            n_medium = max(3, n_samples // 2)
+            n_simple = max(3, n_samples // 2)
+
+            for region_name in regions_config.keys():
+                # Load detailed building data if it exists
+                buildings_file = results_dir / f"{region_name}_buildings.csv"
+
+                if buildings_file.exists():
+                    try:
+                        buildings_df = pd.read_csv(buildings_file)
+
+                        if len(buildings_df) > 0:
+                            sample_path = output_dir / f"{region_name}_qualitative_samples.png"
+                            plot_sample_polygons(
+                                buildings_df,
+                                region_name.replace('_', ' ').title(),
+                                n_complex=n_complex,
+                                n_medium=n_medium,
+                                n_simple=n_simple,
+                                save_path=str(sample_path)
+                            )
+                            print(f"✓ Qualitative samples: {sample_path.name}")
+                    except Exception as e:
+                        logger.warning(f"Could not generate qualitative samples for {region_name}: {e}")
+                else:
+                    logger.info(f"No detailed building data found for {region_name}, skipping qualitative samples")
+
 
 # ============================================================================
 # TIME SERIES ANALYSIS

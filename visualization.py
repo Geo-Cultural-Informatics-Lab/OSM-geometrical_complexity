@@ -994,3 +994,147 @@ def plot_time_series_boxplots(ts_detailed_df, timestamp_column='timestamp',
         logger.info(f"Time series box plots saved to {save_path}")
 
     return fig
+
+
+# ============================================================================
+# Qualitative Sampling - Polygon Examples
+# ============================================================================
+
+def plot_sample_polygons(buildings_df, region_name, n_complex=10, n_medium=5, n_simple=5, save_path=None):
+    """
+    Plot sample polygons showing most complex, medium, and simplest buildings.
+
+    Shows actual polygon shapes alongside their convex hulls to visualize
+    geometric complexity. Includes coordinates for further investigation.
+
+    Args:
+        buildings_df: DataFrame with individual building geometries
+                     Expected columns: 'geometry', 'ratio', 'area_m2', 'convex_hull_m2'
+        region_name: Name of region for title
+        n_complex: Number of most complex buildings to sample (default: 10)
+        n_medium: Number of medium complexity buildings to sample (default: 5)
+        n_simple: Number of simplest buildings to sample (default: 5)
+        save_path: Optional path to save the plot
+
+    Returns:
+        matplotlib figure object
+    """
+    from shapely.geometry import shape
+    from shapely.ops import transform
+    import json
+
+    if buildings_df is None or len(buildings_df) == 0:
+        logger.warning("No building data available for qualitative sampling")
+        return None
+
+    # Sort by complexity ratio
+    sorted_df = buildings_df.sort_values('ratio', ascending=False).reset_index(drop=True)
+
+    # Select samples
+    n_total = len(sorted_df)
+
+    # Most complex (highest ratio)
+    complex_samples = sorted_df.head(n_complex)
+
+    # Medium complexity (middle percentile)
+    medium_start = max(0, n_total // 2 - n_medium // 2)
+    medium_samples = sorted_df.iloc[medium_start:medium_start + n_medium]
+
+    # Simplest (lowest ratio)
+    simple_samples = sorted_df.tail(n_simple)
+
+    # Combine all samples
+    all_samples = pd.concat([complex_samples, medium_samples, simple_samples])
+
+    # Calculate grid layout
+    total_samples = len(all_samples)
+    cols = 5  # 5 columns
+    rows = (total_samples + cols - 1) // cols
+
+    fig, axes = plt.subplots(rows, cols, figsize=(20, rows * 4))
+    if rows == 1:
+        axes = axes.reshape(1, -1)
+
+    # Flatten axes for easier iteration
+    axes_flat = axes.flatten()
+
+    # Plot each sample
+    for idx, (_, building) in enumerate(all_samples.iterrows()):
+        if idx >= len(axes_flat):
+            break
+
+        ax = axes_flat[idx]
+
+        try:
+            # Parse geometry
+            geom_data = building.get('geometry')
+            if isinstance(geom_data, str):
+                geom_data = json.loads(geom_data)
+
+            polygon = shape(geom_data)
+
+            # Plot actual polygon
+            if polygon.geom_type == 'Polygon':
+                x, y = polygon.exterior.xy
+                ax.fill(x, y, alpha=0.6, fc='blue', ec='darkblue', linewidth=2, label='Actual')
+            elif polygon.geom_type == 'MultiPolygon':
+                for poly in polygon.geoms:
+                    x, y = poly.exterior.xy
+                    ax.fill(x, y, alpha=0.6, fc='blue', ec='darkblue', linewidth=2)
+
+            # Plot convex hull
+            convex_hull = polygon.convex_hull
+            x_hull, y_hull = convex_hull.exterior.xy
+            ax.plot(x_hull, y_hull, 'r--', linewidth=2, alpha=0.8, label='Convex Hull')
+
+            # Add info
+            ratio = building.get('ratio', 0)
+            area = building.get('area_m2', 0)
+
+            # Determine category
+            if idx < n_complex:
+                category = "COMPLEX"
+                color = 'green'
+            elif idx < n_complex + n_medium:
+                category = "MEDIUM"
+                color = 'orange'
+            else:
+                category = "SIMPLE"
+                color = 'red'
+
+            ax.set_title(f"{category}\nRatio: {ratio:.3f} | Area: {area:.0f}m²",
+                        fontsize=10, fontweight='bold', color=color)
+
+            # Add centroid coordinates for investigation
+            centroid = polygon.centroid
+            ax.text(0.02, 0.02, f"Coords: ({centroid.x:.6f}, {centroid.y:.6f})",
+                   transform=ax.transAxes, fontsize=8, verticalalignment='bottom',
+                   bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+
+            ax.set_aspect('equal')
+            ax.grid(True, alpha=0.3)
+
+            # Only show legend on first plot
+            if idx == 0:
+                ax.legend(loc='upper right', fontsize=8)
+
+        except Exception as e:
+            logger.warning(f"Failed to plot building {idx}: {e}")
+            ax.text(0.5, 0.5, f"Error plotting\nbuilding {idx}",
+                   ha='center', va='center', transform=ax.transAxes)
+            ax.set_aspect('equal')
+
+    # Hide unused subplots
+    for idx in range(total_samples, len(axes_flat)):
+        axes_flat[idx].axis('off')
+
+    plt.suptitle(f'Qualitative Building Complexity Samples - {region_name}\n'
+                f'Top {n_complex} Complex | {n_medium} Medium | {n_simple} Simple',
+                fontsize=16, fontweight='bold')
+    plt.tight_layout()
+
+    if save_path:
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        logger.info(f"Qualitative samples plot saved to {save_path}")
+
+    return fig
