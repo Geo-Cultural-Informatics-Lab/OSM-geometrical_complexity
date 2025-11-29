@@ -460,7 +460,7 @@ def run_time_series_analysis(config, output_dir, data_dir):
                         title=f"Complexity Evolution - {region_name.replace('_', ' ').title()}",
                         save_path=str(plot_path)
                     )
-                    print(f"✓ Time series plot: {plot_path.name}")
+                    print(f"Time series plot: {plot_path.name}")
 
         # Individual dashboards (if not merging or only one region)
         if not merge_dash or len(time_series_results) == 1:
@@ -486,8 +486,9 @@ def run_time_series_analysis(config, output_dir, data_dir):
 
         # Combined plots (if multiple regions)
         if len(time_series_results) > 1:
+            # Just concatenate - region column already exists in each dataframe
             combined_ts = pd.concat(
-                [data.assign(region=name) for name, data in time_series_results.items()],
+                [data for name, data in time_series_results.items()],
                 ignore_index=True
             )
 
@@ -528,7 +529,7 @@ def main():
 
     if config is None:
         print("Failed to load configuration")
-        print("   Create a config file with: python main.py --create-config batch")
+        print("Create a config file with: python main.py --create-config batch")
         return
 
     # Validate configuration
@@ -571,7 +572,7 @@ def main():
         elif mode == 'snapshot':
             run_snapshot_analysis(config, output_dir)
         else:
-            print(f"❌ Unknown analysis mode: {mode}")
+            print(f" Unknown analysis mode: {mode}")
             return
 
         print(f"\n{'='*80}")
@@ -580,10 +581,10 @@ def main():
         print(f"{'='*80}\n")
 
     except KeyboardInterrupt:
-        print("\n\n⚠ Analysis interrupted by user")
+        print("\n\nAnalysis interrupted by user")
         print("  Progress has been saved and can be resumed")
     except Exception as e:
-        print(f"\n❌ Error during analysis: {str(e)}")
+        print(f"\nError during analysis: {str(e)}")
         logger.exception("Analysis failed with exception")
         raise
 
