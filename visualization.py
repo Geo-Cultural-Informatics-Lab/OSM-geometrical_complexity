@@ -85,8 +85,8 @@ def plot_completeness_metrics(summary_df, save_path=None):
     ax1.set_xticks(x_pos)
     ax1.set_xticklabels(region_labels, rotation=45, ha='right', fontsize=10)
     ax1.grid(axis='y', alpha=0.3, linestyle='--')
-    ax1.axhline(y=0.3, color='green', linestyle='--', alpha=0.5, label='High complexity')
-    ax1.axhline(y=0.15, color='orange', linestyle='--', alpha=0.5, label='Medium complexity')
+    # ax1.axhline(y=0.3, color='green', linestyle='--', alpha=0.5, label='High complexity')
+    # ax1.axhline(y=0.15, color='orange', linestyle='--', alpha=0.5, label='Medium complexity')
     ax1.legend(loc='upper right', fontsize=8)
 
     # Add value labels on bars
@@ -107,8 +107,8 @@ def plot_completeness_metrics(summary_df, save_path=None):
     ax2.set_xticks(x_pos)
     ax2.set_xticklabels(region_labels, rotation=45, ha='right', fontsize=10)
     ax2.grid(axis='y', alpha=0.3, linestyle='--')
-    ax2.axhline(y=0.3, color='green', linestyle='--', alpha=0.5)
-    ax2.axhline(y=0.15, color='orange', linestyle='--', alpha=0.5)
+    # ax2.axhline(y=0.3, color='green', linestyle='--', alpha=0.5)
+    # ax2.axhline(y=0.15, color='orange', linestyle='--', alpha=0.5)
 
     # Add value labels
     for bar, val in zip(bars2, median_ratios):
@@ -700,13 +700,14 @@ def plot_time_series_dashboard(ts_df, metric='mean_ratio', save_path=None):
 # User Count Analysis
 # ============================================================================
 
-def plot_users_vs_complexity(summary_df, save_path=None):
+def plot_users_vs_complexity(summary_df, save_path=None, show_labels=True):
     """
     Create scatter plot showing relationship between number of users and complexity.
 
     Args:
         summary_df: DataFrame with user_count and mean_ratio columns
         save_path: Optional path to save the plot
+        show_labels: If True, show individual point labels. If False, use legend for regions.
 
     Returns:
         matplotlib figure object
@@ -729,28 +730,58 @@ def plot_users_vs_complexity(summary_df, save_path=None):
 
     fig, ax = plt.subplots(figsize=(12, 8))
 
-    # Create scatter plot
-    scatter = ax.scatter(
-        df['user_count'],
-        df['mean_ratio'],
-        s=100,
-        alpha=0.6,
-        c=df['mean_ratio'],
-        cmap='RdYlGn',
-        edgecolors='black',
-        linewidths=1
-    )
+    # Check if we have multiple regions
+    has_multiple_regions = 'region' in df.columns and df['region'].nunique() > 1
 
-    # Add region labels
-    for idx, row in df.iterrows():
-        ax.annotate(
-            row['region'],
-            (row['user_count'], row['mean_ratio']),
-            xytext=(5, 5),
-            textcoords='offset points',
-            fontsize=9,
-            alpha=0.8
+    if has_multiple_regions and not show_labels:
+        # Extract base region name (remove timestamp suffix)
+        df['base_region'] = df['region'].str.replace(r'_\d{4}-\d{2}-\d{2}$', '', regex=True)
+
+        # Plot each region with different color
+        import matplotlib.cm as cm
+        regions = df['base_region'].unique()
+        colors = cm.tab10(np.linspace(0, 1, len(regions)))
+
+        for region, color in zip(regions, colors):
+            region_data = df[df['base_region'] == region]
+            ax.scatter(
+                region_data['user_count'],
+                region_data['mean_ratio'],
+                s=100,
+                alpha=0.6,
+                c=[color],
+                edgecolors='black',
+                linewidths=1,
+                label=region.replace('_', ' ').title()
+            )
+    else:
+        # Single region or show_labels=True: use colormap
+        scatter = ax.scatter(
+            df['user_count'],
+            df['mean_ratio'],
+            s=100,
+            alpha=0.6,
+            c=df['mean_ratio'],
+            cmap='RdYlGn',
+            edgecolors='black',
+            linewidths=1
         )
+
+        # Add colorbar
+        cbar = plt.colorbar(scatter, ax=ax)
+        cbar.set_label('Mean Complexity Ratio', rotation=270, labelpad=20, fontweight='bold')
+
+    # Add region labels only if requested
+    if show_labels and 'region' in df.columns:
+        for idx, row in df.iterrows():
+            ax.annotate(
+                row['region'],
+                (row['user_count'], row['mean_ratio']),
+                xytext=(5, 5),
+                textcoords='offset points',
+                fontsize=9,
+                alpha=0.8
+            )
 
     # Add trend line if enough points
     if len(df) >= 3:
@@ -770,8 +801,8 @@ def plot_users_vs_complexity(summary_df, save_path=None):
     ax.grid(True, alpha=0.3, linestyle='--')
 
     # Add reference lines for complexity thresholds
-    ax.axhline(y=0.30, color='green', linestyle='--', alpha=0.4, label='High complexity')
-    ax.axhline(y=0.15, color='orange', linestyle='--', alpha=0.4, label='Medium complexity')
+    # ax.axhline(y=0.30, color='green', linestyle='--', alpha=0.4, label='High complexity')
+    # ax.axhline(y=0.15, color='orange', linestyle='--', alpha=0.4, label='Medium complexity')
 
     ax.legend(loc='best', fontsize=10)
 
@@ -844,8 +875,8 @@ def plot_complexity_boxplots(data_df, region_column='region', save_path=None):
     ax.grid(axis='y', alpha=0.3, linestyle='--')
 
     # Add reference lines
-    ax.axhline(y=0.30, color='green', linestyle='--', alpha=0.4, linewidth=1.5, label='High complexity threshold')
-    ax.axhline(y=0.15, color='orange', linestyle='--', alpha=0.4, linewidth=1.5, label='Medium complexity threshold')
+    # ax.axhline(y=0.30, color='green', linestyle='--', alpha=0.4, linewidth=1.5, label='High complexity threshold')
+    # ax.axhline(y=0.15, color='orange', linestyle='--', alpha=0.4, linewidth=1.5, label='Medium complexity threshold')
 
     # Rotate labels if many regions
     if len(regions) > 5:
@@ -946,8 +977,8 @@ def plot_time_series_boxplots(ts_detailed_df, timestamp_column='timestamp',
         ax.set_xticklabels([ts.strftime('%Y-%m') for ts in timestamps], rotation=45, ha='right')
 
         # Add reference lines
-        ax.axhline(y=0.30, color='green', linestyle='--', alpha=0.3, linewidth=1)
-        ax.axhline(y=0.15, color='orange', linestyle='--', alpha=0.3, linewidth=1)
+        # ax.axhline(y=0.30, color='green', linestyle='--', alpha=0.3, linewidth=1)
+        # ax.axhline(y=0.15, color='orange', linestyle='--', alpha=0.3, linewidth=1)
 
     plt.suptitle('OSM Building Complexity: Distribution Over Time',
                 fontsize=14, fontweight='bold', y=0.995)

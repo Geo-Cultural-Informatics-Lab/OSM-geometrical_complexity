@@ -341,7 +341,8 @@ def run_snapshot_analysis(config, output_dir):
                 print("Creating user vs complexity correlation plot...")
                 plot_users_vs_complexity(
                     combined_data,
-                    save_path=str(output_dir / 'user_vs_complexity.png')
+                    save_path=str(output_dir / 'user_vs_complexity.png'),
+                    show_labels=False  # Use legend instead of labels for combined plot
                 )
                 print("✓ User correlation plot saved")
 
@@ -505,7 +506,8 @@ def run_time_series_analysis(config, output_dir, data_dir):
                 suffix = "" if merge_corr else "_combined"
                 plot_users_vs_complexity(
                     combined_ts,
-                    save_path=str(output_dir / f"user_correlation{suffix}.png")
+                    save_path=str(output_dir / f"user_correlation{suffix}.png"),
+                    show_labels=False  # Use legend instead of labels for combined plot
                 )
                 print(f"✓ Combined user correlation plot saved")
 
