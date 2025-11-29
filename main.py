@@ -547,6 +547,48 @@ def run_time_series_analysis(config, output_dir, data_dir):
                 )
                 print(f"✓ Combined user correlation plot saved")
 
+        # Qualitative samples - plot example polygons from latest time period
+        if viz_opts.get('create_qualitative_samples', True):
+            from visualization import plot_sample_polygons
+            import os
+
+            print("\nGenerating qualitative polygon samples (latest period)...")
+
+            n_samples = config['output'].get('sample_complex_buildings', 10)
+            n_complex = n_samples
+            n_medium = max(3, n_samples // 2)
+            n_simple = max(3, n_samples // 2)
+
+            for region_name in time_series_results.keys():
+                # Get the latest timestamp for this region
+                ts_data = time_series_results[region_name]
+                if 'timestamp' in ts_data.columns and len(ts_data) > 0:
+                    latest_timestamp = ts_data['timestamp'].iloc[-1]
+
+                    # Build filename for the latest period's building data
+                    # Format: region_name_YYYYMMDD
+                    timestamp_str = latest_timestamp.replace('-', '')
+                    buildings_file = data_dir / f"{region_name}_ts_{timestamp_str}"
+
+                    if buildings_file.exists():
+                        try:
+                            buildings_df = pd.read_csv(buildings_file)
+
+                            if len(buildings_df) > 0:
+                                sample_path = output_dir / f"{region_name}_qualitative_samples_latest.png"
+                                plot_sample_polygons(
+                                    buildings_df,
+                                    f"{region_name.replace('_', ' ').title()} ({latest_timestamp})",
+                                    n_complex=n_complex,
+                                    n_medium=n_medium,
+                                    n_simple=n_simple,
+                                    save_path=str(sample_path)
+                                )
+                                print(f"✓ Qualitative samples: {sample_path.name}")
+                        except Exception as e:
+                            logger.warning(f"Could not generate qualitative samples for {region_name}: {e}")
+                    else:
+                        logger.debug(f"No detailed building data found for {region_name} at {latest_timestamp}")
 
 
 def main():
