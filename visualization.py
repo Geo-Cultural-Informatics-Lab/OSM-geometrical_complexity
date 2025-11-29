@@ -1043,6 +1043,10 @@ def plot_sample_polygons(buildings_df, region_name, geom_file_path, n_complex=10
         logger.error(f"Failed to load geometry file: {e}")
         return None
 
+    # Ensure way_id types match for merge (convert both to string to be safe)
+    buildings_df['way_id'] = buildings_df['way_id'].astype(str)
+    geom_gdf['way_id'] = geom_gdf['way_id'].astype(str)
+
     # Merge building metrics with geometries
     merged_df = buildings_df.merge(geom_gdf, on='way_id', how='inner')
 
