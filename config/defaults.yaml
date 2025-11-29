@@ -28,7 +28,7 @@ output:
   directory: ./results
   data_directory: ./data
   logs_directory: ./logs
-  export_shapefile: true
+  export_shapefile: false
   export_individual_buildings: false
   sample_complex_buildings: 10  # Number of complex buildings to sample
 
