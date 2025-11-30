@@ -446,14 +446,14 @@ def plot_time_series_complexity(ts_df, metric='mean_ratio', region_column='regio
                 value = row[metric]
                 count = row['building_count']
                 # Add text label above the point
-                ax.annotate(f'n={count:,}',
+                ax.annotate(f'n={round(count):,}',
                            xy=(timestamp, value),
-                           xytext=(0, 8),
+                           xytext=(40, 4),
                            textcoords='offset points',
-                           fontsize=8,
+                           fontsize=10,
                            ha='center',
-                           alpha=0.7,
-                           color=color)
+                           alpha=1,
+                           color='k')
 
     # Formatting
     ax.set_xlabel('Time', fontsize=12, fontweight='bold')

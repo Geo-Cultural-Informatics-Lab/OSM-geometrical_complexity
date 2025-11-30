@@ -13,7 +13,7 @@
 # Analysis Configuration
 analysis:
   mode: snapshot  # Options: snapshot, time_series, batch_countries
-  timestamp: "2025-08-01"  # Default timestamp for snapshot mode
+  timestamp: "2025-11-01"  # Default timestamp for snapshot mode
 
 # Analysis Options
 analysis_options:
@@ -34,7 +34,7 @@ output:
 
 # Visualization Settings
 visualization:
-  create_dashboards: true
+  create_dashboards: false
   create_time_series_plots: true
   create_user_correlation_plot: true
   create_box_plots: true

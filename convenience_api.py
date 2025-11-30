@@ -455,7 +455,7 @@ def analyze_city_comparison(
         timestamp = "2025-08-01"
 
     if output_dir is None:
-        output_dir = "./results/city_comparison"
+        output_dir = "results/archive/city_comparison"
 
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
