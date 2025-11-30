@@ -439,6 +439,22 @@ def plot_time_series_complexity(ts_df, metric='mean_ratio', region_column='regio
                label=region.replace('_', ' ').title(),
                color=color, alpha=0.8)
 
+        # Add building count labels at each point if available
+        if 'building_count' in region_data.columns:
+            for _, row in region_data.iterrows():
+                timestamp = row[timestamp_column]
+                value = row[metric]
+                count = row['building_count']
+                # Add text label above the point
+                ax.annotate(f'n={count:,}',
+                           xy=(timestamp, value),
+                           xytext=(0, 8),
+                           textcoords='offset points',
+                           fontsize=8,
+                           ha='center',
+                           alpha=0.7,
+                           color=color)
+
     # Formatting
     ax.set_xlabel('Time', fontsize=12, fontweight='bold')
     ax.set_ylabel(f'{metric.replace("_", " ").title()}', fontsize=12, fontweight='bold')
@@ -764,21 +780,25 @@ def plot_users_vs_complexity(summary_df, save_path=None, show_labels=True):
                 label=region.replace('_', ' ').title()
             )
     else:
-        # Single region or show_labels=True: use colormap
+        # Single region or show_labels=True: use building count as color if available
+        # Use building_count for color if available, otherwise fall back to mean_ratio
+        color_column = 'building_count' if 'building_count' in df.columns else 'mean_ratio'
+        color_label = 'Number of Buildings' if color_column == 'building_count' else 'Mean Complexity Ratio'
+
         scatter = ax.scatter(
             df['user_count'],
             df['mean_ratio'],
             s=100,
             alpha=0.6,
-            c=df['mean_ratio'],
-            cmap='RdYlGn',
+            c=df[color_column],
+            cmap='viridis',
             edgecolors='black',
             linewidths=1
         )
 
         # Add colorbar
         cbar = plt.colorbar(scatter, ax=ax)
-        cbar.set_label('Mean Complexity Ratio', rotation=270, labelpad=20, fontweight='bold')
+        cbar.set_label(color_label, rotation=270, labelpad=20, fontweight='bold')
 
     # Add region labels only if requested
     if show_labels and 'region' in df.columns:
@@ -1072,18 +1092,27 @@ def plot_sample_polygons(buildings_df, region_name, geom_file_path, n_complex=10
     # Sort by complexity ratio
     sorted_df = merged_df.sort_values('ratio', ascending=False).reset_index(drop=True)
 
-    # Select samples
-    n_total = len(sorted_df)
+    # Select samples using distribution-aware categorization
+    # Calculate percentiles for meaningful separation
+    ratio_values = sorted_df['ratio'].values
 
-    # Most complex (highest ratio)
-    complex_samples = sorted_df.head(n_complex)
+    # Use percentiles to define thresholds (more robust than fixed values)
+    # High: top 33%, Medium: middle 34-66%, Low: bottom 33%
+    high_threshold = np.percentile(ratio_values, 67)
+    low_threshold = np.percentile(ratio_values, 33)
 
-    # Medium complexity (middle percentile)
-    medium_start = max(0, n_total // 2 - n_medium // 2)
-    medium_samples = sorted_df.iloc[medium_start:medium_start + n_medium]
+    # Filter by categories
+    high_complexity = sorted_df[sorted_df['ratio'] >= high_threshold]
+    medium_complexity = sorted_df[(sorted_df['ratio'] >= low_threshold) & (sorted_df['ratio'] < high_threshold)]
+    low_complexity = sorted_df[sorted_df['ratio'] < low_threshold]
 
-    # Simplest (lowest ratio)
-    simple_samples = sorted_df.tail(n_simple)
+    # Sample from each category
+    complex_samples = high_complexity.head(n_complex) if len(high_complexity) >= n_complex else high_complexity
+    medium_samples = medium_complexity.head(n_medium) if len(medium_complexity) >= n_medium else medium_complexity
+    simple_samples = low_complexity.head(n_simple) if len(low_complexity) >= n_simple else low_complexity
+
+    logger.info(f"Qualitative sampling: High threshold={high_threshold:.4f}, Low threshold={low_threshold:.4f}")
+    logger.info(f"Sampled {len(complex_samples)} complex, {len(medium_samples)} medium, {len(simple_samples)} simple")
 
     # Combine all samples
     all_samples = pd.concat([complex_samples, medium_samples, simple_samples])

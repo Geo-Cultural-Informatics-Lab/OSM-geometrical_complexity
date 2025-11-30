@@ -285,7 +285,8 @@ def run_snapshot_analysis(config, output_dir):
                 path=str(results_dir),
                 filename=f"{region_name}_buildings.csv",
                 include_counts=analysis_opts.get('include_building_count', True),
-                include_user_count=analysis_opts.get('include_user_count', True)
+                include_user_count=analysis_opts.get('include_user_count', True),
+                resume=analysis_opts.get('resume', True)
             )
 
         if result is not None:

@@ -590,7 +590,7 @@ def get_vertices(bounds, filter="type:way and highway=*", time="2025-01-01",
 
 def get_poly_coords(region_name, bounds, filter="type:way and building=*", time_param="2025-01-01",
                     path=None, filename=None, distribution=False, use_vectorized=True,
-                    include_counts=True, include_user_count=True):
+                    include_counts=True, include_user_count=True, resume=True):
     """
     Extract polygon coordinates and calculate convex hull metrics.
 
@@ -605,11 +605,24 @@ def get_poly_coords(region_name, bounds, filter="type:way and building=*", time_
         use_vectorized: If True, use geopandas vectorized operations (default, much faster)
         include_counts: If True, include actual building count from API (default: True)
         include_user_count: If True, include contributor count from API (default: True)
+        resume: If True, load existing summary data if available (default: True)
 
     Returns:
         DataFrame with convex hull metrics or summary statistics
     """
     start_time = time.time()
+
+    # Check if summary file already exists (for resume capability)
+    if resume and path and filename and not distribution:
+        summary_file = os.path.join(path, os.path.basename(filename) + "_summary.csv")
+        if os.path.exists(summary_file):
+            logger.info(f"Loading existing summary data from {os.path.basename(summary_file)}")
+            try:
+                existing_summary = pd.read_csv(summary_file)
+                logger.info(f"Loaded cached data - skipping API calls")
+                return existing_summary
+            except Exception as e:
+                logger.warning(f"Failed to load existing summary: {e}, will re-query API")
 
     data = call_ohsome_api('geometry', bounds, filter, time_param, return_type='json')
 
@@ -842,6 +855,18 @@ def get_poly_coords_chunked(region_name, bounds, filter="type:way and building=*
     if failed_chunks:
         logger.warning(f"  Failed chunk IDs: {', '.join(failed_chunks)}")
     logger.info(f"=" * 80)
+
+    # Check if final summary already exists (for resume capability)
+    summary_path = os.path.join(path, os.path.splitext(filename)[0] + "_final_summary.csv")
+    if resume and os.path.exists(summary_path):
+        logger.info(f"Loading existing final summary from {os.path.basename(summary_path)}")
+        try:
+            existing_summary = pd.read_csv(summary_path)
+            logger.info(f"Loaded cached data - skipping aggregation")
+            logger.info(f"Total processing time: {time.time() - start_time:.2f}s")
+            return existing_summary
+        except Exception as e:
+            logger.warning(f"Failed to load existing summary: {e}, will re-aggregate")
 
     # Aggregate chunk summaries
     logger.info("\nAggregating chunk summaries...")
