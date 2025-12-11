@@ -65,6 +65,12 @@ countries:
   geojson_path: ./countries_polygons/World_Countries.geojson
   iso_filter: null  # null for all countries, or list of ISO codes to filter
 
+  # Administrative subdivision settings
+  subdivide_by_admin_level: false  # If true, analyze each admin subdivision separately
+  admin_level: 6  # Administrative level for subdivision (4=province, 6=district, 8=sub-district)
+  cache_boundaries: true  # Cache admin boundaries to avoid repeated API calls
+  overpass_timeout: 120  # Timeout for Overpass API queries (seconds)
+
 # Default Region Settings (used when no regions specified)
 default_region:
   type: city  # Options: city, bbox, point

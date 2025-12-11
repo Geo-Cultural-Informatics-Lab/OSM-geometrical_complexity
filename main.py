@@ -28,6 +28,10 @@ from batch_country_analysis import (
     load_countries_from_csv,
     analyze_countries_batch
 )
+from admin_level_analysis import (
+    analyze_country_by_admin_level,
+    analyze_multiple_countries_by_admin_level
+)
 from gis_export import export_summary_to_shapefile, export_buildings_to_shapefile
 from visualization import (
     plot_summary_dashboard,
@@ -113,6 +117,14 @@ def run_batch_countries_analysis(config, output_dir, data_dir):
     analysis_opts = config.get('analysis_options', {})
     viz_opts = config.get('visualization', {})
 
+    # Check if admin-level subdivision is enabled
+    subdivide_by_admin = countries_config.get('subdivide_by_admin_level', False)
+    if subdivide_by_admin:
+        print("\nAdministrative subdivision enabled")
+        admin_level = countries_config.get('admin_level', 6)
+        print(f"  Admin level: {admin_level}")
+        return run_batch_countries_with_admin_subdivision(config, output_dir, data_dir)
+
     # Load countries list
     if countries_config.get('source') == 'csv':
         csv_path = countries_config.get('csv_path', './World_Countries.csv')
@@ -129,7 +141,7 @@ def run_batch_countries_analysis(config, output_dir, data_dir):
         })
 
     if countries_df is None or len(countries_df) == 0:
-        print("❌ No countries to process")
+        print("ERROR: No countries to process")
         return
 
     print(f"Total countries to process: {len(countries_df)}")
@@ -163,10 +175,10 @@ def run_batch_countries_analysis(config, output_dir, data_dir):
     )
 
     if results is None:
-        print("❌ Batch analysis failed")
+        print("ERROR: Batch analysis failed")
         return
 
-    print(f"\n✓ Successfully processed {len(results)} countries")
+    print(f"\nSuccessfully processed {len(results)} countries")
 
     # Export shapefile
     if config['output'].get('export_shapefile', False):
@@ -178,7 +190,7 @@ def run_batch_countries_analysis(config, output_dir, data_dir):
             output_name='batch_countries_summary'
         )
         if shp_path:
-            print(f"✓ Shapefile exported: {shp_path}")
+            print(f"Shapefile exported: {shp_path}")
 
     # Create visualizations
     print("\nGenerating visualizations...")
@@ -197,7 +209,122 @@ def run_batch_countries_analysis(config, output_dir, data_dir):
             save_path=str(output_dir / 'user_vs_complexity.png')
         )
 
-    print("✓ Visualizations complete")
+    print("Visualizations complete")
+
+
+def run_batch_countries_with_admin_subdivision(config, output_dir, data_dir):
+    """Run batch country analysis with administrative subdivision."""
+    print("\n" + "=" * 80)
+    print("BATCH COUNTRY ANALYSIS WITH ADMIN SUBDIVISION")
+    print("=" * 80)
+
+    countries_config = config['countries']
+    analysis_opts = config.get('analysis_options', {})
+    viz_opts = config.get('visualization', {})
+    admin_level = countries_config.get('admin_level', 6)
+    cache_boundaries = countries_config.get('cache_boundaries', True)
+    overpass_timeout = countries_config.get('overpass_timeout', 120)
+
+    print(f"\nAdministrative level: {admin_level}")
+    print(f"Boundary caching: {'Enabled' if cache_boundaries else 'Disabled'}")
+
+    # Visualization settings
+    create_viz = (viz_opts.get('create_dashboards', False) or
+                  viz_opts.get('create_time_series_plots', False) or
+                  viz_opts.get('create_box_plots', False))
+    viz_top_n = viz_opts.get('top_n_subdivisions', 10)
+
+    if create_viz:
+        print(f"Visualizations: Enabled (top {viz_top_n} subdivisions)")
+    else:
+        print(f"Visualizations: Disabled")
+
+    # Load countries list
+    if countries_config.get('source') == 'csv':
+        csv_path = countries_config.get('csv_path', './World_Countries.csv')
+        iso_filter = countries_config.get('iso_filter')
+        print(f"Loading countries from CSV: {csv_path}")
+        countries_df = load_countries_from_csv(csv_path, iso_filter=iso_filter)
+    else:
+        iso_codes = countries_config.get('iso_codes', [])
+        print(f"Processing countries: {', '.join(iso_codes)}")
+        countries_df = pd.DataFrame({
+            'iso_code': iso_codes,
+            'country_name': iso_codes  # Will be filled from API
+        })
+
+    if countries_df is None or len(countries_df) == 0:
+        print("ERROR: No countries to process")
+        return
+
+    print(f"Total countries to process: {len(countries_df)}")
+
+    # Check if time series is enabled
+    ts_config = config.get('time_series', {})
+    if ts_config.get('enabled', False):
+        start_year = ts_config['start_year']
+        end_year = ts_config['end_year']
+        interval = ts_config['interval']
+        print(f"Time series: {start_year}-{end_year} ({interval})")
+    else:
+        start_year = None
+        end_year = None
+        interval = 'yearly'
+        print("Mode: Snapshot analysis")
+
+    # Convert DataFrame to list of dicts
+    countries_list = []
+    for _, row in countries_df.iterrows():
+        countries_list.append({
+            'name': row.get('country_name', row.get('iso_code')),
+            'iso_code': row.get('iso_code')
+        })
+
+    # Run analysis with admin subdivision
+    print("\nStarting admin-level subdivision analysis...")
+    print("This will:")
+    print(f"  1. Query Overpass API for admin_level={admin_level} boundaries")
+    print(f"  2. Analyze each subdivision separately")
+    print(f"  3. Apply chunking within subdivisions if needed")
+    print(f"  4. Organize results hierarchically\n")
+
+    results = analyze_multiple_countries_by_admin_level(
+        countries_list=countries_list,
+        admin_level=admin_level,
+        output_dir=str(output_dir),
+        start_year=start_year,
+        end_year=end_year,
+        interval=interval,
+        filter=analysis_opts.get('filter', 'type:way and building=*'),
+        chunked_threshold_km2=analysis_opts.get('chunked_threshold_km2', 5000),
+        include_user_count=analysis_opts.get('include_user_count', True),
+        resume=analysis_opts.get('resume', True),
+        cache_boundaries=cache_boundaries,
+        overpass_timeout=overpass_timeout,
+        geojson_path=countries_config.get('geojson_path'),
+        create_visualizations=create_viz,
+        viz_top_n=viz_top_n
+    )
+
+    if not results:
+        print("\nERROR: Admin-level analysis failed")
+        return
+
+    print(f"\nSuccessfully processed {len(results)} countries with admin subdivision")
+
+    # Display summary for each country
+    print("\n" + "=" * 80)
+    print("SUMMARY")
+    print("=" * 80)
+    for iso_code, result in results.items():
+        summary = result.get('summary', {})
+        print(f"\n{summary.get('country_name')} ({iso_code}):")
+        print(f"  Subdivisions: {summary.get('successful_subdivisions')}/{summary.get('total_subdivisions')}")
+        print(f"  Buildings: {summary.get('total_buildings', 0):,}")
+        print(f"  Runtime: {summary.get('runtime_minutes', 0):.1f} minutes")
+        print(f"  Output: {result.get('output_dir')}")
+
+    print("\nBatch admin-level analysis complete")
 
 
 # ============================================================================
@@ -618,7 +745,7 @@ def main():
             return
 
         print(f"\n{'='*80}")
-        print(f"✓ ANALYSIS COMPLETE")
+        print(f"ANALYSIS COMPLETE")
         print(f"Results saved to: {output_dir}")
         print(f"{'='*80}\n")
 

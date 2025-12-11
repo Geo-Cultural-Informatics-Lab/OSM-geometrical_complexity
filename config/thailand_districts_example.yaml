@@ -1,0 +1,45 @@
+# Thailand Provinces Analysis - Example Configuration
+# This configuration analyzes Thailand subdivided by provinces (admin_level=4).
+# Each province will be analyzed separately with automatic chunking if needed.
+#
+# Usage:
+#   python main.py --config config/thailand_districts_example.yaml
+
+# Analysis mode
+analysis:
+  mode: batch_countries
+
+# Country configuration with admin subdivision
+countries:
+  source: list
+  iso_codes: ['TH']
+
+  # Administrative subdivision settings
+  subdivide_by_admin_level: true
+  admin_level: 4  # 4 = Provinces (78 regions - first-level division)
+                  # 6 = Districts (929 regions - second-level division)
+  cache_boundaries: true
+  overpass_timeout: 120
+
+# Analysis options
+analysis_options:
+  filter: "type:way and building=*"
+  chunked_threshold_km2: 5000
+  include_building_count: true
+  include_user_count: true
+  resume: true
+
+# Output settings
+output:
+  directory: ./results/thailand_provinces
+  data_directory: ./data/thailand_provinces
+  logs_directory: ./logs/thailand_provinces
+  export_shapefile: false
+  export_individual_buildings: false
+
+# Visualization settings
+visualization:
+  create_dashboards: true
+  create_time_series_plots: true
+  create_user_correlation_plot: true
+  create_box_plots: true

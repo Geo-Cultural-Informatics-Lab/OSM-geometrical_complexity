@@ -1,0 +1,930 @@
+﻿name,name_en,name_local,bbox,center_lat,center_lon,osm_id,admin_level,ref,type
+Phra Nakhon District,Phra Nakhon District,เขตพระนคร,"100.4875804,13.7386948,100.5092356,13.7728868",0,0,92053,6,,boundary
+Samphanthawong District,Samphanthawong District,เขตสัมพันธวงศ์,"100.4999337,13.7289077,100.5159974,13.7468298",0,0,92056,6,,boundary
+Pom Prap Sattru Phai District,Pom Prap Sattru Phai District,เขตป้อมปราบศัตรูพ่าย,"100.5038512,13.7380772,100.5174297,13.7639252",0,0,92058,6,,boundary
+Bang Rak District,Bang Rak District,เขตบางรัก,"100.5120759,13.7180596,100.5444745,13.7378098",0,0,92061,6,,boundary
+Pathum Wan District,Pathum Wan District,เขตปทุมวัน,"100.5155314,13.7225037,100.5529529,13.7532379",0,0,92063,6,,boundary
+Ratchathewi District,Ratchathewi District,เขตราชเทวี,"100.5190372,13.7478553,100.5649221,13.7743399",0,0,92064,6,,boundary
+Phaya Thai District,Phaya Thai District,เขตพญาไท,"100.5278135,13.7626568,100.5619873,13.7978528",0,0,92068,6,,boundary
+Dusit District,Dusit District,เขตดุสิต,"100.4992431,13.7527031,100.5373517,13.8004887",0,0,92069,6,,boundary
+Bang Sue District,Bang Sue District,เขตบางซื่อ,"100.5063472,13.7978339,100.5450988,13.8497263",0,0,1639285,6,,boundary
+Chatuchak District,Chatuchak District,เขตจตุจักร,"100.5371218,13.7945626,100.5910609,13.8588892",0,0,1639286,6,,boundary
+Don Mueang District,Don Mueang District,เขตดอนเมือง,"100.5588952,13.8875325,100.6268021,13.9551693",0,0,1639287,6,,boundary
+Lak Si District,Lak Si District,เขตหลักสี่,"100.5437274,13.8497932,100.5948448,13.9144799",0,0,1639288,6,,boundary
+Bang Kruai District,Bang Kruai District,อำเภอบางกรวย,"100.3191745,13.789068,100.5150455,13.8366376",0,0,2688299,6,,boundary
+Mueang Nonthaburi District,Mueang Nonthaburi District,อำเภอเมืองนนทบุรี,"100.4272105,13.8095819,100.5502927,13.8980254",0,0,2688300,6,,boundary
+Pak Kret District,Pak Kret District,อำเภอปากเกร็ด,"100.3810321,13.877657,100.567605,13.9948071",0,0,2688301,6,,boundary
+Bang Bua Thong District,Bang Bua Thong District,อำเภอบางบัวทอง,"100.3261158,13.863016,100.4509184,14.0007137",0,0,2689552,6,,boundary
+Bang Yai District,Bang Yai District,อำเภอบางใหญ่,"100.2948191,13.8136775,100.4483102,13.9155102",0,0,2689553,6,,boundary
+Sai Noi District,Sai Noi District,อำเภอไทรน้อย,"100.2632891,13.8738312,100.3562492,14.1406689",0,0,2689554,6,,boundary
+Khlong Luang District,Khlong Luang District,อำเภอคลองหลวง,"100.5822118,13.9955253,100.7555719,14.2111236",0,0,2913006,6,,boundary
+Lam Luk Ka District,Lam Luk Ka District,อำเภอลำลูกกา,"100.6051065,13.9162736,100.9148416,14.0682402",0,0,2913007,6,,boundary
+Lat Lum Kaeo District,Lat Lum Kaeo District,อำเภอลาดหลุมแก้ว,"100.3316046,13.9679382,100.4966809,14.1191081",0,0,2913008,6,,boundary
+Mueang Pathum Thani District,Mueang Pathum Thani District,อำเภอเมืองปทุมธานี,"100.448218,13.9362612,100.6066119,14.073592",0,0,2913009,6,,boundary
+Nong Suea District,Nong Suea District,อำเภอหนองเสือ,"100.7551769,14.0448433,100.9520756,14.2760439",0,0,2913010,6,,boundary
+Sam Khok District,Sam Khok District,อำเภอสามโคก,"100.4163501,14.0298352,100.5893678,14.1314918",0,0,2913011,6,,boundary
+Thanyaburi District,Thanyaburi District,อำเภอธัญบุรี,"100.6014457,13.965786,100.9149424,14.0996227",0,0,2913012,6,,boundary
+Bang Khen District,Bang Khen District,เขตบางเขน,"100.5865336,13.8425355,100.6856854,13.8997271",0,0,2938030,6,,boundary
+Din Daeng District,Din Daeng District,เขตดินแดง,"100.5434049,13.7551446,100.5749158,13.8010753",0,0,2938031,6,,boundary
+Huai Khwang District,Huai Khwang District,เขตห้วยขวาง,"100.5632738,13.7410978,100.6040591,13.8030964",0,0,2938032,6,,boundary
+Khlong Toei District,Khlong Toei District,เขตคลองเตย,"100.5507256,13.6958021,100.6016605,13.7428412",0,0,2938033,6,,boundary
+Lat Phrao District,Lat Phrao District,เขตลาดพร้าว,"100.5883653,13.7948649,100.6371812,13.8492897",0,0,2938034,6,,boundary
+Sai Mai District,Sai Mai District,เขตสายไหม,"100.6087442,13.8740514,100.6924009,13.9501896",0,0,2938035,6,,boundary
+Vadhana District,Vadhana District,เขตวัฒนา,"100.5501098,13.7047038,100.6068489,13.7485064",0,0,2938036,6,,boundary
+Bang Kapi District,Bang Kapi District,เขตบางกะปิ,"100.6009909,13.7383281,100.679024,13.8193878",0,0,2939952,6,,boundary
+Bangkok Yai District,Bangkok Yai District,เขตบางกอกใหญ่,"100.4616116,13.7221907,100.4920261,13.7480852",0,0,2939953,6,,boundary
+Taling Chan District,Taling Chan District,เขตตลิ่งชัน,"100.4061543,13.7400064,100.4699096,13.8013016",0,0,2939954,6,,boundary
+Thawi Watthana District,Thawi Watthana District,เขตทวีวัฒนา,"100.3278772,13.736086,100.4110419,13.8041844",0,0,2939955,6,,boundary
+Wang Thonglang District,Wang Thonglang District,เขตวังทองหลาง,"100.5883725,13.751212,100.6306342,13.8028206",0,0,2939956,6,,boundary
+Bang Phlat District,Bang Phlat District,เขตบางพลัด,"100.4662022,13.7619452,100.5175947,13.8132151",0,0,2942281,6,,boundary
+Bangkok Noi District,Bangkok Noi District,เขตบางกอกน้อย,"100.453447,13.7427952,100.4911291,13.7877687",0,0,2942282,6,,boundary
+Nong Khaem District,Nong Khaem District,เขตหนองแขม,"100.3305589,13.6546813,100.3853281,13.7379861",0,0,2942283,6,,boundary
+Bang Khae District,Bang Khae District,เขตบางแค,"100.3526391,13.6680091,100.4278055,13.7539078",0,0,2946804,6,,boundary
+Bueng Kum District,Bueng Kum District,เขตบึงกุ่ม,"100.6243785,13.7707063,100.6765787,13.8473155",0,0,2946805,6,,boundary
+Khan Na Yao District,Khan Na Yao District,เขตคันนายาว,"100.6460376,13.7811813,100.7049394,13.8572196",0,0,2946806,6,,boundary
+Phasi Charoen District,Phasi Charoen District,เขตภาษีเจริญ,"100.4133361,13.6876099,100.4716825,13.7479203",0,0,2946807,6,,boundary
+Khlong Sam Wa District,Khlong Sam Wa District,เขตคลองสามวา,"100.6708044,13.8154444,100.7993713,13.9315608",0,0,2997412,6,,boundary
+Bang Na District,Bang Na District,เขตบางนา,"100.5793424,13.6475079,100.6538264,13.6844243",0,0,3146412,6,,boundary
+Min Buri District,Min Buri District,เขตมีนบุรี,"100.696745,13.7728269,100.8080074,13.8493058",0,0,3146413,6,,boundary
+Prawet District,Prawet District,เขตประเวศ,"100.6340643,13.6561557,100.712403,13.7378513",0,0,3146414,6,,boundary
+Saphan Sung District,Saphan Sung District,เขตสะพานสูง,"100.6590574,13.7324819,100.7166698,13.798282",0,0,3146415,6,,boundary
+Phra Khanong District,Phra Khanong District,เขตพระโขนง,"100.5845032,13.6778989,100.6402033,13.7068928",0,0,3146642,6,,boundary
+Suan Luang District,Suan Luang District,เขตสวนหลวง,"100.5980805,13.7007313,100.6592464,13.7500544",0,0,3146643,6,,boundary
+Chom Thong District,Chom Thong District,เขตจอมทอง,"100.4346338,13.6590752,100.4890018,13.7179155",0,0,3147007,6,,boundary
+Rat Burana District,Rat Burana District,เขตราษฎร์บูรณะ,"100.479293,13.653956,100.5228322,13.6953242",0,0,3147008,6,,boundary
+Thung Khru District,Thung Khru District,เขตทุ่งครุ,"100.4698379,13.5968504,100.5210167,13.6643274",0,0,3147104,6,,boundary
+Khlong San District,Khlong San District,เขตคลองสาน,"100.4921441,13.7051524,100.5127623,13.739312",0,0,3147280,6,,boundary
+Thon Buri District,Thon Buri District,เขตธนบุรี,"100.467744,13.6948653,100.4984651,13.7423108",0,0,3147281,6,,boundary
+Bang Bon District,Bang Bon District,เขตบางบอน,"100.3449524,13.6206335,100.446863,13.6937103",0,0,3147312,6,,boundary
+Bang Khun Thian District,Bang Khun Thian District,เขตบางขุนเทียน,"100.3764821,13.4907286,100.4816378,13.682626",0,0,3147313,6,,boundary
+Sathon District,Sathon District,เขตสาทร,"100.5081878,13.7008763,100.5536144,13.7260498",0,0,3147425,6,,boundary
+Bang Kho Laem District,Bang Kho Laem District,เขตบางคอแหลม,"100.4898405,13.6827775,100.5310992,13.7123371",0,0,3147455,6,,boundary
+Yan Nawa District,Yan Nawa District,เขตยานนาวา,"100.5169692,13.6690876,100.5549525,13.7192986",0,0,3147456,6,,boundary
+Lat Krabang District,Lat Krabang District,เขตลาดกระบัง,"100.7065975,13.6894423,100.8789405,13.8004094",0,0,3147500,6,,boundary
+Nong Chok District,Nong Chok District,เขตหนองจอก,"100.7873271,13.7378123,100.9386039,13.9462063",0,0,3147501,6,,boundary
+Mueang Phayao District,Mueang Phayao District,อำเภอเมืองพะเยา,"99.6979961,18.8952278,100.0270593,19.4064126",0,0,3427220,6,,boundary
+Kawthoung District,Kawthoung District,ကော့သောင်းခရိုင်,"97.4733149,9.526084,98.9233721,10.9302203",0,0,5996508,6,,boundary
+Phra Nakhon Si Ayutthaya District,Phra Nakhon Si Ayutthaya District,อำเภอพระนครศรีอยุธยา,"100.4985717,14.2759843,100.6255881,14.4107507",0,0,10847506,6,,boundary
+Phra Samut Chedi District,Phra Samut Chedi District,อำเภอพระสมุทรเจดีย์,"100.4444351,13.4976619,100.5945495,13.6185647",0,0,10958328,6,,boundary
+Uthai District,Uthai District,อำเภออุทัย,"100.602338,14.2981506,100.7931956,14.4144034",0,0,10961615,6,,boundary
+Wang Noi District,Wang Noi District,อำเภอวังน้อย,"100.6193525,14.1431055,100.8232715,14.3307212",0,0,10961616,6,,boundary
+Bang Pa-in District,Bang Pa-in District,อำเภอบางปะอิน,"100.5187281,14.1276502,100.684472,14.3227743",0,0,10966250,6,,boundary
+Bang Sai District,Bang Sai District,อำเภอบางไทร,"100.4092571,14.1074492,100.5804603,14.3288756",0,0,10985069,6,,boundary
+Bang Ban District,Bang Ban District,อำเภอบางบาล,"100.414737,14.3103951,100.5219439,14.4658448",0,0,10989241,6,,boundary
+Bang Pahan District,Bang Pahan District,อำเภอบางปะหัน,"100.4851788,14.4014552,100.5993356,14.5549105",0,0,10995901,6,,boundary
+Nakhon Luang District,Nakhon Luang District,อำเภอนครหลวง,"100.5644864,14.3931781,100.6863177,14.5767824",0,0,11000842,6,,boundary
+Tha Ruea District,Tha Ruea District,อำเภอท่าเรือ,"100.6003192,14.4718946,100.7823421,14.6030458",0,0,11007109,6,,boundary
+Phachi District,Phachi District,อำเภอภาชี,"100.6462858,14.3618762,100.797109,14.4995059",0,0,11007110,6,,boundary
+Maha Rat District,Maha Rat District,อำเภอมหาราช,"100.4788456,14.5188096,100.5985748,14.6433734",0,0,11007111,6,,boundary
+Ban Phraek District,Ban Phraek District,อำเภอบ้านแพรก,"100.4960927,14.6169465,100.6033679,14.6785056",0,0,11014085,6,,boundary
+Lat Bua Luang District,Lat Bua Luang District,อำเภอลาดบัวหลวง,"100.2126196,14.1131657,100.4671181,14.2198343",0,0,11016378,6,,boundary
+Sena District,Sena District,อำเภอเสนา,"100.275296,14.205356,100.4414856,14.4094943",0,0,11019957,6,,boundary
+Phak Hai District,Phak Hai District,อำเภอผักไห่,"100.2443956,14.3984104,100.4288498,14.5119903",0,0,11024881,6,,boundary
+Bang Sai District,Bang Sai District,อำเภอบางซ้าย,"100.2313398,14.2113103,100.3576234,14.411244",0,0,11024893,6,,boundary
+Bang Bo District,Bang Bo District,อำเภอบางบ่อ,"100.7697049,13.477563,100.9638955,13.6969942",0,0,11580980,6,,boundary
+Bang Sao Thong District,Bang Sao Thong District,อำเภอบางเสาธง,"100.7623111,13.5484994,100.8594489,13.7166881",0,0,11580981,6,,boundary
+Bang Phli District,Bang Phli District,อำเภอบางพลี,"100.6290516,13.5108849,100.7935992,13.7184898",0,0,11580982,6,,boundary
+Mueang Samut Prakan District,Mueang Samut Prakan District,อำเภอเมืองสมุทรปราการ,"100.5512728,13.4908221,100.786861,13.6626943",0,0,11580983,6,,boundary
+Phra Pradaeng District,Phra Pradaeng District,อำเภอพระประแดง,"100.5142207,13.598805,100.5933733,13.7064326",0,0,11580984,6,,boundary
+Kathu District,Kathu District,อำเภอกะทู้,"98.2580375,7.867303,98.3645868,7.9708802",0,0,14010448,6,,boundary
+Thalang District,Thalang District,อำเภอถลาง,"98.2699504,7.9376009,98.4726592,8.2005776",0,0,14029490,6,,boundary
+Mueang Phuket District,Mueang Phuket District,อำเภอเมืองภูเก็ต,"98.272212,7.7331526,98.4829403,7.9695414",0,0,14029495,6,,boundary
+Mae Sai District,Mae Sai District,อำเภอแม่สาย,"99.8100892,20.2576789,100.0367995,20.4648135",0,0,15652307,6,,boundary
+Chiang Saen District,Chiang Saen District,อำเภอเชียงแสน,"99.9464771,20.182525,100.3224025,20.3987105",0,0,15652433,6,,boundary
+Mae Fa Luang District,Mae Fa Luang District,อำเภอแม่ฟ้าหลวง,"99.455719,20.106929,99.8408004,20.394119",0,0,15652513,6,,boundary
+Mae Chan District,Mae Chan District,อำเภอแม่จัน,"99.4894774,20.0215171,100.0898043,20.3073004",0,0,15654572,6,,boundary
+Doi Luang District,Doi Luang District,อำเภอดอยหลวง,"100.0103932,20.0517845,100.3079678,20.229516",0,0,15654590,6,,boundary
+Khwao Sinrin District,Khwao Sinrin District,อำเภอเขวาสินรินทร์,"103.5377632,14.9385551,103.6925764,15.0881105",0,0,17816949,6,,boundary
+Huai Rat District,Huai Rat District,อำเภอห้วยราช,"103.1475585,14.9007764,103.3258815,15.1110302",0,0,17817574,6,,boundary
+Mueang Buri Ram District,Mueang Buri Ram District,อำเภอเมืองบุรีรัมย์,"102.9130117,14.7533666,103.2106331,15.1431544",0,0,17817575,6,,boundary
+Ban Dan District,Ban Dan District,อำเภอบ้านด่าน,"103.1280166,15.0384022,103.2589819,15.2396374",0,0,17817576,6,,boundary
+Kham Thale So District,Kham Thale So District,อำเภอขามทะเลสอ,"101.8355283,14.9296019,101.995143,15.1106868",0,0,17824120,6,,boundary
+Sung Noen District,Sung Noen District,อำเภอสูงเนิน,"101.6747876,14.6828878,101.9683814,15.0755739",0,0,17824121,6,,boundary
+Chaloem Phra Kiat District,Chaloem Phra Kiat District,อำเภอเฉลิมพระเกียรติ,"102.2057028,14.8673484,102.3976513,15.1200105",0,0,17824172,6,,boundary
+Ban Haet District,Ban Haet District,อำเภอบ้านแฮด,"102.6625829,16.1362992,102.8572414,16.2987858",0,0,17847683,6,,boundary
+Hua Hin District,Hua Hin District,อำเภอหัวหิน,"99.400994,12.344975,99.9851984,12.6446011",0,0,18252311,6,,boundary
+Pang Sila Thong District,Pang Sila Thong District,อำเภอปางศิลาทอง,"99.0741316,15.8845783,99.6650318,16.1657848",0,0,18323240,6,,boundary
+Khlong Khlung District,Khlong Khlung District,อำเภอคลองขลุง,"99.4760959,16.1215946,99.8959497,16.3486266",0,0,18324323,6,,boundary
+Khlong Lan District,Khlong Lan District,อำเภอคลองลาน,"99.0163081,16.0304584,99.4572482,16.4864238",0,0,18334550,6,,boundary
+Kosamphi Nakhon District,Kosamphi Nakhon District,อำเภอโกสัมพีนคร,"99.0304456,16.3891537,99.4755869,16.7710399",0,0,18336933,6,,boundary
+Sai Thong Watthana District,Sai Thong Watthana District,อำเภอทรายทองวัฒนา,"99.7582575,16.236483,100.0018487,16.3634064",0,0,18337613,6,,boundary
+Bueng Samakkhi District,Bueng Samakkhi District,อำเภอบึงสามัคคี,"99.8636884,16.1170753,100.0470903,16.3428309",0,0,18337683,6,,boundary
+Sai Ngam District,Sai Ngam District,อำเภอไทรงาม,"99.7031035,16.3454485,100.0346624,16.5439554",0,0,18338444,6,,boundary
+Lan Krabue District,Lan Krabue District,อำเภอลานกระบือ,"99.7229746,16.496839,100.0346624,16.7352719",0,0,18338574,6,,boundary
+Khanu Woralaksaburi District,Khanu Woralaksaburi District,อำเภอขาณุวรลักษบุรี,"99.3333104,15.8553068,99.9843323,16.1686058",0,0,18338692,6,,boundary
+Phran Kratai District,Phran Kratai District,อำเภอพรานกระต่าย,"99.2915516,16.5195877,99.760482,16.9105826",0,0,18343166,6,,boundary
+Mueang Kamphaeng Phet District,Mueang Kamphaeng Phet District,อำเภอเมืองกำแพงเพชร,"99.2287933,16.146286,99.7717008,16.6934903",0,0,18343549,6,,boundary
+Mae Wong District,Mae Wong District,อำเภอแม่วงก์,"99.0861438,15.7151168,99.6979331,15.9483828",0,0,18352529,6,,boundary
+Lat Yao District,Lat Yao District,อำเภอลาดยาว,"99.6191587,15.6171532,99.945843,15.9274088",0,0,18352607,6,,boundary
+Bueng Na Rang District,Bueng Na Rang District,อำเภอบึงนาราง,"100.0211993,16.0706117,100.2637084,16.2757261",0,0,18478027,6,,boundary
+Pho Prathap Chang District,Pho Prathap Chang District,อำเภอโพธิ์ประทับช้าง,"100.0191158,16.2362137,100.3329874,16.4054287",0,0,18478044,6,,boundary
+Sam Ngam District,Sam Ngam District,อำเภอสามง่าม,"99.9836919,16.3128629,100.256502,16.6484339",0,0,18478241,6,,boundary
+Wachirabarami District,Wachirabarami District,อำเภอวชิรบารมี,"99.9938311,16.4350065,100.1960249,16.6140719",0,0,18478284,6,,boundary
+Chanuman District,Chanuman District,อำเภอชานุมาน,"104.7655144,15.9978018,105.0602608,16.2843705",0,0,18905489,6,,boundary
+Hua Taphan District,Hua Taphan District,อำเภอหัวตะพาน,"104.4188951,15.5422226,104.6374325,15.7870755",0,0,18906015,6,,boundary
+Bacho,Bacho,,"101.5736641,6.4715384,101.7271502,6.6353537",0,0,18906061,6,,boundary
+Lue Amnat District,Lue Amnat District,อำเภอลืออำนาจ,"104.5899431,15.5936555,104.8137161,15.8011958",0,0,18906062,6,,boundary
+Lamae District,Lamae District,อำเภอละแม,"98.8786437,9.6715734,99.1596393,9.8497188",0,0,18906198,6,,boundary
+Lang Suan District,Lang Suan District,อำเภอหลังสวน,"98.8817209,9.7925475,99.1907852,10.074358",0,0,18906270,6,,boundary
+Chiang Kham District,Chiang Kham District,อำเภอเชียงคำ,"100.1421721,19.332882,100.603444,19.6349181",0,0,18906272,6,,boundary
+Chiang Muan District,Chiang Muan District,อำเภอเชียงม่วน,"100.1053703,18.8059555,100.5045231,19.0703401",0,0,18906306,6,,boundary
+Chun District,Chun District,อำเภอจุน,"100.050567,19.1546093,100.264595,19.554542",0,0,18906314,6,,boundary
+Dok Khamtai District,Dok Khamtai District,อำเภอดอกคำใต้,"99.9203244,18.8085514,100.1573401,19.4450682",0,0,18906391,6,,boundary
+Mueang Amnat Charoen District,Mueang Amnat Charoen District,อำเภอเมืองอำนาจเจริญ,"104.4312691,15.7336928,104.8245565,16.0161978",0,0,18906414,6,,boundary
+Mae Chai District,Mae Chai District,อำเภอแม่ใจ,"99.68252,19.2900607,99.9200004,19.4552416",0,0,18906445,6,,boundary
+Phu Kamyao District,Phu Kamyao District,อำเภอภูกามยาว,"99.9131522,19.2046942,100.0265411,19.4356687",0,0,18906483,6,,boundary
+Pathum Ratchawongsa District,Pathum Ratchawongsa District,อำเภอปทุมราชวงศา,"104.7837328,15.7485847,105.0259059,16.0221446",0,0,18906491,6,,boundary
+Phu Sang District,Phu Sang District,อำเภอภูซาง,"100.2491798,19.5467436,100.491186,19.7360621",0,0,18906519,6,,boundary
+Pong District,Pong District,อำเภอปง,"100.1070001,19.006756,100.6289843,19.4023222",0,0,18906633,6,,boundary
+Phana District,Phana District,อำเภอพนา,"104.7763789,15.5371061,104.9335412,15.7862492",0,0,18906637,6,,boundary
+Senangkhanikhom District,Senangkhanikhom District,อำเภอเสนางคนิคม,"104.5151762,15.9653671,104.8398315,16.123524",0,0,18906652,6,,boundary
+Chanae,Chanae,,"101.470586,5.889718,101.8083007,6.1903476",0,0,18906764,6,,boundary
+Mueang Chumphon District,Mueang Chumphon District,อำเภอเมืองชุมพร,"98.8839789,10.3111869,99.4227031,10.5918549",0,0,18906765,6,,boundary
+Cho-Airong,Cho-Airong,,"101.760609,6.12411,101.9180423,6.3030575",0,0,18906815,6,,boundary
+Mueang Narathiwat,Mueang Narathiwat,,"101.7093126,6.2831757,101.9188822,6.5770324",0,0,18906903,6,,boundary
+Ra-Ngae,Ra-Ngae,,"101.5934575,6.1154962,101.8221161,6.3711899",0,0,18906922,6,,boundary
+Pathio District,Pathio District,อำเภอปะทิว,"99.2028432,10.551965,99.541358,10.9935614",0,0,18906935,6,,boundary
+Rueso,Rueso,,"101.3876515,6.231203,101.6474246,6.5123735",0,0,18906936,6,,boundary
+Si Sakhon,Si Sakhon,,"101.3711341,6.0534781,101.6332774,6.3273995",0,0,18906950,6,,boundary
+Su-Ngai Kolok,Su-Ngai Kolok,,"101.9140519,5.9868511,102.0640134,6.1510565",0,0,18906956,6,,boundary
+Mueang Ang Thong District,Mueang Ang Thong District,อำเภอเมืองอ่างทอง,"100.3863728,14.5179599,100.4958728,14.6322686",0,0,18906960,6,,boundary
+Phato District,Phato District,อำเภอพะโต๊ะ,"98.6276183,9.6008767,98.9811689,10.0048344",0,0,18917835,6,,boundary
+Pa Mok District,Pa Mok District,อำเภอป่าโมก,"100.399557,14.4372544,100.4977852,14.540038",0,0,18917846,6,,boundary
+Pho Thong District,Pho Thong District,อำเภอโพธิ์ทอง,"100.2043089,14.602352,100.4414599,14.7574579",0,0,18917910,6,,boundary
+Sawi District,Sawi District,อำเภอสวี,"98.8354089,10.054639,99.2610454,10.4341009",0,0,18917911,6,,boundary
+Samko District,Samko District,อำเภอสามโก้,"100.1916355,14.5364878,100.3199275,14.6640351",0,0,18917949,6,,boundary
+Sawaeng Ha District,Sawaeng Ha District,อำเภอแสวงหา,"100.2014715,14.695469,100.382146,14.8024372",0,0,18917967,6,,boundary
+Ban Mo District,Ban Mo District,อำเภอบ้านหมอ,"100.6244928,14.5525979,100.8049314,14.6757928",0,0,18918055,6,,boundary
+Wiset Chai Chan District,Wiset Chai Chan District,อำเภอวิเศษชัยชาญ,"100.195863,14.4802171,100.4044052,14.662864",0,0,18918086,6,,boundary
+Tha Sae District,Tha Sae District,อำเภอท่าแซะ,"98.8887547,10.5365117,99.2762813,11.033942",0,0,18918147,6,,boundary
+Chaloem Phra Kiat District,Chaloem Phra Kiat District,อำเภอเฉลิมพระเกียรติ,"100.8445644,14.5527168,100.9646507,14.7466898",0,0,18918187,6,,boundary
+Thai Charoen District,Thai Charoen District,อำเภอไทยเจริญ,"104.3206223,15.9711682,104.5426241,16.2206111",0,0,18918224,6,,boundary
+Thung Tako District,Thung Tako District,อำเภอทุ่งตะโก,"98.9203181,10.0128204,99.2158895,10.1850704",0,0,18918241,6,,boundary
+Kaeng Khoi District,Kaeng Khoi District,อำเภอแก่งคอย,"100.935059,14.3423758,101.2428317,14.8103074",0,0,18918242,6,,boundary
+Don Chan District,Don Chan District,อำเภอดอนจาน,"103.5968861,16.3843841,103.8320048,16.5689283",0,0,18918307,6,,boundary
+Chaiyo District,Chaiyo District,อำเภอไชโย,"100.419783,14.6244293,100.5082834,14.7286079",0,0,18918316,6,,boundary
+Sai Mun District,Sai Mun District,อำเภอทรายมูล,"104.0934313,15.8873647,104.3379079,16.0975931",0,0,18918322,6,,boundary
+Ban Khok District,Ban Khok District,อำเภอบ้านโคก,"100.9056799,17.8659185,101.19266,18.38126",0,0,18918344,6,,boundary
+Muak Lek District,Muak Lek District,อำเภอมวกเหล็ก,"101.072279,14.4711043,101.4547357,15.0469713",0,0,18918368,6,,boundary
+Fak Tha District,Fak Tha District,อำเภอฟากท่า,"100.717037,17.8556568,101.0362748,18.174183",0,0,18918377,6,,boundary
+Hankha District,Hankha District,อำเภอหันคา,"99.7716654,14.9065989,100.0925356,15.157784",0,0,18918380,6,,boundary
+Mueang Saraburi,Mueang Saraburi,อำเภอเมืองสระบุรี,"100.8445845,14.4177604,101.0015278,14.5789033",0,0,18918381,6,,boundary
+Huai Mek District,Huai Mek District,อำเภอห้วยเม็ก,"103.1448419,16.4876374,103.37462,16.7711229",0,0,18918396,6,,boundary
+Laplae District,Laplae District,อำเภอลับแล,"99.8944913,17.4801068,100.1036049,17.8350401",0,0,18918398,6,,boundary
+Pa Tio District,Pa Tio District,อำเภอป่าติ้ว,"104.2693249,15.7375598,104.5059744,15.9940305",0,0,18918405,6,,boundary
+Mueang Uttaradit District,Mueang Uttaradit District,อำเภอเมืองอุตรดิตถ์,"99.9952738,17.5102936,100.4126683,17.8601184",0,0,18918456,6,,boundary
+Nong Don District,Nong Don District,อำเภอหนองโดน,"100.6290654,14.6343111,100.7606311,14.7602386",0,0,18918459,6,,boundary
+Manorom District,Manorom District,อำเภอมโนรมย์,"100.0561918,15.2432482,100.2670421,15.4155953",0,0,18918489,6,,boundary
+Nam Pat District,Nam Pat District,อำเภอน้ำปาด,"100.4395339,17.4801401,101.034573,17.909104",0,0,18918523,6,,boundary
+Mueang Yasothon District,Mueang Yasothon District,อำเภอเมืองยโสธร,"103.9974655,15.675159,104.3782366,15.9882304",0,0,18918534,6,,boundary
+Phichai District,Phichai District,อำเภอพิชัย,"99.954533,17.1385421,100.2968976,17.444217",0,0,18918535,6,,boundary
+Nong Khae District,Nong Khae District,อำเภอหนองแค,"100.7584927,14.2433866,100.9619891,14.4627689",0,0,18918536,6,,boundary
+Huai Phueng District,Huai Phueng District,อำเภอห้วยผึ้ง,"103.7931773,16.5626344,103.9687988,16.8029051",0,0,18918537,6,,boundary
+Mueang Chai Nat District,Mueang Chai Nat District,อำเภอเมืองชัยนาท,"100.0359592,15.0862029,100.2936174,15.2821363",0,0,18918548,6,,boundary
+Noen Kham District,Noen Kham District,อำเภอเนินขาม,"99.719716,14.9068778,99.9676082,15.1406128",0,0,18918556,6,,boundary
+Tha Pla District,Tha Pla District,อำเภอท่าปลา,"100.1340554,17.6053813,100.7802427,18.0555726",0,0,18918565,6,,boundary
+Kamalasai District,Kamalasai District,อำเภอกมลาไสย,"103.4525165,16.1868473,103.7094232,16.3886403",0,0,18918573,6,,boundary
+Nong Saeng District,Nong Saeng District,อำเภอหนองแซง,"100.7474271,14.4307498,100.8539688,14.5342238",0,0,18918577,6,,boundary
+Nong Mamong District,Nong Mamong District,อำเภอหนองมะโมง,"99.7272711,15.1398604,99.940548,15.3192875",0,0,18918583,6,,boundary
+Maha Chana Chai District,Maha Chana Chai District,อำเภอมหาชนะชัย,"104.1213489,15.4031502,104.3903918,15.6089594",0,0,18918589,6,,boundary
+Thong Saen Khan District,Thong Saen Khan District,อำเภอทองแสนขัน,"100.1985274,17.3682169,100.6457157,17.6253257",0,0,18918607,6,,boundary
+Tron District,Tron District,อำเภอตรอน,"99.9283501,17.3886828,100.2545433,17.5494664",0,0,18918628,6,,boundary
+Phra Phutthabat District,Phra Phutthabat District,อำเภอพระพุทธบาท,"100.7140698,14.599762,100.9436348,14.8046702",0,0,18918649,6,,boundary
+Bueng Khong Long District,Bueng Khong Long District,อำเภอบึงโขงหลง,"103.9552004,17.8781597,104.1899816,18.1828434",0,0,18918651,6,,boundary
+Bung Khla District,Bung Khla District,อำเภอบุ่งคล้า,"103.8615254,18.1541451,104.0841638,18.33944",0,0,18918694,6,,boundary
+Mueang Bueng Kan District,Mueang Bueng Kan District,อำเภอเมืองบึงกาฬ,"103.3059797,18.1202609,103.9185077,18.448611",0,0,18918807,6,,boundary
+Sao Hai District,Sao Hai District,อำเภอเสาไห้,"100.7750613,14.5125276,100.8942459,14.6669326",0,0,18918809,6,,boundary
+Loeng Nok Tha District,Loeng Nok Tha District,อำเภอเลิงนกทา,"104.2735072,16.0706423,104.8250088,16.3488863",0,0,18918879,6,,boundary
+Kham Muang District,Kham Muang District,อำเภอคำม่วง,"103.5301989,16.7644806,103.7631558,17.1019579",0,0,18918880,6,,boundary
+Pak Khat District,Pak Khat District,อำเภอปากคาด,"103.24334,18.1574067,103.4394882,18.433842",0,0,18918881,6,,boundary
+Wang Muang District,Wang Muang District,อำเภอวังม่วง,"101.0531288,14.6998271,101.228247,14.9214098",0,0,18918886,6,,boundary
+Phon Charoen District,Phon Charoen District,อำเภอพรเจริญ,"103.5319398,17.9389451,103.7893007,18.199315",0,0,18918917,6,,boundary
+Seka District,Seka District,อำเภอเซกา,"103.7078176,17.7708594,104.095008,18.2292339",0,0,18919006,6,,boundary
+Si Wilai District,Si Wilai District,อำเภอศรีวิไล,"103.6472112,18.0427493,103.8934474,18.2759064",0,0,18919011,6,,boundary
+Wihan Daeng District,Wihan Daeng District,อำเภอวิหารแดง,"100.891523,14.2436181,101.0633121,14.4366373",0,0,18919012,6,,boundary
+Khao Wong District,Khao Wong District,อำเภอเขาวง,"103.9914748,16.5967364,104.1990908,16.7842134",0,0,18919036,6,,boundary
+So Phisai District,So Phisai District,อำเภอโซ่พิสัย,"103.2920727,17.9670844,103.5847752,18.32309",0,0,18919039,6,,boundary
+Sankhaburi District,Sankhaburi District,อำเภอสรรคบุรี,"100.0653035,14.9229818,100.2921444,15.1188215",0,0,18919048,6,,boundary
+Kut Chum District,Kut Chum District,อำเภอกุดชุม,"104.106601,15.8982572,104.4519298,16.227019",0,0,18919090,6,,boundary
+Sapphaya District,Sapphaya District,อำเภอสรรพยา,"100.1650101,15.0546674,100.3547993,15.2302851",0,0,18921701,6,,boundary
+Akat Amnuai District,Akat Amnuai District,อำเภออากาศอำนวย,"103.8761213,17.4618516,104.0842555,17.8224501",0,0,18921736,6,,boundary
+Khong Chai District,Khong Chai District,อำเภอฆ้องชัย,"103.4044276,16.1816732,103.550154,16.3441346",0,0,18921750,6,,boundary
+Wat Sing District,Wat Sing District,อำเภอวัดสิงห์,"99.8081226,15.1346609,100.0754769,15.3060933",0,0,18921757,6,,boundary
+Ban Muang District,Ban Muang District,อำเภอบ้านม่วง,"103.3668609,17.7494724,103.7041788,18.0889458",0,0,18921773,6,,boundary
+Charoen Sin District,Charoen Sin District,อำเภอเจริญศิลป์,"103.4007997,17.5036711,103.6707264,17.7697678",0,0,18921849,6,,boundary
+Mueang Uthai Thani District,Mueang Uthai Thani District,อำเภอเมืองอุทัยธานี,"99.9298185,15.2631745,100.1071513,15.5103981",0,0,18921851,6,,boundary
+Nong Khayang District,Nong Khayang District,อำเภอหนองขาหย่าง,"99.8718158,15.2869846,100.0419577,15.4413876",0,0,18921880,6,,boundary
+Kham Ta Kla District,Kham Ta Kla District,อำเภอคำตากล้า,"103.6332366,17.7249203,103.9251893,17.9558644",0,0,18921881,6,,boundary
+Kho Wang District,Kho Wang District,อำเภอค้อวัง,"104.2328634,15.2893058,104.4469396,15.4607112",0,0,18921882,6,,boundary
+Ban Phue District,Ban Phue District,อำเภอบ้านผือ,"102.2524152,17.4521886,102.732213,17.9932399",0,0,18921883,6,,boundary
+Kuchinarai District,Kuchinarai District,อำเภอกุฉินารายณ์,"103.8124615,16.3908804,104.2406402,16.6797727",0,0,18921919,6,,boundary
+Ban Dung District,Ban Dung District,อำเภอบ้านดุง,"103.0948615,17.5121734,103.4225707,17.9049904",0,0,18921932,6,,boundary
+Nong Chang District,Nong Chang District,อำเภอหนองฉาง,"99.6114445,15.2866851,99.8980118,15.4484553",0,0,18921933,6,,boundary
+Kham Khuean Kaeo District,Kham Khuean Kaeo District,อำเภอคำเขื่อนแก้ว,"104.1682658,15.5356107,104.5124952,15.7733214",0,0,18921934,6,,boundary
+Huai Khot District,Huai Khot District,อำเภอห้วยคต,"99.3482949,15.2016821,99.6900977,15.3822361",0,0,18921945,6,,boundary
+Yaha,Yaha,,"100.968991,6.244259,101.2261791,6.6082144",0,0,18921988,6,,boundary
+Khok Si Suphan District,Khok Si Suphan District,อำเภอโคกศรีสุพรรณ,"104.1964518,16.9204232,104.3992814,17.1368053",0,0,18921994,6,,boundary
+Chai Wan District,Chai Wan District,อำเภอไชยวาน,"103.1553225,17.112033,103.4404877,17.3443192",0,0,18921996,6,,boundary
+Mueang Kalasin District,Mueang Kalasin District,อำเภอเมืองกาฬสินธุ์,"103.4120376,16.3311463,103.7091173,16.6767577",0,0,18922046,6,,boundary
+Thap Than District,Thap Than District,อำเภอทัพทัน,"99.6656255,15.4126616,99.9592431,15.5975969",0,0,18922071,6,,boundary
+Than To,Than To,,"101.058677,5.8943386,101.4784778,6.2155586",0,0,18922088,6,,boundary
+Na Khu District,Na Khu District,อำเภอนาคู,"103.9434129,16.6333081,104.0987132,16.8559391",0,0,18922091,6,,boundary
+Na Mon District,Na Mon District,อำเภอนามน,"103.6868331,16.4890484,103.893094,16.6791202",0,0,18922105,6,,boundary
+Kusuman District,Kusuman District,อำเภอกุสุมาลย์,"104.0710768,17.2631395,104.4236585,17.4323422",0,0,18922107,6,,boundary
+Sawang Arom District,Sawang Arom District,อำเภอสว่างอารมณ์,"99.5703171,15.5202511,99.9420351,15.6883401",0,0,18922110,6,,boundary
+Raman,Raman,,"101.3024125,6.3355647,101.6089762,6.6060091",0,0,18922120,6,,boundary
+Nong Kung Si District,Nong Kung Si District,อำเภอหนองกุงศรี,"103.1711138,16.6065941,103.4775327,16.8548065",0,0,18922121,6,,boundary
+Rong Kham District,Rong Kham District,อำเภอร่องคำ,"103.6811658,16.2184303,103.7562852,16.3646694",0,0,18922139,6,,boundary
+Kut Bak District,Kut Bak District,อำเภอกุดบาก,"103.6448421,16.9712708,103.9863073,17.1823826",0,0,18922140,6,,boundary
+Sahatsakhan District,Sahatsakhan District,อำเภอสหัสขันธ์,"103.4545259,16.6242367,103.6964184,16.8397635",0,0,18922161,6,,boundary
+Lan Sak District,Lan Sak District,อำเภอลานสัก,"99.1732651,15.3333283,99.7036188,15.7812946",0,0,18922183,6,,boundary
+Ban Kruat District,Ban Kruat District,อำเภอบ้านกรวด,"102.9569554,14.2502283,103.2466563,14.580722",0,0,18922186,6,,boundary
+Mueang Yala,Mueang Yala,,"101.0894875,6.4461147,101.3548745,6.6831757",0,0,18922187,6,,boundary
+Mueang Sakon Nakhon District,Mueang Sakon Nakhon District,อำเภอเมืองสกลนคร,"103.9106187,17.0016099,104.3289689,17.3891388",0,0,18922213,6,,boundary
+Sam Chai District,Sam Chai District,อำเภอสามชัย,"103.4216253,16.7597001,103.5975935,17.0633434",0,0,18922239,6,,boundary
+Ban Rai District,Ban Rai District,อำเภอบ้านไร่,"98.984003,14.9419101,99.7927307,15.7982614",0,0,18928769,6,,boundary
+Nikhom Nam Un District,Nikhom Nam Un District,อำเภอนิคมน้ำอูน,"103.6135307,17.1114417,103.8607039,17.2395272",0,0,18928824,6,,boundary
+Dan Chang District,Dan Chang District,อำเภอด่านช้าง,"99.2759624,14.7034638,99.831324,15.0809053",0,0,18928851,6,,boundary
+Sam Chuk District,Sam Chuk District,อำเภอสามชุก,"99.9425472,14.6764666,100.197792,14.8461519",0,0,18928870,6,,boundary
+Somdet District,Somdet District,อำเภอสมเด็จ,"103.6347468,16.5979983,103.9070637,16.9671364",0,0,18928884,6,,boundary
+Ku Kaeo District,Ku Kaeo District,อำเภอกู่แก้ว,"103.0817797,17.0977573,103.2446281,17.2362316",0,0,18928913,6,,boundary
+Tha Khantho District,Tha Khantho District,อำเภอท่าคันโท,"103.0967607,16.7852754,103.4128641,16.9678637",0,0,18928914,6,,boundary
+Nong Ya Sai District,Nong Ya Sai District,อำเภอหนองหญ้าไซ,"99.6518198,14.6815703,99.9922232,14.8725885",0,0,18928933,6,,boundary
+Yang Talat District,Yang Talat District,อำเภอยางตลาด,"103.1635336,16.2860025,103.511296,16.6187717",0,0,18929004,6,,boundary
+Phang Khon District,Phang Khon District,อำเภอพังโคน,"103.6250127,17.2589244,103.8589895,17.4851927",0,0,18929010,6,,boundary
+Doem Bang Nang Buat District,Doem Bang Nang Buat District,อำเภอเดิมบางนางบวช,"99.7304907,14.7674778,100.2305807,14.9634778",0,0,18929015,6,,boundary
+Krong Pinang,Krong Pinang,,"101.1971712,6.2961411,101.3256129,6.4878831",0,0,18929017,6,,boundary
+Kumphawapi District,Kumphawapi District,อำเภอกุมภวาปี,"102.7990837,16.8838079,103.1558436,17.2633956",0,0,18929019,6,,boundary
+Ban Mai Chaiyaphot District,Ban Mai Chaiyaphot District,อำเภอบ้านใหม่ไชยพจน์,"102.7671401,15.5053447,102.9350874,15.6372829",0,0,18929074,6,,boundary
+Don Chedi District,Don Chedi District,อำเภอดอนเจดีย์,"99.7832305,14.5593981,100.0865369,14.7360169",0,0,18929079,6,,boundary
+Chaloem Phra Kiat District,Chaloem Phra Kiat District,อำเภอเฉลิมพระเกียรติ,"102.7852067,14.4719302,102.959017,14.6824918",0,0,18929095,6,,boundary
+Si Prachan District,Si Prachan District,อำเภอศรีประจันต์,"100.0511628,14.5310923,100.2467907,14.7708786",0,0,18929120,6,,boundary
+Bo Phloi District,Bo Phloi District,อำเภอบ่อพลอย,"99.2762193,14.1286421,99.5988091,14.6358584",0,0,18929122,6,,boundary
+Phanna Nikhom District,Phanna Nikhom District,อำเภอพรรณานิคม,"103.7092486,17.1469407,104.0640008,17.4727516",0,0,18929136,6,,boundary
+Betong,Betong,,"100.98399,5.612851,101.502268,6.0581189",0,0,18929137,6,,boundary
+U Thong District,U Thong District,อำเภออู่ทอง,"99.7929847,14.2173256,99.9939439,14.635526",0,0,18929140,6,,boundary
+Dan Makham Tia District,Dan Makham Tia District,อำเภอด่านมะขามเตี้ย,"99.1483,13.726142,99.5100774,13.9547342",0,0,18929145,6,,boundary
+Chamni District,Chamni District,อำเภอชำนิ,"102.6947262,14.7118243,102.9330983,14.8626458",0,0,18929146,6,,boundary
+Mueang Suphan Buri,Mueang Suphan Buri,อำเภอเมืองสุพรรณบุรี,"99.9177043,14.3339213,100.2533757,14.6106321",0,0,18929183,6,,boundary
+Huai Krachao District,Huai Krachao District,อำเภอห้วยกระเจา,"99.5438302,14.2302594,99.8298042,14.4715112",0,0,18929209,6,,boundary
+Kabang,Kabang,,"100.834711,6.231732,101.0801973,6.4878261",0,0,18929237,6,,boundary
+Kut Chap District,Kut Chap District,อำเภอกุดจับ,"102.384903,17.3383321,102.7055913,17.5363542",0,0,18929252,6,,boundary
+Phon Na Kaeo District,Phon Na Kaeo District,อำเภอโพนนาแก้ว,"104.1798641,17.0994245,104.4352781,17.3261352",0,0,18929316,6,,boundary
+Bannang Sata,Bannang Sata,,"101.1015004,6.1304132,101.4033707,6.3919049",0,0,18929317,6,,boundary
+Lao Khwan District,Lao Khwan District,อำเภอเลาขวัญ,"99.5332816,14.3811181,99.8331006,14.8027176",0,0,18929318,6,,boundary
+Mueang Udon Thani District,Mueang Udon Thani District,อำเภอเมืองอุดรธานี,"102.5939836,17.2018929,102.9622188,17.5780287",0,0,18929325,6,,boundary
+Bang Pla Ma District,Bang Pla Ma District,อำเภอบางปลาม้า,"99.9840467,14.2368473,100.2900073,14.4541771",0,0,18929358,6,,boundary
+Phu Phan District,Phu Phan District,อำเภอภูพาน,"103.7399994,16.7722558,104.1021578,17.0597765",0,0,18929392,6,,boundary
+Buntharik District,Buntharik District,อำเภอบุณฑริก,"105.2517714,14.384125,105.579959,14.9580407",0,0,18929401,6,,boundary
+Mueang Kanchanaburi District,Mueang Kanchanaburi District,อำเภอเมืองกาญจนบุรี,"99.020552,13.757301,99.5928509,14.345679",0,0,18929456,6,,boundary
+Sawang Daen Din District,Sawang Daen Din District,อำเภอสว่างแดนดิน,"103.2506949,17.2664273,103.6679383,17.6853217",0,0,18929458,6,,boundary
+Song Phi Nong District,Song Phi Nong District,อำเภอสองพี่น้อง,"99.7677842,14.0639083,100.2431269,14.3409137",0,0,18929497,6,,boundary
+Nong Prue District,Nong Prue District,อำเภอหนองปรือ,"99.2390354,14.5339997,99.5804169,14.8369112",0,0,18929500,6,,boundary
+Na Yung District,Na Yung District,อำเภอนายูง,"102.0157348,17.790761,102.2759284,18.086392",0,0,18929508,6,,boundary
+Det Udom District,Det Udom District,อำเภอเดชอุดม,"104.7975463,14.6179481,105.307018,15.0394924",0,0,18929509,6,,boundary
+Khaen Dong District,Khaen Dong District,อำเภอแคนดง,"103.0295963,15.2366089,103.2368989,15.4125234",0,0,18929511,6,,boundary
+Phanom Thuan District,Phanom Thuan District,อำเภอพนมทวน,"99.5622239,14.0173866,99.8335655,14.2783125",0,0,18929594,6,,boundary
+Don Mot Daeng District,Don Mot Daeng District,อำเภอดอนมดแดง,"104.9345809,15.2794495,105.1122104,15.5168579",0,0,18929632,6,,boundary
+Bang Len District,Bang Len District,อำเภอบางเลน,"100.0515176,13.8902516,100.298274,14.1791244",0,0,18929643,6,,boundary
+Sai Yok District,Sai Yok District,อำเภอไทรโยค,"98.5333631,13.9180064,99.3219878,14.5584039",0,0,18929683,6,,boundary
+Khu Mueang District,Khu Mueang District,อำเภอคูเมือง,"102.9517109,15.112305,103.1509556,15.453117",0,0,18929921,6,,boundary
+Khemarat District,Khemarat District,อำเภอเขมราฐ,"104.9981444,15.8010325,105.425843,16.0981491",0,0,18929985,6,,boundary
+Sangkhla Buri District,Sangkhla Buri District,อำเภอสังขละบุรี,"98.181697,14.8531673,98.8914391,15.6607404",0,0,18931269,6,,boundary
+Song Dao District,Song Dao District,อำเภอส่องดาว,"103.2996981,17.2123817,103.5705473,17.4170167",0,0,18931283,6,,boundary
+Si Sawat District,Si Sawat District,อำเภอศรีสวัสดิ์,"98.8702448,14.22836,99.3660156,15.071189",0,0,18931299,6,,boundary
+Krasang District,Krasang District,อำเภอกระสัง,"103.1733593,14.7650734,103.4480809,15.1211567",0,0,18931300,6,,boundary
+Nam Som District,Nam Som District,อำเภอน้ำโสม,"102.0176068,17.6327509,102.3249244,17.884967",0,0,18931304,6,,boundary
+Don Tum District,Don Tum District,อำเภอดอนตูม,"100.0117531,13.8709972,100.1762956,14.051749",0,0,18931310,6,,boundary
+Tha Maka District,Tha Maka District,อำเภอท่ามะกา,"99.6661928,13.8071534,99.8793176,14.100992",0,0,18931387,6,,boundary
+Kamphaeng Saen District,Kamphaeng Saen District,อำเภอกำแพงแสน,"99.816712,13.8846015,100.0683973,14.1542692",0,0,18931389,6,,boundary
+Tha Muang District,Tha Muang District,อำเภอท่าม่วง,"99.4568686,13.7588525,99.7322021,14.1101197",0,0,18931398,6,,boundary
+Non Sa-at District,Non Sa-at District,อำเภอโนนสะอาด,"102.7089512,16.8352215,103.0359119,17.1027694",0,0,18931404,6,,boundary
+Khong Chiam District,Khong Chiam District,อำเภอโขงเจียม,"105.3443775,15.257936,105.636812,15.6671166",0,0,18931413,6,,boundary
+Thong Pha Phum District,Thong Pha Phum District,อำเภอทองผาภูมิ,"98.229768,14.4429064,99.0118739,15.2751205",0,0,18931429,6,,boundary
+Tao Ngoi District,Tao Ngoi District,อำเภอเต่างอย,"104.022814,16.8212999,104.2668599,17.0730083",0,0,18931440,6,,boundary
+Mueang Nakhon Pathom District,Mueang Nakhon Pathom District,อำเภอเมืองนครปฐม,"99.8984754,13.6762457,100.131853,13.9454346",0,0,18931445,6,,boundary
+Lahan Sai District,Lahan Sai District,อำเภอละหานทราย,"102.7475914,14.1466881,103.0331698,14.502804",0,0,18931446,6,,boundary
+Nong Han District,Nong Han District,อำเภอหนองหาน,"102.9330404,17.212182,103.3022378,17.5072773",0,0,18931488,6,,boundary
+Lam Plai Mat District,Lam Plai Mat District,อำเภอลำปลายมาศ,"102.6964288,14.8304031,103.0204812,15.2068008",0,0,18931507,6,,boundary
+Wanon Niwat District,Wanon Niwat District,อำเภอวานรนิวาส,"103.5117248,17.4310595,103.9453101,17.8260183",0,0,18931523,6,,boundary
+Nakhon Chai Si District,Nakhon Chai Si District,อำเภอนครชัยศรี,"100.0984038,13.7047904,100.2673548,13.9227221",0,0,18931531,6,,boundary
+Khueang Nai District,Khueang Nai District,,"104.3715842,15.2235645,104.7103578,15.5687764",0,0,18931532,6,,boundary
+Phutthamonthon District,Phutthamonthon District,อำเภอพุทธมณฑล,"100.2361392,13.7629862,100.3336124,13.9048342",0,0,18931587,6,,boundary
+Kut Khaopun District,Kut Khaopun District,อำเภอกุดข้าวปุ้น,"104.9073922,15.72694,105.167277,15.9371532",0,0,18931613,6,,boundary
+Nong Saeng District,Nong Saeng District,อำเภอหนองแสง,"102.6404758,17.0331462,102.8899905,17.2448023",0,0,18931632,6,,boundary
+Sam Phran District,Sam Phran District,อำเภอสามพราน,"100.0628392,13.6485754,100.3375551,13.8034155",0,0,18931634,6,,boundary
+Ban Fang District,Ban Fang District,อำเภอบ้านฝาง,"102.5214161,16.3429698,102.6970272,16.6605259",0,0,18931642,6,,boundary
+Waritchaphum District,Waritchaphum District,อำเภอวาริชภูมิ,"103.4686745,17.1517225,103.7404822,17.3686636",0,0,18931650,6,,boundary
+Lao Suea Kok District,Lao Suea Kok District,อำเภอเหล่าเสือโก้ก,"104.836331,15.34062,105.0075412,15.5473847",0,0,18931666,6,,boundary
+Na Pho District,Na Pho District,อำเภอนาโพธิ์,"102.8688483,15.6025658,103.013499,15.7958261",0,0,18931675,6,,boundary
+Ban Phaeo District,Ban Phaeo District,อำเภอบ้านแพ้ว,"100.0269136,13.4858085,100.2331751,13.6842999",0,0,18931677,6,,boundary
+Muang Sam Sip District,Muang Sam Sip District,อำเภอม่วงสามสิบ,"104.5601373,15.3627256,104.8766819,15.6894407",0,0,18931682,6,,boundary
+Nong Wua So District,Nong Wua So District,อำเภอหนองวัวซอ,"102.4377044,16.9936761,102.7019427,17.3748473",0,0,18931684,6,,boundary
+Ban Phai District,Ban Phai District,อำเภอบ้านไผ่,"102.6384007,15.8744888,102.9093808,16.1890425",0,0,18931689,6,,boundary
+Ban Pong District,Ban Pong District,อำเภอบ้านโป่ง,"99.6064146,13.7472871,99.9708067,13.957609",0,0,18931705,6,,boundary
+Nang Rong District,Nang Rong District,อำเภอนางรอง,"102.6030244,14.4610085,102.9626774,14.7947105",0,0,18931706,6,,boundary
+Phen District,Phen District,อำเภอเพ็ญ,"102.6932652,17.4699464,103.1169046,17.8983107",0,0,18931764,6,,boundary
+Non Din Daeng District,Non Din Daeng District,อำเภอโนนดินแดง,"102.4326382,14.1300445,102.8289188,14.377394",0,0,18931765,6,,boundary
+Mueang Ubon Ratchathani District,Mueang Ubon Ratchathani District,อำเภอเมืองอุบลราชธานี,"104.6726373,15.1807112,105.0343788,15.4144616",0,0,18931767,6,,boundary
+Chonnabot District,Chonnabot District,อำเภอชนบท,"102.4249143,15.9079678,102.6554106,16.145597",0,0,18931768,6,,boundary
+Non Suwan District,Non Suwan District,อำเภอโนนสุวรรณ,"102.481348,14.4940871,102.6585127,14.6354089",0,0,18931771,6,,boundary
+Photharam District,Photharam District,อำเภอโพธาราม,"99.5330183,13.6090361,99.9530588,13.7963865",0,0,18931788,6,,boundary
+Chum Phae District,Chum Phae District,อำเภอชุมแพ,"101.9319604,16.4450172,102.3146855,16.8706735",0,0,18931789,6,,boundary
+Nong Hong District,Nong Hong District,อำเภอหนองหงส์,"102.5406128,14.7927168,102.8060793,14.958119",0,0,18931790,6,,boundary
+Na Chaluai District,Na Chaluai District,อำเภอนาจะหลวย,"105.0946214,14.364757,105.3260649,14.7392302",0,0,18931810,6,,boundary
+Bang Phae District,Bang Phae District,อำเภอบางแพ,"99.8930464,13.6027336,100.0714949,13.7510811",0,0,18931811,6,,boundary
+Khao Suan Kwang District,Khao Suan Kwang District,อำเภอเขาสวนกวาง,"102.6692452,16.7856437,102.9501465,17.0882043",0,0,18931815,6,,boundary
+Phibun Rak District,Phibun Rak District,อำเภอพิบูลย์รักษ์,"102.9546894,17.4473488,103.1559075,17.6254954",0,0,18931816,6,,boundary
+Na Tan District,Na Tan District,อำเภอนาตาล,"105.1291561,15.8545692,105.392712,16.0030996",0,0,18931818,6,,boundary
+Khok Pho Chai District,Khok Pho Chai District,อำเภอโคกโพธิ์ไชย,"102.279913,15.9782334,102.4928899,16.1605562",0,0,18931819,6,,boundary
+Nong Ki District,Nong Ki District,อำเภอหนองกี่,"102.4397003,14.5648021,102.7282943,14.8598221",0,0,18931821,6,,boundary
+Na Yia District,Na Yia District,อำเภอนาเยีย,"104.9702164,14.9438913,105.1901787,15.1855389",0,0,18931865,6,,boundary
+Kranuan District,Kranuan District,อำเภอกระนวน,"102.9850048,16.6216063,103.1844694,16.9130937",0,0,18931871,6,,boundary
+Pakham District,Pakham District,อำเภอปะคำ,"102.5621819,14.29648,102.7833726,14.4985972",0,0,18934356,6,,boundary
+Mancha Khiri District,Mancha Khiri District,อำเภอมัญจาคีรี,"102.3453171,16.0725277,102.6937483,16.3946878",0,0,18934372,6,,boundary
+Phlapphla Chai District,Phlapphla Chai District,อำเภอพลับพลาชัย,"103.0731071,14.6224207,103.2751933,14.8221557",0,0,18934392,6,,boundary
+Mueang Khon Kaen District,Mueang Khon Kaen District,อำเภอเมืองขอนแก่น,"102.6303126,16.2179131,103.0207649,16.636692",0,0,18934428,6,,boundary
+Damnoen Saduak District,Damnoen Saduak District,อำเภอดำเนินสะดวก,"99.881032,13.4855042,100.0447347,13.6441961",0,0,18934445,6,,boundary
+Nam Phong District,Nam Phong District,อำเภอน้ำพอง,"102.7171552,16.5297913,103.0178526,16.8649287",0,0,18934447,6,,boundary
+Wat Phleng District,Wat Phleng District,อำเภอวัดเพลง,"99.8394822,13.4049212,99.8919089,13.4952625",0,0,18934453,6,,boundary
+Phutthaisong District,Phutthaisong District,อำเภอพุทไธสง,"102.8382083,15.4264302,103.1155118,15.6667775",0,0,18934527,6,,boundary
+Prachak Sinlapakhom District,Prachak Sinlapakhom District,อำเภอประจักษ์ศิลปาคม,"102.9005438,17.1931002,103.0885627,17.3204659",0,0,18934529,6,,boundary
+Mueang Ratchaburi District,Mueang Ratchaburi District,อำเภอเมืองราชบุรี,"99.5777483,13.4454143,99.9190819,13.6437597",0,0,18934531,6,,boundary
+Non Sila District,Non Sila District,อำเภอโนนศิลา,"102.6017952,15.8953618,102.7691444,16.06143",0,0,18934548,6,,boundary
+Pak Tho District,Pak Tho District,อำเภอปากท่อ,"99.4986485,13.1977132,99.8836213,13.5149284",0,0,18934551,6,,boundary
+Nong Na Kham District,Nong Na Kham District,อำเภอหนองนาคำ,"102.2130731,16.7334853,102.433579,16.8948887",0,0,18934555,6,,boundary
+Ban Kha District,Ban Kha District,อำเภอบ้านคา,"99.186935,13.1487936,99.5415332,13.5145695",0,0,18934566,6,,boundary
+Prakhon Chai District,Prakhon Chai District,อำเภอประโคนชัย,"102.9389247,14.4131547,103.2597578,14.837452",0,0,18934569,6,,boundary
+Nam Khun District,Nam Khun District,อำเภอน้ำขุ่น,"104.8155282,14.4238952,104.9954324,14.6752244",0,0,18934570,6,,boundary
+Nong Ruea District,Nong Ruea District,อำเภอหนองเรือ,"102.2847257,16.3546833,102.5834124,16.6273154",0,0,18934571,6,,boundary
+Si That District,Si That District,อำเภอศรีธาตุ,"103.0485415,16.9221206,103.3773802,17.1601469",0,0,18934576,6,,boundary
+Chom Bueng District,Chom Bueng District,อำเภอจอมบึง,"99.3155529,13.4179861,99.7410421,13.8066836",0,0,18934601,6,,boundary
+Nam Yuen District,Nam Yuen District,อำเภอน้ำยืน,"104.8858095,14.209568,105.283855,14.6756866",0,0,18934602,6,,boundary
+Suan Phueng District,Suan Phueng District,อำเภอสวนผึ้ง,"99.163586,13.3008044,99.4933975,13.7771479",0,0,18934607,6,,boundary
+Thung Fon District,Thung Fon District,อำเภอทุ่งฝน,"103.1294409,17.416626,103.3218821,17.5919124",0,0,18934613,6,,boundary
+Satuek District,Satuek District,อำเภอสตึก,"103.1555047,15.0995098,103.5054385,15.3472855",0,0,18934621,6,,boundary
+Wang Sam Mo District,Wang Sam Mo District,อำเภอวังสามหมอ,"103.3164962,16.803074,103.6681462,17.2299164",0,0,18934630,6,,boundary
+Nong Song Hong District,Nong Song Hong District,อำเภอหนองสองห้อง,"102.6739091,15.6326251,102.9324861,15.9048077",0,0,18934635,6,,boundary
+Khao Yoi District,Khao Yoi District,อำเภอเขาย้อย,"99.6882437,13.1175792,99.9100112,13.3434168",0,0,18934639,6,,boundary
+Phon District,Phon District,อำเภอพล,"102.4532001,15.7035153,102.709324,15.9354983",0,0,18934652,6,,boundary
+Phibun Mangsahan District,Phibun Mangsahan District,อำเภอพิบูลมังสาหาร,"105.0377279,14.9372779,105.3919584,15.3848297",0,0,18934659,6,,boundary
+Phra Yuen District,Phra Yuen District,อำเภอพระยืน,"102.5264773,16.2392051,102.7798239,16.380669",0,0,18934674,6,,boundary
+Khuan Don,Khuan Don,,"99.9977756,6.681398,100.2158605,6.843525",0,0,18934675,6,,boundary
+Ban Lat District,Ban Lat District,อำเภอบ้านลาด,"99.7344997,12.9757229,99.9671272,13.130199",0,0,18934681,6,,boundary
+Phu Pha Man District,Phu Pha Man District,อำเภอภูผาม่าน,"101.7496254,16.6272451,101.9583786,16.8357003",0,0,18934682,6,,boundary
+Phu Wiang District,Phu Wiang District,อำเภอภูเวียง,"102.2783036,16.5370344,102.6089986,16.8085563",0,0,18934703,6,,boundary
+Pueai Noi District,Pueai Noi District,อำเภอเปือยน้อย,"102.7786693,15.8075216,102.9274856,15.9783923",0,0,18934715,6,,boundary
+Pho Sai District,Pho Sai District,อำเภอโพธิ์ไทร,"105.162438,15.6346507,105.5489039,15.9027893",0,0,18934716,6,,boundary
+Sam Sung District,Sam Sung District,อำเภอซำสูง,"102.9576364,16.4764887,103.1542137,16.6347546",0,0,18934730,6,,boundary
+Khuan Kalong,Khuan Kalong,,"99.8626505,6.8084654,100.2206192,7.1100168",0,0,18934748,6,,boundary
+Ban Pho District,Ban Pho District,อำเภอบ้านโพธิ์,"100.9376576,13.547486,101.2461199,13.7045556",0,0,18934749,6,,boundary
+Nong Ya Plong District,Nong Ya Plong District,อำเภอหนองหญ้าปล้อง,"99.099418,12.9753607,99.7961989,13.3003727",0,0,18934757,6,,boundary
+Bang Khla District,Bang Khla District,อำเภอบางคล้า,"101.1366476,13.6162856,101.2694941,13.8862589",0,0,18934775,6,,boundary
+Samrong District,Samrong District,อำเภอสำโรง,"104.6694132,14.8342661,104.9046016,15.0844079",0,0,18934776,6,,boundary
+Si Chomphu District,Si Chomphu District,อำเภอสีชมพู,"102.002839,16.6171852,102.2358732,16.8974113",0,0,18934823,6,,boundary
+Bang Nam Priao District,Bang Nam Priao District,อำเภอบางน้ำเปรี้ยว,"100.905233,13.7621094,101.162182,13.9766666",0,0,18934870,6,,boundary
+Ubolratana District,Ubolratana District,อำเภออุบลรัตน์,"102.5581827,16.6235622,102.7519893,16.9660934",0,0,18934871,6,,boundary
+Sawang Wirawong District,Sawang Wirawong District,อำเภอสว่างวีระวงศ์,"104.941158,15.1643258,105.1774196,15.3078245",0,0,18934873,6,,boundary
+Kaeng Krachan District,Kaeng Krachan District,อำเภอแก่งกระจาน,"99.162256,12.5632061,99.7922289,13.1434182",0,0,18934877,6,,boundary
+Waeng Noi District,Waeng Noi District,อำเภอแวงน้อย,"102.3156087,15.694914,102.5164586,15.9008527",0,0,18934886,6,,boundary
+Waeng Yai District,Waeng Yai District,อำเภอแวงใหญ่,"102.3522419,15.8718873,102.5836346,15.9981383",0,0,18934895,6,,boundary
+Si Mueang Mai District,Si Mueang Mai District,อำเภอศรีเมืองใหม่,"105.1913218,15.3682427,105.6323031,15.7507628",0,0,18934908,6,,boundary
+Wiang Kao District,Wiang Kao District,อำเภอเวียงเก่า,"102.157321,16.5884696,102.3636805,16.8545088",0,0,18934909,6,,boundary
+Cha-am District,Cha-am District,อำเภอชะอำ,"99.7505759,12.6126281,100.0270352,12.9261969",0,0,18934935,6,,boundary
+La-Ngu,La-Ngu,,"99.4998073,6.7700875,99.8970457,7.0794481",0,0,18934936,6,,boundary
+Krathum Baen District,Krathum Baen District,อำเภอกระทุ่มแบน,"100.1696608,13.6027969,100.3502436,13.7245811",0,0,18934962,6,,boundary
+Ao Luek District,Ao Luek District,อำเภออ่าวลึก,"98.6116721,8.2031161,98.9294918,8.563432",0,0,18934964,6,,boundary
+Bang Pakong District,Bang Pakong District,อำเภอบางปะกง,"100.8489758,13.4602273,101.0738765,13.6360177",0,0,18934985,6,,boundary
+Tha Yang District,Tha Yang District,อำเภอท่ายาง,"99.6022974,12.6010553,100.0375966,13.0163446",0,0,18935050,6,,boundary
+Khao Phanom District,Khao Phanom District,อำเภอเขาพนม,"98.9072124,8.1119552,99.3362416,8.4571846",0,0,18935054,6,,boundary
+Sirindhorn District,Sirindhorn District,อำเภอสิรินธร,"105.2763998,14.9116921,105.624152,15.3103057",0,0,18935055,6,,boundary
+Manang,Manang,,"99.8569598,6.9081459,100.0057274,7.1070196",0,0,18935066,6,,boundary
+Mueang Samut Sakhon District,Mueang Samut Sakhon District,อำเภอเมืองสมุทรสาคร,"100.0531736,13.4252106,100.4200792,13.6409236",0,0,18935071,6,,boundary
+Khlong Khuean District,Khlong Khuean District,อำเภอคลองเขื่อน,"101.103222,13.6951815,101.2104413,13.8541303",0,0,18935078,6,,boundary
+Tan Sum District,Tan Sum District,อำเภอตาลสุม,"105.0432037,15.3038301,105.2611948,15.4901567",0,0,18935079,6,,boundary
+Mueang Chachoengsao District,Mueang Chachoengsao District,อำเภอเมืองฉะเชิงเทรา,"100.855154,13.630782,101.1440827,13.8044265",0,0,18935187,6,,boundary
+Mueang Phetchaburi District,Mueang Phetchaburi District,อำเภอเมืองเพชรบุรี,"99.8385412,12.954227,100.0797305,13.1881535",0,0,18935190,6,,boundary
+Khlong Thom District,Khlong Thom District,อำเภอคลองท่อม,"99.0638504,7.6484384,99.3385366,8.1795343",0,0,18935195,6,,boundary
+Mueang Satun,Mueang Satun,,"99.1537985,6.422647,100.18438,6.8053329",0,0,18935220,6,,boundary
+Amphawa District,Amphawa District,อำเภออัมพวา,"99.8523018,13.2420447,100.0166885,13.4844122",0,0,18935225,6,,boundary
+Phanom Sarakham District,Phanom Sarakham District,อำเภอพนมสารคาม,"101.2818744,13.5988005,101.591324,13.8699479",0,0,18935234,6,,boundary
+Thung Si Udom District,Thung Si Udom District,อำเภอทุ่งศรีอุดม,"104.8170786,14.6459865,105.0128119,14.8313723",0,0,18935287,6,,boundary
+Tha Phae,Tha Phae,,"99.836842,6.71908,100.0124549,6.881674",0,0,18935297,6,,boundary
+Bang Khonthi District,Bang Khonthi District,อำเภอบางคนที,"99.8875784,13.4395167,100.0285837,13.5162647",0,0,18935299,6,,boundary
+Plaeng Yao District,Plaeng Yao District,อำเภอแปลงยาว,"101.2128801,13.4248752,101.4933484,13.6751747",0,0,18935353,6,,boundary
+Ko Lanta District,Ko Lanta District,อำเภอเกาะลันตา,"98.8622341,7.4671015,99.152023,7.8568551",0,0,18935357,6,,boundary
+Thung Wa,Thung Wa,,"99.5759742,6.9562547,100.0282283,7.2036988",0,0,18935359,6,,boundary
+Trakan Phuet Phon District,Trakan Phuet Phon District,อำเภอตระการพืชผล,"104.8845143,15.420938,105.2606611,15.7807723",0,0,18935366,6,,boundary
+Mueang Samut Songkhram District,Mueang Samut Songkhram District,อำเภอเมืองสมุทรสงคราม,"99.9181198,13.2838934,100.0787728,13.508017",0,0,18935379,6,,boundary
+Ban Laem District,Ban Laem District,อำเภอบ้านแหลม,"99.8743138,13.0072702,100.1060636,13.2971092",0,0,18935383,6,,boundary
+Ratchasan District,Ratchasan District,อำเภอราชสาส์น,"101.2362827,13.6644249,101.3369571,13.8786249",0,0,18935464,6,,boundary
+Lam Thap District,Lam Thap District,อำเภอลำทับ,"99.2371968,7.9287921,99.414993,8.143721",0,0,18935465,6,,boundary
+At Samat District,At Samat District,อำเภออาจสามารถ,"103.6968535,15.7050919,103.9949973,15.9505874",0,0,18935482,6,,boundary
+Changhan District,Changhan District,อำเภอจังหาร,"103.4834388,16.0906899,103.7140142,16.2255653",0,0,18935562,6,,boundary
+Sanam Chai Khet District,Sanam Chai Khet District,อำเภอสนามชัยเขต,"101.3925644,13.4493037,101.9150715,13.7727344",0,0,18935568,6,,boundary
+Bang Rachan District,Bang Rachan District,อำเภอบางระจัน,"100.1818687,14.8256235,100.3695694,14.9612243",0,0,18935569,6,,boundary
+Mueang Krabi District,Mueang Krabi District,อำเภอเมืองกระบี่,"98.6604264,7.6536269,99.0179516,8.2936048",0,0,18935570,6,,boundary
+Chaturaphak Phiman District,Chaturaphak Phiman District,อำเภอจตุรพักตรพิมาน,"103.4002839,15.7209706,103.6996541,15.9387366",0,0,18935630,6,,boundary
+Warin Chamrap District,Warin Chamrap District,อำเภอวารินชำราบ,"104.6701607,14.9417824,105.0054005,15.2421002",0,0,18935632,6,,boundary
+Nuea Khlong District,Nuea Khlong District,อำเภอเหนือคลอง,"98.934744,7.7756062,99.1593226,8.2345172",0,0,18935633,6,,boundary
+Tha Takiap District,Tha Takiap District,อำเภอท่าตะเกียบ,"101.4898452,13.1784701,101.9900661,13.600064",0,0,18935739,6,,boundary
+Plai Phraya District,Plai Phraya District,อำเภอปลายพระยา,"98.682248,8.4173035,98.950794,8.6818403",0,0,18935740,6,,boundary
+Chiang Khwan District,Chiang Khwan District,อำเภอเชียงขวัญ,"103.6801532,16.0755916,103.8381614,16.2208412",0,0,18935746,6,,boundary
+Chae Hom District,Chae Hom District,อำเภอแจ้ห่ม,"99.4999021,18.4895133,99.8372165,18.9862052",0,0,18935770,6,,boundary
+Bo Rai District,Bo Rai District,อำเภอบ่อไร่,"102.3834672,12.3929954,102.7792903,12.7572388",0,0,18935892,6,,boundary
+Bamnet Narong District,Bamnet Narong District,อำเภอบำเหน็จณรงค์,"101.5037374,15.3704396,101.8081919,15.5700827",0,0,18935895,6,,boundary
+Kaset Wisai District,Kaset Wisai District,อำเภอเกษตรวิสัย,"103.4007965,15.4264419,103.7003046,15.780561",0,0,18935897,6,,boundary
+Ban Khwao District,Ban Khwao District,อำเภอบ้านเขว้า,"101.6916116,15.6563383,101.992741,15.9747835",0,0,18935908,6,,boundary
+Moei Wadi District,Moei Wadi District,อำเภอเมยวดี,"104.0171444,16.296822,104.2378579,16.446186",0,0,18935967,6,,boundary
+Ban Thaen District,Ban Thaen District,อำเภอบ้านแท่น,"102.2195406,16.2533432,102.4588677,16.4676333",0,0,18935970,6,,boundary
+Hang Chat District,Hang Chat District,อำเภอห้างฉัตร,"99.119193,18.1895382,99.4367552,18.5002123",0,0,18936004,6,,boundary
+In Buri District,In Buri District,อำเภออินทร์บุรี,"100.2187079,14.9371302,100.4657551,15.1187946",0,0,18936053,6,,boundary
+Sam Roi Yot District,Sam Roi Yot District,อำเภอสามร้อยยอด,"99.433841,12.129125,100.0326235,12.3529597",0,0,18936057,6,,boundary
+Mueang Roi Et District,Mueang Roi Et District,อำเภอเมืองร้อยเอ็ด,"103.4650526,15.8638691,103.7224873,16.1634418",0,0,18936095,6,,boundary
+Khao Saming District,Khao Saming District,อำเภอเขาสมิง,"102.2825815,12.2521823,102.5624644,12.6453379",0,0,18936181,6,,boundary
+Kui Buri District,Kui Buri District,อำเภอกุยบุรี,"99.532499,11.9774794,100.0200157,12.2448228",0,0,18936188,6,,boundary
+Mueang Suang District,Mueang Suang District,อำเภอเมืองสรวง,"103.6907051,15.7141273,103.8531651,15.8638691",0,0,18936225,6,,boundary
+Khai Bang Rachan District,Khai Bang Rachan District,อำเภอค่ายบางระจัน,"100.2042331,14.7801556,100.3930571,14.8723004",0,0,18936229,6,,boundary
+Chatturat District,Chatturat District,อำเภอจัตุรัส,"101.708621,15.3891033,101.9935902,15.7430286",0,0,18936241,6,,boundary
+Nong Hi District,Nong Hi District,อำเภอหนองฮี,"103.9343758,15.5024193,104.0855308,15.6579333",0,0,18936275,6,,boundary
+Kaeng Khro District,Kaeng Khro District,อำเภอแก้งคร้อ,"102.0370073,15.9803195,102.4179938,16.2875506",0,0,18936301,6,,boundary
+Khlong Yai District,Khlong Yai District,อำเภอคลองใหญ่,"102.7658819,11.6504921,102.9141851,11.9849514",0,0,18936305,6,,boundary
+Mueang Prachuap Khiri Khan District,Mueang Prachuap Khiri Khan District,อำเภอเมืองประจวบคีรีขันธ์,"99.579413,11.6553588,99.9109133,12.0623862",0,0,18936307,6,,boundary
+Kaset Sombun District,Kaset Sombun District,อำเภอเกษตรสมบูรณ์,"101.6747885,16.0266601,102.0915801,16.496252",0,0,18936323,6,,boundary
+Ko Kha District,Ko Kha District,อำเภอเกาะคา,"99.2171552,17.9779556,99.4433184,18.29771",0,0,18936338,6,,boundary
+Mae Mo District,Mae Mo District,อำเภอแม่เมาะ,"99.624035,18.1925803,100.0565079,18.6245316",0,0,18936381,6,,boundary
+Mueang Sing Buri District,Mueang Sing Buri District,อำเภอเมืองสิงห์บุรี,"100.335919,14.8090743,100.456002,15.0039381",0,0,18936393,6,,boundary
+Khon San District,Khon San District,อำเภอคอนสาร,"101.449485,16.3795805,102.0741017,16.7288341",0,0,18936396,6,,boundary
+Mae Phrik District,Mae Phrik District,อำเภอแม่พริก,"98.8800492,17.3324153,99.213827,17.6489383",0,0,18936446,6,,boundary
+Mae Tha District,Mae Tha District,อำเภอแม่ทะ,"99.4028908,17.9195261,99.7924039,18.2585667",0,0,18936481,6,,boundary
+Nong Phok District,Nong Phok District,อำเภอหนองพอก,"104.0626097,16.1466688,104.3480046,16.4728115",0,0,18936512,6,,boundary
+Khon Sawan District,Khon Sawan District,อำเภอคอนสวรรค์,"102.1412266,15.7702807,102.3867604,16.0733567",0,0,18936513,6,,boundary
+Phrom Buri District,Phrom Buri District,อำเภอพรหมบุรี,"100.4076188,14.7216056,100.4893006,14.8575793",0,0,18936547,6,,boundary
+Pran Buri District,Pran Buri District,อำเภอปราณบุรี,"99.400994,12.3208389,100.0028145,12.4907532",0,0,18936558,6,,boundary
+Mueang Lampang District,Mueang Lampang District,อำเภอเมืองลำปาง,"99.302312,18.1770736,99.7730529,18.610933",0,0,18936563,6,,boundary
+Pathum Rat District,Pathum Rat District,อำเภอปทุมรัตต์,"103.2668856,15.5261756,103.4944413,15.7257639",0,0,18936570,6,,boundary
+Mueang Chaiyaphum District,Mueang Chaiyaphum District,อำเภอเมืองชัยภูมิ,"101.7527413,15.6202965,102.2533587,16.2515396",0,0,18936573,6,,boundary
+Thap Sakae District,Thap Sakae District,อำเภอทับสะแก,"99.419821,11.401222,99.7155764,11.688511",0,0,18936574,6,,boundary
+Noen Sa-nga District,Noen Sa-nga District,อำเภอเนินสง่า,"101.9092362,15.4546918,102.0750418,15.6931731",0,0,18936589,6,,boundary
+Tha Chang District,Tha Chang District,อำเภอท่าช้าง,"100.3453612,14.7445535,100.4245277,14.8169356",0,0,18936648,6,,boundary
+Mueang Pan District,Mueang Pan District,อำเภอเมืองปาน,"99.3268782,18.5250725,99.5630001,19.080611",0,0,18936650,6,,boundary
+Nong Bua Daeng District,Nong Bua Daeng District,อำเภอหนองบัวแดง,"101.3546831,15.9507878,101.9199085,16.4548736",0,0,18936653,6,,boundary
+Phanom Phrai District,Phanom Phrai District,อำเภอพนมไพร,"103.9428101,15.5456801,104.2134963,15.8394015",0,0,18936655,6,,boundary
+Nong Bua Rawe District,Nong Bua Rawe District,อำเภอหนองบัวระเหว,"101.4534522,15.6685661,101.822352,15.9804728",0,0,18936663,6,,boundary
+Ngao District,Ngao District,อำเภองาว,"99.752427,18.4822102,100.1259942,19.0642112",0,0,18936664,6,,boundary
+Bang Saphan District,Bang Saphan District,อำเภอบางสะพาน,"99.266883,11.126683,99.5993787,11.476063",0,0,18936680,6,,boundary
+Soem Ngam District,Soem Ngam District,อำเภอเสริมงาม,"99.0177978,17.860529,99.3026691,18.297983",0,0,18936682,6,,boundary
+Sop Prap District,Sop Prap District,อำเภอสบปราบ,"99.1988955,17.7652297,99.4841615,18.0143088",0,0,18936692,6,,boundary
+Phakdi Chumphon District,Phakdi Chumphon District,อำเภอภักดีชุมพล,"101.3175753,15.7367116,101.5501714,16.1858688",0,0,18936693,6,,boundary
+Pho Chai District,Pho Chai District,อำเภอโพธิ์ชัย,"103.7001529,16.151985,103.8895995,16.4711471",0,0,18936696,6,,boundary
+Benchalak District,Benchalak District,อำเภอเบญจลักษ์,"104.5770955,14.705671,104.8379721,14.8678783",0,0,18936717,6,,boundary
+Thoen District,Thoen District,อำเภอเถิน,"99.0496754,17.2054734,99.4793322,17.8901492",0,0,18936719,6,,boundary
+Bang Saphan Noi District,Bang Saphan Noi District,อำเภอบางสะพานน้อย,"99.1473621,10.9546914,99.5643971,11.2202754",0,0,18936727,6,,boundary
+Ko Chang District,Ko Chang District,อำเภอเกาะช้าง,"102.2437797,11.8921263,102.5149877,12.1630152",0,0,18936729,6,,boundary
+Phu Khiao District,Phu Khiao District,อำเภอภูเขียว,"101.9668805,16.1717509,102.3531559,16.5063135",0,0,18936750,6,,boundary
+Phon Sai District,Phon Sai District,อำเภอโพนทราย,"103.825803,15.4049651,104.059976,15.5591222",0,0,18936859,6,,boundary
+Tha Chana District,Tha Chana District,อำเภอท่าชนะ,"98.7375291,9.4614869,99.2340239,9.7313815",0,0,18936864,6,,boundary
+Ban Na Doem District,Ban Na Doem District,อำเภอบ้านนาเดิม,"99.1859772,8.8185038,99.3596521,8.9734605",0,0,18936873,6,,boundary
+Khiri Rat Nikhom District,Khiri Rat Nikhom District,อำเภอคีรีรัฐนิคม,"98.7709922,8.7843736,99.0820667,9.204723",0,0,18936880,6,,boundary
+Khian Sa District,Khian Sa District,อำเภอเคียนซา,"98.8975156,8.6342864,99.2856388,8.8866482",0,0,18936901,6,,boundary
+Phon Thong District,Phon Thong District,อำเภอโพนทอง,"103.8032127,16.132181,104.1302817,16.4535745",0,0,18936924,6,,boundary
+Bueng Bun District,Bueng Bun District,อำเภอบึงบูรพ์,"104.0107155,15.2665236,104.1143953,15.3495081",0,0,18954743,6,,boundary
+Selaphum District,Selaphum District,อำเภอเสลภูมิ,"103.8241753,15.8009364,104.1991734,16.2241216",0,0,18954839,6,,boundary
+Huai Thap Than District,Huai Thap Than District,อำเภอห้วยทับทัน,"103.9552045,14.9230218,104.0967351,15.140821",0,0,18954856,6,,boundary
+Si Somdet District,Si Somdet District,อำเภอศรีสมเด็จ,"103.4534195,15.9296419,103.5739071,16.1301091",0,0,18954866,6,,boundary
+Kantharalak District,Kantharalak District,อำเภอกันทรลักษ์,"104.4884983,14.3537225,104.9085397,14.7894179",0,0,18955017,6,,boundary
+Suwannaphum District,Suwannaphum District,อำเภอสุวรรณภูมิ,"103.6400969,15.4347873,103.9689612,15.7782119",0,0,18955158,6,,boundary
+Kanthararom District,Kanthararom District,อำเภอกันทรารมย์,"104.426851,14.9497084,104.7366045,15.2820559",0,0,18955188,6,,boundary
+Thawat Buri District,Thawat Buri District,อำเภอธวัชบุรี,"103.679872,15.9119143,103.9005346,16.164084",0,0,18955232,6,,boundary
+Thung Khao Luang District,Thung Khao Luang District,อำเภอทุ่งเขาหลวง,"103.8034468,15.9250176,103.9351874,16.0655697",0,0,18955278,6,,boundary
+Khukhan District,Khukhan District,อำเภอขุขันธ์,"103.9985855,14.5017128,104.3133378,14.8999613",0,0,18955295,6,,boundary
+Khun Han District,Khun Han District,อำเภอขุนหาญ,"104.251105,14.3451826,104.5517171,14.7498715",0,0,18955386,6,,boundary
+Mueang Chan District,Mueang Chan District,อำเภอเมืองจันทร์,"103.9663028,15.1300114,104.0939172,15.2522141",0,0,18955426,6,,boundary
+Ban Chang District,Ban Chang District,อำเภอบ้านฉาง,"100.9844476,12.6559809,101.1063529,12.8199772",0,0,18955437,6,,boundary
+Ban Khai District,Ban Khai District,อำเภอบ้านค่าย,"101.2084859,12.6972142,101.4924796,12.9690684",0,0,18955494,6,,boundary
+Mueang Si Sa Ket District,Mueang Si Sa Ket District,อำเภอเมืองศรีสะเกษ,"104.2169584,14.9458282,104.4842135,15.2529456",0,0,18955500,6,,boundary
+Khao Chamao District,Khao Chamao District,อำเภอเขาชะเมา,"101.5682557,12.829941,101.809875,13.1635573",0,0,18955535,6,,boundary
+Klaeng District,Klaeng District,อำเภอแกลง,"101.5030134,12.5547012,101.8310549,12.9817176",0,0,18955627,6,,boundary
+Nam Kliang District,Nam Kliang District,อำเภอน้ำเกลี้ยง,"104.4219718,14.805612,104.6281587,15.0157836",0,0,18955665,6,,boundary
+Mueang Rayong District,Mueang Rayong District,อำเภอเมืองระยอง,"101.0857349,12.5129013,101.5302834,12.86983",0,0,18955763,6,,boundary
+Nikhom Phatthana District,Nikhom Phatthana District,อำเภอนิคมพัฒนา,"101.049427,12.7402731,101.2391769,12.9399563",0,0,18955776,6,,boundary
+Pluak Daeng District,Pluak Daeng District,อำเภอปลวกแดง,"101.0827937,12.8634792,101.4206468,13.0888693",0,0,18955805,6,,boundary
+Wang Chan District,Wang Chan District,อำเภอวังจันทร์,"101.3940916,12.8311238,101.602821,13.1092083",0,0,18955831,6,,boundary
+Non Khun District,Non Khun District,อำเภอโนนคูณ,"104.5909764,14.8103411,104.8165729,15.0219719",0,0,18955856,6,,boundary
+Phayu District,Phayu District,อำเภอพยุห์,"104.2983391,14.8238886,104.4514745,14.9775653",0,0,18955940,6,,boundary
+Ban Sang District,Ban Sang District,อำเภอบ้านสร้าง,"101.137422,13.8515279,101.3827714,14.0622014",0,0,18955945,6,,boundary
+Pho Si Suwan District,Pho Si Suwan District,อำเภอโพธิ์ศรีสุวรรณ,"103.9723422,15.1598762,104.1278261,15.2957629",0,0,18955961,6,,boundary
+Wang Nuea District,Wang Nuea District,อำเภอวังเหนือ,"99.5245699,18.8986288,99.7742724,19.4176577",0,0,18955989,6,,boundary
+Kabin Buri District,Kabin Buri District,อำเภอกบินทร์บุรี,"101.5925989,13.582315,101.9515353,14.1248803",0,0,18955995,6,,boundary
+Ban Hong District,Ban Hong District,อำเภอบ้านโฮ่ง,"98.6708215,18.1318618,98.9887042,18.4095163",0,0,18956051,6,,boundary
+Ban Thi District,Ban Thi District,อำเภอบ้านธิ,"99.0548184,18.586247,99.2353639,18.7083657",0,0,18956061,6,,boundary
+Phrai Bueng District,Phrai Bueng District,อำเภอไพรบึง,"104.2752772,14.6484533,104.4233224,14.8873208",0,0,18956069,6,,boundary
+Li District,Li District,อำเภอลี้,"98.6809286,17.4256518,99.1256547,18.1659885",0,0,18956075,6,,boundary
+Mueang Prachin Buri District,Mueang Prachin Buri District,อำเภอเมืองปราจีนบุรี,"101.2775561,13.9460039,101.4953724,14.2744843",0,0,18956090,6,,boundary
+Mae Tha District,Mae Tha District,อำเภอแม่ทา,"98.9024879,18.1617884,99.3215434,18.5893929",0,0,18956096,6,,boundary
+Mueang Lamphun District,Mueang Lamphun District,อำเภอเมืองลำพูน,"98.9319908,18.4293585,99.2253662,18.6733307",0,0,18956118,6,,boundary
+Phu Sing District,Phu Sing District,อำเภอภูสิงห์,"104.031986,14.3438896,104.2781966,14.6392488",0,0,18956128,6,,boundary
+Pa Sang District,Pa Sang District,อำเภอป่าซาง,"98.7781101,18.2735436,98.9631342,18.5428376",0,0,18956134,6,,boundary
+Thung Hua Chang District,Thung Hua Chang District,อำเภอทุ่งหัวช้าง,"98.9580889,17.8079051,99.1843916,18.1998744",0,0,18956160,6,,boundary
+Prang Ku District,Prang Ku District,อำเภอปรางค์กู่,"103.9020062,14.7478533,104.1394667,14.9447198",0,0,18956165,6,,boundary
+Wiang Nong Long District,Wiang Nong Long District,อำเภอเวียงหนองล่อง,"98.6875956,18.3804182,98.8253904,18.449774",0,0,18956171,6,,boundary
+Na Di District,Na Di District,อำเภอนาดี,"101.6365,14.011359,102.1262781,14.392992",0,0,18956186,6,,boundary
+Rasi Salai District,Rasi Salai District,อำเภอราษีไศล,"103.9890006,15.225783,104.345782,15.4724111",0,0,18959157,6,,boundary
+Si Rattana District,Si Rattana District,อำเภอศรีรัตนะ,"104.3840723,14.7296007,104.6083459,14.8877565",0,0,18959216,6,,boundary
+Sila Lat District,Sila Lat District,อำเภอศิลาลาด,"104.0203791,15.4118482,104.1711297,15.5683839",0,0,18959301,6,,boundary
+Uthumphon Phisai District,Uthumphon Phisai District,อำเภออุทุมพรพิสัย,"104.0517546,14.938202,104.2684294,15.2818547",0,0,18959441,6,,boundary
+Wang Hin District,Wang Hin District,อำเภอวังหิน,"104.11435,14.8820675,104.3018056,15.0552128",0,0,18959479,6,,boundary
+Yang Chum Noi District,Yang Chum Noi District,อำเภอยางชุมน้อย,"104.290214,15.1459626,104.4828073,15.3446826",0,0,18959548,6,,boundary
+Prachantakham District,Prachantakham District,อำเภอประจันตคาม,"101.4211293,13.9801173,101.6828983,14.4625255",0,0,18959597,6,,boundary
+Bang Klam,Bang Klam,,"100.3024227,6.9920273,100.4817389,7.1870411",0,0,18959634,6,,boundary
+Chiang Khan District,Chiang Khan District,อำเภอเชียงคาน,"101.5218849,17.6769763,101.9017174,18.0649868",0,0,18959641,6,,boundary
+Si Maha Phot District,Si Maha Phot District,อำเภอศรีมหาโพธิ,"101.3865296,13.7334422,101.6941622,14.0190518",0,0,18959656,6,,boundary
+Si Mahosot District,Si Mahosot District,อำเภอศรีมโหสถ,"101.3454387,13.7738713,101.5412488,13.960462",0,0,18959665,6,,boundary
+Dan Sai District,Dan Sai District,อำเภอด่านซ้าย,"101.0263824,16.8995575,101.4801205,17.5345032",0,0,18959721,6,,boundary
+Chana,Chana,,"100.5849986,6.7368762,100.8271159,7.10172",0,0,18959738,6,,boundary
+Hat Yai,Hat Yai,,"100.1908789,6.7871088,100.6082478,7.1870411",0,0,18959810,6,,boundary
+Erawan District,Erawan District,อำเภอเอราวัณ,"101.8571731,17.1379135,102.0967799,17.4191007",0,0,18959827,6,,boundary
+Mueang Loei District,Mueang Loei District,อำเภอเมืองเลย,"101.5014399,17.3574147,101.9184063,17.7296189",0,0,18959896,6,,boundary
+Khlong Hoi Khong,Khlong Hoi Khong,,"100.2058995,6.7774136,100.4682722,6.9405447",0,0,18959910,6,,boundary
+Na Duang District,Na Duang District,อำเภอนาด้วง,"101.8676655,17.3954075,102.140076,17.6807135",0,0,18959922,6,,boundary
+Khuan Niang,Khuan Niang,,"100.316734,7.0737193,100.46221,7.3132513",0,0,18959949,6,,boundary
+Na Haeo District,Na Haeo District,อำเภอนาแห้ว,"100.833265,17.2798176,101.1237069,17.5918608",0,0,18959962,6,,boundary
+Den Chai District,Den Chai District,อำเภอเด่นชัย,"99.8743538,17.7769268,100.1882202,18.0477032",0,0,18959968,6,,boundary
+Krasae Sin,Krasae Sin,,"100.2200577,7.4954155,100.3685732,7.7176124",0,0,18959984,6,,boundary
+Long District,Long District,อำเภอลอง,"99.631283,17.9014441,100.0910852,18.4031429",0,0,18960025,6,,boundary
+Nong Hin District,Nong Hin District,อำเภอหนองหิน,"101.7067069,16.9777213,101.9314763,17.1964076",0,0,18960026,6,,boundary
+Pak Chom District,Pak Chom District,อำเภอปากชม,"101.7780105,17.6347941,102.1056566,18.220272",0,0,18960139,6,,boundary
+Mueang Songkhla,Mueang Songkhla,,"100.46221,7.0151144,100.6755135,7.2394819",0,0,18960148,6,,boundary
+Mueang Phrae District,Mueang Phrae District,อำเภอเมืองแพร่,"100.0366066,17.8890037,100.4177947,18.2789017",0,0,18960157,6,,boundary
+Pha Khao District,Pha Khao District,อำเภอผาขาว,"101.8972743,16.9494068,102.1554425,17.1558325",0,0,18960175,6,,boundary
+Na Mom,Na Mom,,"100.5031403,6.8740519,100.6307034,7.0250661",0,0,18960181,6,,boundary
+Nong Muang Khai District,Nong Muang Khai District,อำเภอหนองม่วงไข่,"100.0723464,18.230878,100.2793042,18.3579252",0,0,18960196,6,,boundary
+Na Thawi,Na Thawi,,"100.5450199,6.442584,100.8313256,6.7988124",0,0,18960212,6,,boundary
+Phu Kradueng District,Phu Kradueng District,อำเภอภูกระดึง,"101.6721173,16.7535722,102.0687925,17.0501471",0,0,18960213,6,,boundary
+Rong Kwang District,Rong Kwang District,อำเภอร้องกวาง,"100.2023171,18.1518938,100.5513103,18.5019379",0,0,18960253,6,,boundary
+Phu Luang District,Phu Luang District,อำเภอภูหลวง,"101.4697113,16.9586733,101.7881725,17.207996",0,0,18965100,6,,boundary
+Phu Ruea District,Phu Ruea District,อำเภอภูเรือ,"101.2246732,17.2574637,101.5383411,17.5681057",0,0,18965130,6,,boundary
+Tha Li District,Tha Li District,อำเภอท่าลี่,"101.2471504,17.4717629,101.5926288,17.7764981",0,0,18965154,6,,boundary
+Wang Saphung District,Wang Saphung District,อำเภอวังสะพุง,"101.4667449,17.1338428,101.9818908,17.4488922",0,0,18965220,6,,boundary
+Ban Mi District,Ban Mi District,อำเภอบ้านหมี่,"100.4275314,14.9114803,100.6578658,15.2474162",0,0,18965229,6,,boundary
+Ranot,Ranot,,"100.1774952,7.6141069,100.4077824,7.9389407",0,0,18965234,6,,boundary
+Song District,Song District,อำเภอสอง,"99.9995797,18.2891151,100.4231019,18.8354709",0,0,18965239,6,,boundary
+Sung Men District,Sung Men District,อำเภอสูงเม่น,"99.9721758,17.9037184,100.2718565,18.1475421",0,0,18965253,6,,boundary
+Rattaphum,Rattaphum,,"100.0545568,6.8957555,100.3500948,7.2313491",0,0,18965280,6,,boundary
+Chai Badan District,Chai Badan District,อำเภอชัยบาดาล,"100.9033945,15.0227054,101.3630789,15.3804545",0,0,18965281,6,,boundary
+Khok Charoen District,Khok Charoen District,อำเภอโคกเจริญ,"100.6904813,15.2906212,100.9840913,15.5634023",0,0,18965305,6,,boundary
+Saba Yoi,Saba Yoi,,"100.739071,6.2901172,101.1051551,6.7112814",0,0,18965315,6,,boundary
+Wang Chin District,Wang Chin District,อำเภอวังชิ้น,"99.3675728,17.6875566,99.9366506,18.0623438",0,0,18965324,6,,boundary
+Khok Samrong District,Khok Samrong District,อำเภอโคกสำโรง,"100.6063632,14.9240996,100.9356662,15.1871977",0,0,18965328,6,,boundary
+Sadao,Sadao,,"100.1909779,6.468363,100.6122382,6.8464377",0,0,18965437,6,,boundary
+Sathing Phra,Sathing Phra,,"100.3556819,7.361804,100.4811153,7.6225487",0,0,18965530,6,,boundary
+Lam Sonthi District,Lam Sonthi District,อำเภอลำสนธิ,"101.2875498,15.036917,101.4141486,15.7561286",0,0,18965600,6,,boundary
+Mueang Lop Buri District,Mueang Lop Buri District,อำเภอเมืองลพบุรี,"100.5090201,14.6507414,100.8981406,14.9617957",0,0,18965764,6,,boundary
+Singhanakhon,Singhanakhon,,"100.4060657,7.1688211,100.59065,7.3762944",0,0,18965770,6,,boundary
+Nong Muang District,Nong Muang District,อำเภอหนองม่วง,"100.5899521,15.1383992,100.8244881,15.4526216",0,0,18965777,6,,boundary
+Phatthana Nikhom District,Phatthana Nikhom District,อำเภอพัฒนานิคม,"100.8239371,14.7404511,101.3338581,15.0590072",0,0,18965821,6,,boundary
+Sa Bot District,Sa Bot District,อำเภอสระโบสถ์,"100.7515182,15.1396694,100.9834851,15.3324404",0,0,18965830,6,,boundary
+Tha Luang District,Tha Luang District,อำเภอท่าหลวง,"101.0412308,14.9675132,101.3630795,15.1708769",0,0,18965834,6,,boundary
+Tha Wung District,Tha Wung District,อำเภอท่าวุ้ง,"100.4205881,14.6713341,100.5790464,14.9420436",0,0,18965851,6,,boundary
+Thepha,Thepha,,"100.7935936,6.6319694,101.0661399,6.9621675",0,0,18965893,6,,boundary
+Khun Yuam District,Khun Yuam District,อำเภอขุนยวม,"97.665527,18.5926057,98.1588042,19.091968",0,0,18965905,6,,boundary
+Aranyaprathet District,Aranyaprathet District,อำเภออรัญประเทศ,"102.306865,13.4667127,102.656554,13.8751658",0,0,18971209,6,,boundary
+Mae La Noi District,Mae La Noi District,อำเภอแม่ลาน้อย,"97.766685,18.2531594,98.2372025,18.6770255",0,0,18971223,6,,boundary
+Khao Chakan District,Khao Chakan District,อำเภอเขาฉกรรจ์,"101.8733904,13.4711286,102.157707,13.7632723",0,0,18971287,6,,boundary
+Mueang Nong Bua Lam Phu District,Mueang Nong Bua Lam Phu District,อำเภอเมืองหนองบัวลำภู,"102.2361843,16.917329,102.59465,17.3846395",0,0,18971299,6,,boundary
+Na Klang District,Na Klang District,อำเภอนากลาง,"102.0922218,17.1281243,102.4211832,17.4978574",0,0,18971350,6,,boundary
+Khlong Hat District,Khlong Hat District,อำเภอคลองหาด,"102.1535306,13.2869674,102.3624677,13.6447614",0,0,18971353,6,,boundary
+Mae Sariang District,Mae Sariang District,อำเภอแม่สะเรียง,"97.3438072,17.9941983,98.2083043,18.599493",0,0,18971387,6,,boundary
+Na Wang District,Na Wang District,อำเภอนาวัง,"101.9816995,17.1618138,102.1414702,17.4654165",0,0,18971412,6,,boundary
+Mueang Mae Hong Son District,Mueang Mae Hong Son District,อำเภอเมืองแม่ฮ่องสอน,"97.782711,18.9335483,98.2521874,19.640417",0,0,18971428,6,,boundary
+Khok Sung District,Khok Sung District,อำเภอโคกสูง,"102.529845,13.7379418,102.7662519,13.9468157",0,0,18971432,6,,boundary
+Non Sang District,Non Sang District,อำเภอโนนสัง,"102.3677872,16.7719832,102.6791526,17.0408163",0,0,18971443,6,,boundary
+Mueang Sa Kaeo District,Mueang Sa Kaeo District,อำเภอเมืองสระแก้ว,"101.9039227,13.6803918,102.3257638,14.1957918",0,0,18971453,6,,boundary
+Pai District,Pai District,อำเภอปาย,"98.125358,19.0252963,98.6522228,19.70432",0,0,18971456,6,,boundary
+Pang Mapha District,Pang Mapha District,อำเภอปางมะผ้า,"98.024747,19.3694441,98.3809245,19.81427",0,0,18971458,6,,boundary
+Si Bun Rueang District,Si Bun Rueang District,อำเภอศรีบุญเรือง,"102.0292112,16.8103901,102.4055113,17.1819635",0,0,18971530,6,,boundary
+Sop Moei District,Sop Moei District,อำเภอสบเมย,"97.6715898,17.6369713,98.2894531,18.1705994",0,0,18971540,6,,boundary
+Ta Phraya District,Ta Phraya District,อำเภอตาพระยา,"102.4971612,13.8563771,102.9409821,14.1760967",0,0,18971550,6,,boundary
+Suwannakhuha District,Suwannakhuha District,อำเภอสุวรรณคูหา,"102.0832264,17.4093272,102.3986086,17.692208",0,0,18971552,6,,boundary
+Borabue District,Borabue District,อำเภอบรบือ,"102.9421041,15.8414505,103.2650862,16.1709244",0,0,18971553,6,,boundary
+Chiang Yuen District,Chiang Yuen District,อำเภอเชียงยืน,"102.947368,16.3173838,103.1856932,16.5157326",0,0,18971578,6,,boundary
+Wang Nam Yen District,Wang Nam Yen District,อำเภอวังน้ำเย็น,"101.9355779,13.4289564,102.2186383,13.6618137",0,0,18971597,6,,boundary
+Chuen Chom District,Chuen Chom District,อำเภอชื่นชม,"103.0852393,16.4526472,103.1960786,16.6436224",0,0,18971599,6,,boundary
+Kae Dam District,Kae Dam District,อำเภอแกดำ,"103.3268339,15.9800322,103.4705679,16.1280499",0,0,18971615,6,,boundary
+Fao Rai​ District,Fao Rai​ District,อำเภอเฝ้าไร่,"103.1766298,17.8567508,103.412766,18.1446157",0,0,18971619,6,,boundary
+Wang Sombun District,Wang Sombun District,อำเภอวังสมบูรณ์,"101.9519546,13.2367083,102.2856857,13.4831072",0,0,18971621,6,,boundary
+Kantharawichai District,Kantharawichai District,อำเภอกันทรวิชัย,"103.1426994,16.1872001,103.418864,16.3956492",0,0,18971648,6,,boundary
+Mueang Nong Khai District,Mueang Nong Khai District,อำเภอเมืองหนองคาย,"102.6499569,17.6840237,103.0100659,18.004923",0,0,18971672,6,,boundary
+Watthana Nakhon District,Watthana Nakhon District,อำเภอวัฒนานคร,"102.1311874,13.6035118,102.5913437,14.1661209",0,0,18971687,6,,boundary
+Pho Tak District,Pho Tak District,อำเภอโพธิ์ตาก,"102.3557342,17.8196019,102.5025712,17.9738381",0,0,18971709,6,,boundary
+Ban Dan Lan Hoi District,Ban Dan Lan Hoi District,อำเภอบ้านด่านลานหอย,"99.3121665,16.7849583,99.6466937,17.2701372",0,0,18971721,6,,boundary
+Kosum Phisai District,Kosum Phisai District,อำเภอโกสุมพิสัย,"102.8431455,16.1013024,103.1749651,16.4388542",0,0,18971745,6,,boundary
+Khiri Mat District,Khiri Mat District,อำเภอคีรีมาศ,"99.6043263,16.6827153,99.8916084,16.968599",0,0,18971754,6,,boundary
+Phon Phisai District,Phon Phisai District,อำเภอโพนพิสัย,"102.8586326,17.8026676,103.3589447,18.162671",0,0,18971758,6,,boundary
+Kut Rang District,Kut Rang District,อำเภอกุดรัง,"102.8478628,15.9058452,103.0799476,16.1722193",0,0,18971760,6,,boundary
+Kong Krailat District,Kong Krailat District,อำเภอกงไกรลาศ,"99.8398681,16.7976621,100.1117946,17.0857852",0,0,18971830,6,,boundary
+Mueang Maha Sarakham District,Mueang Maha Sarakham District,อำเภอเมืองมหาสารคาม,"103.1177289,15.9646987,103.5040292,16.2446013",0,0,18971831,6,,boundary
+Rattanawapi District,Rattanawapi District,อำเภอรัตนวาปี,"103.1381488,18.1097396,103.3667414,18.3052476",0,0,18971840,6,,boundary
+Mueang Sukhothai District,Mueang Sukhothai District,อำเภอเมืองสุโขทัย,"99.614357,16.878566,99.9661124,17.1509399",0,0,18971898,6,,boundary
+Sawankhalok District,Sawankhalok District,อำเภอสวรรคโลก,"99.6656685,17.1651731,99.9835329,17.4916141",0,0,18971905,6,,boundary
+Na Chueak District,Na Chueak District,อำเภอนาเชือก,"102.9009678,15.6980607,103.1906117,15.9182124",0,0,18971909,6,,boundary
+Na Dun District,Na Dun District,อำเภอนาดูน,"103.1235513,15.6303306,103.3445987,15.8068069",0,0,18971922,6,,boundary
+Si Nakhon District,Si Nakhon District,อำเภอศรีนคร,"99.9080213,17.2505774,100.0309156,17.5214153",0,0,18971954,6,,boundary
+Phayakkhaphum Phisai District,Phayakkhaphum Phisai District,อำเภอพยัคฆภูมิพิสัย,"103.0451293,15.4059271,103.4266909,15.6566527",0,0,18971964,6,,boundary
+Wapi Pathum District,Wapi Pathum District,อำเภอวาปีปทุม,"103.149479,15.7089298,103.4882531,16.0162825",0,0,18971975,6,,boundary
+Yang Sisurat District,Yang Sisurat District,อำเภอยางสีสุราช,"102.9726304,15.592334,103.2151732,15.7125649",0,0,18971980,6,,boundary
+Don Tan District,Don Tan District,อำเภอดอนตาล,"104.6613544,16.1852237,104.9782867,16.4364749",0,0,18972006,6,,boundary
+Dong Luang District,Dong Luang District,อำเภอดงหลวง,"104.0701069,16.6599208,104.6604368,16.9067798",0,0,18972010,6,,boundary
+Sakhrai District,Sakhrai District,อำเภอสระใคร,"102.5957265,17.593769,102.8008078,17.7629551",0,0,18972032,6,,boundary
+Sang Khom District,Sang Khom District,อำเภอสร้างคอม,"102.9506612,17.6940894,103.1327356,17.8930057",0,0,18972063,6,,boundary
+Si Samrong District,Si Samrong District,อำเภอศรีสำโรง,"99.4589408,17.0595026,99.9846651,17.293782",0,0,18972082,6,,boundary
+Khamcha-i District,Khamcha-i District,อำเภอคำชะอี,"104.1731209,16.4623342,104.5159631,16.7624789",0,0,18972199,6,,boundary
+Sangkhom District,Sangkhom District,อำเภอสังคม,"102.0551399,17.9227445,102.402755,18.216105",0,0,18972219,6,,boundary
+Mueang Mukdahan District,Mueang Mukdahan District,อำเภอเมืองมุกดาหาร,"104.4348507,16.2703458,104.8599519,16.7958109",0,0,18972221,6,,boundary
+Nikhom Kham Soi District,Nikhom Kham Soi District,อำเภอนิคมคำสร้อย,"104.3989441,16.211091,104.6709544,16.4683581",0,0,18972243,6,,boundary
+Si Satchanalai District,Si Satchanalai District,อำเภอศรีสัชนาลัย,"99.4130427,17.3552016,99.9772282,17.8216562",0,0,18972264,6,,boundary
+Nong Sung District,Nong Sung District,อำเภอหนองสูง,"104.2210633,16.3228937,104.4752725,16.5458634",0,0,18972268,6,,boundary
+Wan Yai District,Wan Yai District,อำเภอหว้านใหญ่,"104.6923192,16.6264402,104.764049,16.8299471",0,0,18972275,6,,boundary
+Thung Saliam District,Thung Saliam District,อำเภอทุ่งเสลี่ยม,"99.4061586,17.2387947,99.7250099,17.5149083",0,0,18972277,6,,boundary
+Si Chiang Mai District,Si Chiang Mai District,อำเภอศรีเชียงใหม่,"102.3864303,17.8661168,102.614069,18.0018777",0,0,18972346,6,,boundary
+Buachet District,Buachet District,อำเภอบัวเชด,"103.8825355,14.3302335,104.0590575,14.6385732",0,0,18972438,6,,boundary
+Tha Bo District,Tha Bo District,อำเภอท่าบ่อ,"102.4288981,17.6651141,102.671828,17.9234365",0,0,18972478,6,,boundary
+Chom Phra District,Chom Phra District,อำเภอจอมพระ,"103.4182613,15.0457075,103.7385051,15.2212199",0,0,18972499,6,,boundary
+Ban Na District,Ban Na District,อำเภอบ้านนา,"100.9455194,14.1324028,101.1657239,14.4147316",0,0,18972508,6,,boundary
+Chumphon Buri District,Chumphon Buri District,อำเภอชุมพลบุรี,"103.0896049,15.2822924,103.5974965,15.4828546",0,0,18972550,6,,boundary
+Mueang Nakhon Nayok District,Mueang Nakhon Nayok District,อำเภอเมืองนครนายก,"101.0664362,14.0071436,101.4222089,14.5127993",0,0,18972556,6,,boundary
+Kapho,Kapho,,"101.4854432,6.5498586,101.5969476,6.6759234",0,0,18972558,6,,boundary
+Ongkharak District,Ongkharak District,อำเภอองครักษ์,"100.9135971,13.9612445,101.1733451,14.2430707",0,0,18972581,6,,boundary
+Pak Phli District,Pak Phli District,อำเภอปากพลี,"101.1781384,14.0428729,101.5054838,14.3904069",0,0,18972587,6,,boundary
+Ban Phaeng District,Ban Phaeng District,อำเภอบ้านแพง,"104.1117135,17.724867,104.3005486,18.0237398",0,0,18972609,6,,boundary
+Kap Choeng District,Kap Choeng District,อำเภอกาบเชิง,"103.3846473,14.3647012,103.7587446,14.5724215",0,0,18972641,6,,boundary
+Mueang Nakhon Phanom District,Mueang Nakhon Phanom District,อำเภอเมืองนครพนม,"104.4126431,17.1276327,104.806605,17.4914845",0,0,18972661,6,,boundary
+Khok Pho,Khok Pho,,"101.0173905,6.5956972,101.2240274,6.8015014",0,0,18972662,6,,boundary
+Na Kae District,Na Kae District,อำเภอนาแก,"104.2484014,16.8298453,104.6402578,17.0968433",0,0,18972680,6,,boundary
+Mae Lan,Mae Lan,,"101.1843066,6.6062611,101.2907608,6.723281",0,0,18972684,6,,boundary
+Mai Kaen,Mai Kaen,,"101.6314012,6.5680476,101.7254294,6.6738381",0,0,18972717,6,,boundary
+Na Thom District,Na Thom District,อำเภอนาทม,"103.9815476,17.7223208,104.1984129,17.9559291",0,0,18972723,6,,boundary
+Mayo,Mayo,,"101.3169667,6.5993668,101.5012398,6.7792394",0,0,18972733,6,,boundary
+Mueang Pattani,Mueang Pattani,,"101.1921814,6.802897,101.324898,6.9045944",0,0,18972765,6,,boundary
+Nong Chik,Nong Chik,,"101.0421292,6.6949833,101.2739836,6.8678826",0,0,18972840,6,,boundary
+Panare,Panare,,"101.4508397,6.7337,101.5955592,6.8820584",0,0,18972879,6,,boundary
+Na Wa District,Na Wa District,อำเภอนาหว้า,"104.0094654,17.375001,104.1989565,17.6517832",0,0,18975148,6,,boundary
+Lamduan District,Lamduan District,อำเภอลำดวน,"103.6017515,14.6286503,103.7846351,14.8041664",0,0,18975245,6,,boundary
+Phon Sawan District,Phon Sawan District,อำเภอโพนสวรรค์,"104.1785222,17.3614046,104.6475659,17.5562839",0,0,18975276,6,,boundary
+Sai Buri,Sai Buri,,"101.4866571,6.6235279,101.6640052,6.7818152",0,0,18975290,6,,boundary
+Pla Pak District,Pla Pak District,อำเภอปลาปาก,"104.3886784,17.0739528,104.6838859,17.3325095",0,0,18975296,6,,boundary
+Renu Nakhon District,Renu Nakhon District,อำเภอเรณูนคร,"104.5622229,16.9515104,104.7194706,17.16286",0,0,18975327,6,,boundary
+Thung Yang Daeng,Thung Yang Daeng,,"101.3726398,6.5680019,101.5158147,6.7126176",0,0,18975328,6,,boundary
+Yarang,Yarang,,"101.238384,6.5541145,101.3824436,6.8434447",0,0,18975345,6,,boundary
+Mueang Surin District,Mueang Surin District,อำเภอเมืองสุรินทร์,"103.2790415,14.6862295,103.6934874,15.1423599",0,0,18975352,6,,boundary
+Yaring,Yaring,,"101.2323652,6.7579059,101.4821231,6.9517593",0,0,18975386,6,,boundary
+Si Songkhram District,Si Songkhram District,อำเภอศรีสงคราม,"104.0592428,17.5011853,104.4178597,17.7937814",0,0,18975407,6,,boundary
+Non Narai District,Non Narai District,อำเภอโนนนารายณ์,"103.8407905,15.1094102,103.9887036,15.2890249",0,0,18975416,6,,boundary
+Kapong District,Kapong District,อำเภอกะปง,"98.311036,8.6023864,98.6015279,8.8952552",0,0,18975418,6,,boundary
+Tha Uthen District,Tha Uthen District,อำเภอท่าอุเทน,"104.2782794,17.4269395,104.7290629,17.8480206",0,0,18975434,6,,boundary
+That Phanom District,That Phanom District,อำเภอธาตุพนม,"104.6283292,16.7871073,104.7881591,17.1793192",0,0,18975447,6,,boundary
+Wang Yang District,Wang Yang District,อำเภอวังยาง,"104.3513039,17.0015085,104.5295606,17.1386542",0,0,18975513,6,,boundary
+Ban Lueam District,Ban Lueam District,อำเภอบ้านเหลื่อม,"102.0330633,15.5015878,102.2501922,15.648053",0,0,18975531,6,,boundary
+Bua Lai District,Bua Lai District,อำเภอบัวลาย,"102.418895,15.6099293,102.6047896,15.728309",0,0,18975550,6,,boundary
+Phanom Dong Rak District,Phanom Dong Rak District,อำเภอพนมดงรัก,"103.2111864,14.3267099,103.4119802,14.5399044",0,0,18975589,6,,boundary
+Bua Yai District,Bua Yai District,อำเภอบัวใหญ่,"102.2307279,15.4583166,102.524254,15.734019",0,0,18975605,6,,boundary
+Chakkarat District,Chakkarat District,อำเภอจักราช,"102.3122366,14.8022107,102.5676054,15.1338688",0,0,18975752,6,,boundary
+Prasat District,Prasat District,อำเภอปราสาท,"103.20996,14.4824842,103.6307421,14.775357",0,0,18975840,6,,boundary
+Khura Buri District,Khura Buri District,อำเภอคุระบุรี,"97.6310015,8.4753332,98.5311997,9.4789447",0,0,18975845,6,,boundary
+Rattanaburi District,Rattanaburi District,อำเภอรัตนบุรี,"103.7592292,15.2013612,104.0921379,15.4687264",0,0,18975899,6,,boundary
+Chok Chai District,Chok Chai District,อำเภอโชคชัย,"102.103293,14.5907815,102.3207911,14.9183274",0,0,18975902,6,,boundary
+Chum Phuang District,Chum Phuang District,อำเภอชุมพวง,"102.6123306,15.0801979,102.8745771,15.4527927",0,0,18975990,6,,boundary
+Samrong Thap District,Samrong Thap District,อำเภอสำโรงทาบ,"103.8492542,14.9033845,104.0210458,15.1628435",0,0,18975998,6,,boundary
+Sangkha District,Sangkha District,อำเภอสังขะ,"103.6223399,14.3359239,104.0562225,14.7487767",0,0,18976059,6,,boundary
+Dan Khun Thot District,Dan Khun Thot District,อำเภอด่านขุนทด,"101.3875836,15.0513292,101.9336566,15.4210696",0,0,18976061,6,,boundary
+Huai Thalaeng District,Huai Thalaeng District,อำเภอห้วยแถลง,"102.4840691,14.9337202,102.8048174,15.1678046",0,0,18976077,6,,boundary
+Ko Yao District,Ko Yao District,อำเภอเกาะยาว,"98.4859336,7.7445975,98.6641344,8.2406088",0,0,18976094,6,,boundary
+Sanom District,Sanom District,อำเภอสนม,"103.6995143,15.0977814,103.8651678,15.2947587",0,0,18976097,6,,boundary
+Kaeng Sanam Nang District,Kaeng Sanam Nang District,อำเภอแก้งสนามนาง,"102.1188329,15.6072801,102.3640515,15.808174",0,0,18976106,6,,boundary
+Kham Sakaesaeng District,Kham Sakaesaeng District,อำเภอขามสะแกแสง,"102.0440214,15.278548,102.2962498,15.4661715",0,0,18976110,6,,boundary
+Khon Buri District,Khon Buri District,อำเภอครบุรี,"101.966555,14.1203894,102.4316246,14.6505909",0,0,18976193,6,,boundary
+Si Narong District,Si Narong District,อำเภอศรีณรงค์,"103.7592388,14.6874393,104.0041403,14.8996332",0,0,18976223,6,,boundary
+Khong District,Khong District,อำเภอคง,"102.009999,15.2712079,102.5290929,15.547727",0,0,18976229,6,,boundary
+Lam Thamenchai District,Lam Thamenchai District,อำเภอลำทะเมนชัย,"102.82482,15.1659295,102.9863581,15.4054555",0,0,18976244,6,,boundary
+Sikhoraphum District,Sikhoraphum District,อำเภอศีขรภูมิ,"103.6614297,14.7693169,103.928134,15.1335303",0,0,18976251,6,,boundary
+Mueang Phang-nga District,Mueang Phang-nga District,อำเภอเมืองพังงา,"98.3678507,8.2799326,98.6187198,8.6625942",0,0,18976260,6,,boundary
+Mueang Nakhon Ratchasima District,Mueang Nakhon Ratchasima District,อำเภอเมืองนครราชสีมา,"101.9324307,14.789613,102.2305653,15.1405753",0,0,18976278,6,,boundary
+Mueang Yang District,Mueang Yang District,อำเภอเมืองยาง,"102.7544412,15.3617044,103.0125606,15.5231009",0,0,18976285,6,,boundary
+Non Daeng District,Non Daeng District,อำเภอโนนแดง,"102.4314627,15.3716569,102.6106589,15.5356643",0,0,18976416,6,,boundary
+Tha Tum District,Tha Tum District,อำเภอท่าตูม,"103.4285186,15.1526893,103.829436,15.4688547",0,0,18976439,6,,boundary
+Non Sung District,Non Sung District,อำเภอโนนสูง,"102.1205348,15.029298,102.4355025,15.3844603",0,0,18976448,6,,boundary
+Takua Pa District,Takua Pa District,อำเภอตะกั่วป่า,"97.796195,8.6166246,98.4571429,9.0151411",0,0,18976456,6,,boundary
+Non Thai District,Non Thai District,อำเภอโนนไทย,"101.8678707,15.0723025,102.1781479,15.3116429",0,0,18976461,6,,boundary
+Ban Tak District,Ban Tak District,อำเภอบ้านตาก,"98.8242921,16.9128711,99.3215115,17.4066878",0,0,18976465,6,,boundary
+Nong Bun Mak District,Nong Bun Mak District,อำเภอหนองบุญมาก,"102.2614916,14.5919411,102.4771035,14.8562986",0,0,18976466,6,,boundary
+Pak Chong District,Pak Chong District,อำเภอปากช่อง,"101.1810138,14.3837057,101.7439627,14.9027798",0,0,18976477,6,,boundary
+Mae Ramat District,Mae Ramat District,อำเภอแม่ระมาด,"98.3224772,16.8269862,98.9122799,17.2944018",0,0,18976480,6,,boundary
+Mae Sot District,Mae Sot District,อำเภอแม่สอด,"98.4621702,16.5334286,98.9657551,16.9778373",0,0,18976535,6,,boundary
+Mueang Tak District,Mueang Tak District,อำเภอเมืองตาก,"98.8268815,16.5600015,99.4670352,17.2139557",0,0,18976554,6,,boundary
+Pak Thong Chai District,Pak Thong Chai District,อำเภอปักธงชัย,"101.7031448,14.4986528,102.1364325,14.8447438",0,0,18976574,6,,boundary
+Phop Phra District,Phop Phra District,อำเภอพบพระ,"98.5968683,16.268607,99.0373152,16.6416044",0,0,18976634,6,,boundary
+Sam Ngao District,Sam Ngao District,อำเภอสามเงา,"98.4911885,17.1309616,99.2258738,17.8345414",0,0,18976675,6,,boundary
+Takua Thung District,Takua Thung District,อำเภอตะกั่วทุ่ง,"98.2687468,8.115913,98.5125829,8.4647975",0,0,18976712,6,,boundary
+Phimai District,Phimai District,อำเภอพิมาย,"102.3667634,15.0678497,102.7122011,15.4861128",0,0,18976719,6,,boundary
+Phra Thong Kham District,Phra Thong Kham District,อำเภอพระทองคำ,"101.8762922,15.2208499,102.1106179,15.4646213",0,0,18976754,6,,boundary
+Tha Song Yang District,Tha Song Yang District,อำเภอท่าสองยาง,"97.742169,17.0669678,98.4715123,17.8679172",0,0,18976763,6,,boundary
+Prathai District,Prathai District,อำเภอประทาย,"102.5913198,15.4304629,102.8414974,15.728592",0,0,18976830,6,,boundary
+Umphang District,Umphang District,อำเภออุ้มผาง,"98.548287,15.1799534,99.1388565,16.3901186",0,0,18976831,6,,boundary
+Sida District,Sida District,อำเภอสีดา,"102.4603125,15.4619865,102.623738,15.6697891",0,0,18976841,6,,boundary
+Wang Chao District,Wang Chao District,อำเภอวังเจ้า,"98.9683378,16.4304215,99.2748498,16.8014936",0,0,18976851,6,,boundary
+Thai Mueang District,Thai Mueang District,อำเภอท้ายเหมือง,"98.2051427,8.301685,98.4256359,8.6529462",0,0,18976866,6,,boundary
+Thap Put District,Thap Put District,อำเภอทับปุด,"98.5486619,8.3746649,98.7077538,8.6617399",0,0,18976977,6,,boundary
+Bang Kaeo District,Bang Kaeo District,อำเภอบางแก้ว,"100.0987469,7.3525335,100.2816344,7.4792438",0,0,18988525,6,,boundary
+Sikhio District,Sikhio District,อำเภอสีคิ้ว,"101.396002,14.6931248,101.7869966,15.1158029",0,0,18988537,6,,boundary
+Khao Chaison District,Khao Chaison District,อำเภอเขาชัยสน,"99.994013,7.3565943,100.2761831,7.5762274",0,0,18988552,6,,boundary
+Soeng Sang District,Soeng Sang District,อำเภอเสิงสาง,"102.3554502,14.1446657,102.6862954,14.6145456",0,0,18988567,6,,boundary
+Khuan Khanun District,Khuan Khanun District,อำเภอควนขนุน,"99.9061306,7.6353847,100.2184351,7.8792462",0,0,18988609,6,,boundary
+Thepharak District,Thepharak District,อำเภอเทพารักษ์,"101.3804244,15.2008788,101.6409649,15.4038843",0,0,18988689,6,,boundary
+Kong Ra District,Kong Ra District,อำเภอกงหรา,"99.8474926,7.3128879,100.0313874,7.5304145",0,0,18988714,6,,boundary
+Wang Nam Khiao District,Wang Nam Khiao District,อำเภอวังน้ำเขียว,"101.6183368,14.2277924,102.070327,14.64426",0,0,18988716,6,,boundary
+Hat Samran District,Hat Samran District,อำเภอหาดสำราญ,"99.5217662,7.1319888,99.6420145,7.3211111",0,0,18988747,6,,boundary
+Banphot Phisai District,Banphot Phisai District,อำเภอบรรพตพิสัย,"99.8046961,15.8382662,100.163375,16.1912575",0,0,18988764,6,,boundary
+Mueang Phatthalung District,Mueang Phatthalung District,อำเภอเมืองพัทลุง,"99.9701051,7.4388391,100.2333147,7.7381298",0,0,18988818,6,,boundary
+Chum Saeng District,Chum Saeng District,อำเภอชุมแสง,"100.1602503,15.6929035,100.4612346,15.9878314",0,0,18988819,6,,boundary
+Huai Yot District,Huai Yot District,อำเภอห้วยยอด,"99.4181716,7.6486339,99.8195814,7.9304781",0,0,18988831,6,,boundary
+Chum Ta Bong District,Chum Ta Bong District,อำเภอชุมตาบง,"99.4458537,15.5617814,99.6693914,15.7676099",0,0,18988839,6,,boundary
+Kao Liao District,Kao Liao District,อำเภอเก้าเลี้ยว,"99.9932082,15.807905,100.1881923,15.9601344",0,0,18988848,6,,boundary
+Pa Bon District,Pa Bon District,อำเภอป่าบอน,"99.9565977,7.0903324,100.316734,7.3822206",0,0,18988871,6,,boundary
+Krok Phra District,Krok Phra District,อำเภอโกรกพระ,"99.9324771,15.4837269,100.1412882,15.6820293",0,0,18988977,6,,boundary
+Sap Yai District,Sap Yai District,อำเภอซับใหญ่,"101.4716593,15.5367501,101.7467665,15.6915318",0,0,18988990,6,,boundary
+Mae Poen District,Mae Poen District,อำเภอแม่เปิน,"99.2134922,15.5639223,99.5126422,15.7973167",0,0,18988997,6,,boundary
+Pa Phayom District,Pa Phayom District,อำเภอป่าพะยอม,"99.7327032,7.7435383,99.9940222,7.9057409",0,0,18989001,6,,boundary
+Kantang District,Kantang District,อำเภอกันตัง,"99.0526566,7.1964082,99.6159162,7.5432812",0,0,18989003,6,,boundary
+Mueang Nakhon Sawan District,Mueang Nakhon Sawan District,อำเภอเมืองนครสวรรค์,"99.8914551,15.5604445,100.3384922,15.848874",0,0,18989005,6,,boundary
+Thep Sathit District,Thep Sathit District,อำเภอเทพสถิต,"101.3696886,15.3314025,101.6596987,15.8880899",0,0,18989014,6,,boundary
+Pak Phayun District,Pak Phayun District,อำเภอปากพะยูน,"100.1892381,7.2313491,100.4286995,7.5278199",0,0,18989033,6,,boundary
+Mueang Trang District,Mueang Trang District,อำเภอเมืองตรัง,"99.4627881,7.4656502,99.8111169,7.7184919",0,0,18989036,6,,boundary
+Na Yong District,Na Yong District,อำเภอนาโยง,"99.665201,7.4725157,99.8374186,7.6445691",0,0,18989058,6,,boundary
+Kaeng Hang Maeo District,Kaeng Hang Maeo District,อำเภอแก่งหางแมว,"101.6847178,12.8341324,102.0581505,13.3332549",0,0,18989064,6,,boundary
+Tamot District,Tamot District,อำเภอตะโหมด,"99.932106,7.1982941,100.136454,7.3734811",0,0,18989072,6,,boundary
+Nong Bua District,Nong Bua District,อำเภอหนองบัว,"100.4028595,15.7389292,100.8126204,16.0268565",0,0,18989073,6,,boundary
+Phaisali District,Phaisali District,อำเภอไพศาลี,"100.5115542,15.334274,100.8334897,15.7827132",0,0,18989111,6,,boundary
+Palian District,Palian District,อำเภอปะเหลียน,"99.3919011,6.9730226,99.9491068,7.3769495",0,0,18989113,6,,boundary
+Ratsada District,Ratsada District,อำเภอรัษฎา,"99.5607528,7.8453606,99.7572566,8.0129037",0,0,18989143,6,,boundary
+Phayuha Khiri District,Phayuha Khiri District,อำเภอพยุหะคีรี,"100.0130277,15.3633847,100.4100078,15.6371147",0,0,18989161,6,,boundary
+Tak Fa District,Tak Fa District,อำเภอตากฟ้า,"100.3273384,15.2380404,100.6344719,15.5383013",0,0,18989200,6,,boundary
+Sikao District,Sikao District,อำเภอสิเกา,"99.2327158,7.4001541,99.5195618,7.8253023",0,0,18989202,6,,boundary
+Khao Khitchakut District,Khao Khitchakut District,อำเภอเขาคิชฌกูฏ,"101.9570533,12.7355662,102.2335212,13.197614",0,0,18989211,6,,boundary
+Wang Wiset District,Wang Wiset District,อำเภอวังวิเศษ,"99.2781671,7.5619419,99.5650608,7.9449666",0,0,18989250,6,,boundary
+Takhli District,Takhli District,อำเภอตาคลี,"100.214167,15.0664511,100.6202206,15.4544992",0,0,18989261,6,,boundary
+Tha Tako District,Tha Tako District,อำเภอท่าตะโก,"100.2867739,15.4066782,100.6179249,15.8317223",0,0,18989273,6,,boundary
+Bang Khan District,Bang Khan District,อำเภอบางขัน,"99.3652246,7.87454,99.6066341,8.1440135",0,0,18989327,6,,boundary
+Yan Ta Khao District,Yan Ta Khao District,อำเภอย่านตาขาว,"99.5807118,7.3343246,99.9053275,7.5199165",0,0,18989340,6,,boundary
+Cha-uat District,Cha-uat District,อำเภอชะอวด,"99.7378997,7.8380376,100.1774952,8.1267656",0,0,18989358,6,,boundary
+Su-Ngai Padi,Su-Ngai Padi,,"101.7944922,5.9771989,102.022708,6.2778512",0,0,18989363,6,,boundary
+Sukhirin,Sukhirin,,"101.618224,5.732906,101.82686,6.0893244",0,0,18989392,6,,boundary
+Chaloem Phra Kiat District,Chaloem Phra Kiat District,อำเภอเฉลิมพระเกียรติ,"99.9316208,8.0531267,100.1257923,8.2667685",0,0,18989419,6,,boundary
+Tak Bai,Tak Bai,,"101.8976548,6.1050148,102.0932536,6.3728904",0,0,18989425,6,,boundary
+Chang Klang District,Chang Klang District,อำเภอช้างกลาง,"99.5173327,8.2707715,99.7207117,8.4551837",0,0,18989428,6,,boundary
+Waeng,Waeng,,"101.795422,5.7669172,101.9492514,6.0157195",0,0,18989434,6,,boundary
+Chawang District,Chawang District,อำเภอฉวาง,"99.4136948,8.3480394,99.7032803,8.6506578",0,0,18989441,6,,boundary
+Si Banphot District,Si Banphot District,อำเภอศรีบรรพต,"99.78373,7.5952893,99.9781118,7.7913601",0,0,18989463,6,,boundary
+Chian Yai District,Chian Yai District,อำเภอเชียรใหญ่,"100.0527916,8.0093009,100.2596074,8.2295341",0,0,18989481,6,,boundary
+Chulabhorn District,Chulabhorn District,อำเภอจุฬาภรณ์,"99.7698433,8.0075584,99.9625834,8.1502071",0,0,18989484,6,,boundary
+Yi-Ngo,Yi-Ngo,,"101.6232285,6.3473937,101.7856949,6.4999496",0,0,18989500,6,,boundary
+Hua Sai District,Hua Sai District,อำเภอหัวไทร,"100.1396203,7.8764791,100.3363172,8.1786987",0,0,18989502,6,,boundary
+Khanom District,Khanom District,อำเภอขนอม,"99.7198809,9.0817724,99.9094861,9.3262424",0,0,18989507,6,,boundary
+Ban Na San District,Ban Na San District,อำเภอบ้านนาสาร,"99.2222164,8.6686057,99.5600667,8.9983064",0,0,18989513,6,,boundary
+Lan Saka District,Lan Saka District,อำเภอลานสกา,"99.6965472,8.2596059,99.898453,8.4942674",0,0,18989544,6,,boundary
+Ban Ta Khun District,Ban Ta Khun District,อำเภอบ้านตาขุน,"98.4729809,8.8681698,98.9496722,9.3679223",0,0,18989551,6,,boundary
+Chai Buri District,Chai Buri District,อำเภอชัยบุรี,"98.9318713,8.3594953,99.206051,8.5578914",0,0,18989572,6,,boundary
+Chaiya District,Chaiya District,อำเภอไชยา,"98.8077407,9.3330661,99.3138325,9.5551195",0,0,18989779,6,,boundary
+Don Sak District,Don Sak District,อำเภอดอนสัก,"99.5679731,9.0297159,99.7732573,9.4337056",0,0,18989816,6,,boundary
+Kanchanadit District,Kanchanadit District,อำเภอกาญจนดิษฐ์,"99.3651789,8.8767854,99.7445,9.2865667",0,0,18989863,6,,boundary
+Mueang Nakhon Si Thammarat District,Mueang Nakhon Si Thammarat District,อำเภอเมืองนครศรีธรรมราช,"99.7982125,8.2470139,100.0956017,8.603301",0,0,18990065,6,,boundary
+Ko Pha-ngan District,Ko Pha-ngan District,อำเภอเกาะพะงัน,"99.8103854,9.6656703,100.0817729,10.1262155",0,0,18990102,6,,boundary
+Na Bon District,Na Bon District,อำเภอนาบอน,"99.4628408,8.1973589,99.6815338,8.3666458",0,0,18990114,6,,boundary
+Nopphitam District,Nopphitam District,อำเภอนบพิตำ,"99.5176035,8.5931152,99.8631833,8.9288196",0,0,18990134,6,,boundary
+Ko Samui District,Ko Samui District,อำเภอเกาะสมุย,"99.6501267,9.3032731,100.0906824,9.8012757",0,0,18990148,6,,boundary
+Pak Phanang District,Pak Phanang District,อำเภอปากพนัง,"100.0190521,8.1709893,100.294972,8.5227619",0,0,18990150,6,,boundary
+Phipun District,Phipun District,อำเภอพิปูน,"99.474145,8.4822039,99.7449115,8.7226539",0,0,18990163,6,,boundary
+Mueang Surat Thani District,Mueang Surat Thani District,อำเภอเมืองสุราษฎร์ธานี,"99.2187867,8.9558587,99.3959488,9.2445771",0,0,18990179,6,,boundary
+Phanom District,Phanom District,อำเภอพนม,"98.4430989,8.6256862,98.9202426,8.9851101",0,0,18993305,6,,boundary
+Phra Phrom District,Phra Phrom District,อำเภอพระพรหม,"99.8600965,8.2534746,100.0044627,8.3969248",0,0,18993308,6,,boundary
+Phrom Khiri District,Phrom Khiri District,อำเภอพรหมคีรี,"99.7078727,8.4696375,99.9509553,8.6279472",0,0,18993342,6,,boundary
+Ron Phibun District,Ron Phibun District,อำเภอร่อนพิบูลย์,"99.7553438,8.0679546,100.032911,8.3234784",0,0,18993361,6,,boundary
+Phrasaeng District,Phrasaeng District,อำเภอพระแสง,"98.8879765,8.3007892,99.295493,8.7176706",0,0,18993395,6,,boundary
+Sichon District,Sichon District,อำเภอสิชล,"99.6416092,8.8060837,99.9291352,9.1241294",0,0,18993402,6,,boundary
+Tha Sala District,Tha Sala District,อำเภอท่าศาลา,"99.7582248,8.5429823,99.9827854,8.8691432",0,0,18993409,6,,boundary
+Tham Phannara District,Tham Phannara District,อำเภอถ้ำพรรณรา,"99.2901585,8.3870474,99.4550625,8.5527807",0,0,18993413,6,,boundary
+Thung Song District,Thung Song District,อำเภอทุ่งสง,"99.4260205,7.8608851,99.829313,8.3015816",0,0,18993445,6,,boundary
+Thung Yai District,Thung Yai District,อำเภอทุ่งใหญ่,"99.2344106,8.1098503,99.4884934,8.4711906",0,0,18993471,6,,boundary
+Ban Luang District,Ban Luang District,อำเภอบ้านหลวง,"100.3358982,18.7281673,100.5390996,18.9861425",0,0,18993518,6,,boundary
+Bo Kluea District,Bo Kluea District,อำเภอบ่อเกลือ,"101.0595335,18.8884455,101.357205,19.3637908",0,0,18993577,6,,boundary
+Phunphin District,Phunphin District,อำเภอพุนพิน,"99.0095697,8.8026697,99.3230788,9.2463314",0,0,18993601,6,,boundary
+Chaloem Phra Kiat District,Chaloem Phra Kiat District,อำเภอเฉลิมพระเกียรติ,"100.9613334,19.3464629,101.28785,19.629984",0,0,18993609,6,,boundary
+Tha Chang,Tha Chang,,"98.6474112,9.1787745,99.240063,9.5379012",0,0,18993629,6,,boundary
+Chiang Klang District,Chiang Klang District,อำเภอเชียงกลาง,"100.775619,19.2160429,101.0468022,19.3824971",0,0,18993682,6,,boundary
+Vibhavadi District,Vibhavadi District,อำเภอวิภาวดี,"98.6472016,9.1215649,99.026557,9.3650588",0,0,18993691,6,,boundary
+Wiang Sa District,Wiang Sa District,อำเภอเวียงสระ,"99.2505484,8.4705054,99.498529,8.7067977",0,0,18993711,6,,boundary
+Bang Mun Nak District,Bang Mun Nak District,อำเภอบางมูลนาก,"100.300367,15.9298525,100.5424584,16.1590694",0,0,18993725,6,,boundary
+Dong Charoen District,Dong Charoen District,อำเภอดงเจริญ,"100.49294,15.9189533,100.7992717,16.0800548",0,0,18993752,6,,boundary
+Mueang Phichit District,Mueang Phichit District,อำเภอเมืองพิจิตร,"100.2259111,16.2516765,100.5299546,16.5541821",0,0,18993782,6,,boundary
+Khlung District,Khlung District,อำเภอขลุง,"102.1475037,12.2858558,102.4911673,12.8138576",0,0,18993797,6,,boundary
+Mae Charim District,Mae Charim District,อำเภอแม่จริม,"100.914271,18.521494,101.272742,18.9009576",0,0,18993839,6,,boundary
+Pho Thale District,Pho Thale District,อำเภอโพทะเล,"100.1085618,15.9269257,100.3723747,16.1920657",0,0,18993849,6,,boundary
+Laem Sing District,Laem Sing District,อำเภอแหลมสิงห์,"101.9760627,12.3578387,102.2218531,12.5525412",0,0,18993850,6,,boundary
+Mueang Nan District,Mueang Nan District,อำเภอเมืองน่าน,"100.4551673,18.668068,100.836696,19.0619591",0,0,18993856,6,,boundary
+Sak Lek District,Sak Lek District,อำเภอสากเหล็ก,"100.4082802,16.4329131,100.5874594,16.5857798",0,0,18993893,6,,boundary
+Makham District,Makham District,อำเภอมะขาม,"102.1014239,12.5904461,102.3339413,12.8851522",0,0,18993895,6,,boundary
+Na Muen District,Na Muen District,อำเภอนาหมื่น,"100.3922921,18.0129908,100.8745682,18.2609726",0,0,18993896,6,,boundary
+Thap Khlo District,Thap Khlo District,อำเภอทับคล้อ,"100.4860204,16.0567254,100.7198439,16.3271949",0,0,18993938,6,,boundary
+Na Noi District,Na Noi District,อำเภอนาน้อย,"100.4756324,18.1189882,101.0854165,18.4473975",0,0,18993955,6,,boundary
+Taphan Hin District,Taphan Hin District,อำเภอตะพานหิน,"100.2519594,16.0889379,100.5825465,16.3096824",0,0,18993959,6,,boundary
+Wang Sai Phun District,Wang Sai Phun District,อำเภอวังทรายพูน,"100.4021343,16.2936153,100.6359343,16.4672165",0,0,18993974,6,,boundary
+Phu Phiang District,Phu Phiang District,อำเภอภูเพียง,"100.7561039,18.6682649,100.9854123,18.9315891",0,0,18993989,6,,boundary
+Bang Krathum District,Bang Krathum District,อำเภอบางกระทุ่ม,"100.2152198,16.5185406,100.4846052,16.7092899",0,0,18993990,6,,boundary
+Chat Trakan District,Chat Trakan District,อำเภอชาติตระการ,"100.370858,17.1002612,101.00901,17.742971",0,0,18994023,6,,boundary
+Mueang Phitsanulok District,Mueang Phitsanulok District,อำเภอเมืองพิษณุโลก,"100.1138009,16.6315066,100.5001799,16.9776392",0,0,18994043,6,,boundary
+Nakhon Thai District,Nakhon Thai District,อำเภอนครไทย,"100.5964094,16.7913988,101.1099853,17.4684856",0,0,18994078,6,,boundary
+Noen Maprang District,Noen Maprang District,อำเภอเนินมะปราง,"100.5572093,16.3186851,100.8865244,16.795731",0,0,18994126,6,,boundary
+Pua District,Pua District,อำเภอปัว,"100.783938,18.9590478,101.1302825,19.3827327",0,0,18994132,6,,boundary
+Phrom Phiram District,Phrom Phiram District,อำเภอพรหมพิราม,"99.9512994,16.9072095,100.3265331,17.223086",0,0,18994188,6,,boundary
+Mueang Chanthaburi District,Mueang Chanthaburi District,อำเภอเมืองจันทบุรี,"102.0221776,12.5110158,102.2119963,12.7486313",0,0,18994223,6,,boundary
+Wang Thong District,Wang Thong District,อำเภอวังทอง,"100.3002833,16.5515301,100.9425623,17.1485223",0,0,18994261,6,,boundary
+Na Yai Am District,Na Yai Am District,อำเภอนายายอาม,"101.7842086,12.5876204,101.9608113,12.9207042",0,0,18994273,6,,boundary
+Wat Bot District,Wat Bot District,อำเภอวัดโบสถ์,"100.2585947,16.9281274,100.5262775,17.39263",0,0,18994274,6,,boundary
+Bueng Sam Phan District,Bueng Sam Phan District,อำเภอบึงสามพัน,"100.791634,15.7072839,101.3745972,15.9446995",0,0,18994331,6,,boundary
+Chon Daen District,Chon Daen District,อำเภอชนแดน,"100.6329722,15.8926968,100.9943143,16.331548",0,0,18994345,6,,boundary
+Pong Nam Ron District,Pong Nam Ron District,อำเภอโป่งน้ำร้อน,"102.1547929,12.7518598,102.5358859,13.1612838",0,0,18994387,6,,boundary
+Santi Suk District,Santi Suk District,อำเภอสันติสุข,"100.8097338,18.8455955,101.1737796,18.9939949",0,0,18994397,6,,boundary
+Soi Dao District,Soi Dao District,อำเภอสอยดาว,"102.0260677,13.0384089,102.3993476,13.336181",0,0,18994402,6,,boundary
+Tha Mai District,Tha Mai District,อำเภอท่าใหม่,"101.8587393,12.5093467,102.0842973,12.9264545",0,0,18994426,6,,boundary
+Song Khwae District,Song Khwae District,อำเภอสองแคว,"100.4847499,19.2677247,100.7985131,19.5571799",0,0,18994430,6,,boundary
+Khao Kho District,Khao Kho District,อำเภอเขาค้อ,"100.8336208,16.4662885,101.1159522,16.9075824",0,0,18994437,6,,boundary
+Tha Wang Pha District,Tha Wang Pha District,อำเภอท่าวังผา,"100.5635113,18.9752296,100.9898611,19.3125046",0,0,18994442,6,,boundary
+Lom Kao District,Lom Kao District,อำเภอหล่มเก่า,"101.0557312,16.8064327,101.5042793,17.1780001",0,0,18994452,6,,boundary
+Wiang Sa District,Wiang Sa District,อำเภอเวียงสา,"100.3515796,18.3365701,101.103581,18.7841242",0,0,18994454,6,,boundary
+Thung Chang District,Thung Chang District,อำเภอทุ่งช้าง,"100.7429362,19.3374502,101.0962445,19.63407",0,0,18994457,6,,boundary
+Lom Sak District,Lom Sak District,อำเภอหล่มสัก,"101.0469623,16.5457075,101.5262635,16.9391517",0,0,18994461,6,,boundary
+Chai Prakan District,Chai Prakan District,อำเภอไชยปราการ,"99.0102646,19.5607971,99.3440818,19.8321928",0,0,18994462,6,,boundary
+Mueang Phetchabun District,Mueang Phetchabun District,อำเภอเมืองเพชรบูรณ์,"100.7929992,16.090517,101.5195486,16.6451647",0,0,18994503,6,,boundary
+Si Racha District,Si Racha District,อำเภอศรีราชา,"100.8717522,13.0014329,101.2202878,13.2818523",0,0,18994506,6,,boundary
+Chiang Dao District,Chiang Dao District,อำเภอเชียงดาว,"98.5730032,19.2579443,99.1586212,19.813616",0,0,18994523,6,,boundary
+Nam Nao District,Nam Nao District,อำเภอน้ำหนาว,"101.3989407,16.6478205,101.7972481,17.045228",0,0,18994546,6,,boundary
+Chom Thong District,Chom Thong District,อำเภอจอมทอง,"98.4206142,18.1493648,98.7856476,18.5998734",0,0,18994564,6,,boundary
+Doi Lo District,Doi Lo District,อำเภอดอยหล่อ,"98.6239849,18.4312873,98.8589896,18.6218205",0,0,18994611,6,,boundary
+Doi Saket District,Doi Saket District,อำเภอดอยสะเก็ด,"99.0511591,18.7682457,99.4018034,19.0956496",0,0,18994780,6,,boundary
+Nong Phai District,Nong Phai District,อำเภอหนองไผ่,"100.8861192,15.866121,101.3792455,16.1927323",0,0,18996782,6,,boundary
+Si Thep District,Si Thep District,อำเภอศรีเทพ,"100.9241705,15.3182958,101.3116182,15.5754585",0,0,18996786,6,,boundary
+Wang Pong District,Wang Pong District,อำเภอวังโป่ง,"100.6492584,16.2474815,100.9942183,16.4510099",0,0,18996795,6,,boundary
+Doi Tao District,Doi Tao District,อำเภอดอยเต่า,"98.4302728,17.7771108,98.8706889,18.0809689",0,0,18996802,6,,boundary
+Wichian Buri District,Wichian Buri District,อำเภอวิเชียรบุรี,"100.807835,15.4822636,101.3600853,15.8711535",0,0,18996814,6,,boundary
+Fang District,Fang District,อำเภอฝาง,"99.021834,19.7116723,99.366197,20.1071732",0,0,18996823,6,,boundary
+Galyani Vadhana District,Galyani Vadhana District,อำเภอกัลยาณิวัฒนา,"98.1062612,18.8690821,98.4800497,19.160888",0,0,18996833,6,,boundary
+Sattahip District,Sattahip District,อำเภอสัตหีบ,"100.6976414,12.5081085,101.0154823,12.8666898",0,0,18996908,6,,boundary
+Phanat Nikhom District,Phanat Nikhom District,อำเภอพนัสนิคม,"101.1036198,13.3138289,101.3765282,13.5894002",0,0,18996916,6,,boundary
+Hang Dong District,Hang Dong District,อำเภอหางดง,"98.7800378,18.5882575,98.9874526,18.8603784",0,0,18996921,6,,boundary
+Kapoe District,Kapoe District,อำเภอกะเปอร์,"98.4610069,9.4479198,98.7685334,9.7135625",0,0,18996972,6,,boundary
+Hot District,Hot District,อำเภอฮอด,"98.1558172,17.8996338,98.8135584,18.2884536",0,0,18996974,6,,boundary
+Kra Buri District,Kra Buri District,อำเภอกระบุรี,"98.7066294,10.1992932,98.9649265,10.7884482",0,0,18997003,6,,boundary
+Samoeng District,Samoeng District,อำเภอสะเมิง,"98.4094768,18.7266003,98.8192805,19.0764005",0,0,18997025,6,,boundary
+Phan Thong District,Phan Thong District,อำเภอพานทอง,"101.0084469,13.3597017,101.140267,13.5699144",0,0,18997026,6,,boundary
+La-un District,La-un District,อำเภอละอุ่น,"98.6757545,9.9159594,98.9063377,10.2288995",0,0,18997068,6,,boundary
+Saraphi District,Saraphi District,อำเภอสารภี,"98.9533945,18.6136187,99.0811814,18.7688672",0,0,18997072,6,,boundary
+Nong Yai District,Nong Yai District,อำเภอหนองใหญ่,"101.2191414,13.0233156,101.5469288,13.2821528",0,0,18997074,6,,boundary
+Mae Ai District,Mae Ai District,อำเภอแม่อาย,"99.1254464,19.7747171,99.5729134,20.14758",0,0,18997092,6,,boundary
+Mae Chaem District,Mae Chaem District,อำเภอแม่แจ่ม,"98.0739894,18.2095743,98.559751,18.9383121",0,0,18997105,6,,boundary
+Mueang Chon Buri District,Mueang Chon Buri District,อำเภอเมืองชลบุรี,"100.8974872,13.2287909,101.0772517,13.473835",0,0,18997107,6,,boundary
+Mae On District,Mae On District,อำเภอแม่ออน,"99.2072704,18.5321719,99.3914518,18.9217162",0,0,18997119,6,,boundary
+Mueang Ranong District,Mueang Ranong District,อำเภอเมืองระนอง,"98.3791422,9.6157091,98.7573241,10.1833725",0,0,18997125,6,,boundary
+Ko Si Chang District,Ko Si Chang District,อำเภอเกาะสีชัง,"100.7978182,13.1085482,100.8347924,13.1895636",0,0,18997142,6,,boundary
+Mae Rim District,Mae Rim District,อำเภอแม่ริม,"98.7473912,18.8316336,99.0011746,19.0763146",0,0,19033631,6,,boundary
+Mae Taeng District,Mae Taeng District,อำเภอแม่แตง,"98.5679644,19.0250107,99.1550066,19.3540365",0,0,19033648,6,,boundary
+Mae Wang District,Mae Wang District,อำเภอแม่วาง,"98.4870731,18.5452885,98.8580951,18.8026563",0,0,19033657,6,,boundary
+Mueang Chiang Mai District,Mueang Chiang Mai District,อำเภอเมืองเชียงใหม่,"98.8616668,18.6991899,99.0485707,18.8758087",0,0,19033670,6,,boundary
+Ko Kut District,Ko Kut District,อำเภอเกาะกูด,"102.3755611,11.5615185,102.6088846,11.8587915",0,0,19036109,6,,boundary
+Omkoi District,Omkoi District,อำเภออมก๋อย,"98.0080391,17.2422747,98.5788542,18.0479974",0,0,19036133,6,,boundary
+Phrao District,Phrao District,อำเภอพร้าว,"99.0768422,18.9940971,99.3429798,19.5827758",0,0,19036206,6,,boundary
+Laem Ngop District,Laem Ngop District,อำเภอแหลมงอบ,"102.2580223,12.1602181,102.4778792,12.3000796",0,0,19036238,6,,boundary
+Mueang Trat District,Mueang Trat District,อำเภอเมืองตราด,"102.3968471,11.970385,102.787419,12.4696954",0,0,19036372,6,,boundary
+Wiang Pa Pao District,Wiang Pa Pao District,อำเภอเวียงป่าเป้า,"99.2945116,18.9999028,99.5870589,19.5442026",0,0,19051842,6,,boundary
+Mae Suai District,Mae Suai District,อำเภอแม่สรวย,"99.2579856,19.4582601,99.6472464,19.9816262",0,0,19051852,6,,boundary
+Chiang Khong District,Chiang Khong District,อำเภอเชียงของ,"100.1978557,19.9535369,100.4753384,20.402114",0,0,19051857,6,,boundary
+Phan District,Phan District,อำเภอพาน,"99.5653761,19.381736,99.926546,19.7515607",0,0,19051861,6,,boundary
+Khun Tan District,Khun Tan District,อำเภอขุนตาล,"100.1735687,19.7626447,100.373809,20.0044086",0,0,19051867,6,,boundary
+Pa Daet District,Pa Daet District,อำเภอป่าแดด,"99.9053405,19.4063948,100.0720002,19.6255641",0,0,19051869,6,,boundary
+Wiang Kaen District,Wiang Kaen District,อำเภอเวียงแก่น,"100.3424812,19.8327594,100.578496,20.1982129",0,0,19051879,6,,boundary
+Thoeng District,Thoeng District,อำเภอเทิง,"99.9271027,19.510139,100.44883,19.873537",0,0,19051880,6,,boundary
+Wiang Haeng District,Wiang Haeng District,อำเภอเวียงแหง,"98.466343,19.422967,98.7919337,19.758288",0,0,19051895,6,,boundary
+San Kamphaeng District,San Kamphaeng District,อำเภอสันกำแพง,"99.0384351,18.6527799,99.2708882,18.8134538",0,0,19051898,6,,boundary
+Phaya Mengrai District,Phaya Mengrai District,อำเภอพญาเม็งราย,"100.0412776,19.708851,100.2627348,20.0511038",0,0,19051902,6,,boundary
+Mueang Chiang Rai District,Mueang Chiang Rai District,อำเภอเมืองเชียงราย,"99.4526746,19.6191435,100.0252388,20.136381",0,0,19051912,6,,boundary
+Wiang Chiang Rung District,Wiang Chiang Rung District,อำเภอเวียงเชียงรุ้ง,"99.958804,19.9138733,100.2071359,20.1108368",0,0,19051917,6,,boundary
+San Pa Tong District,San Pa Tong District,อำเภอสันป่าตอง,"98.8066157,18.4994474,98.9601316,18.7184898",0,0,19051918,6,,boundary
+Ban Bueng District,Ban Bueng District,อำเภอบ้านบึง,"101.038891,13.090155,101.3205875,13.3905449",0,0,19051921,6,,boundary
+Bang Lamung District,Bang Lamung District,อำเภอบางละมุง,"100.6469322,12.7576792,101.1035965,13.0846614",0,0,19051992,6,,boundary
+San Sai District,San Sai District,อำเภอสันทราย,"98.9387296,18.7892129,99.1275704,19.1054779",0,0,19052022,6,,boundary
+Bo Thong District,Bo Thong District,อำเภอบ่อทอง,"101.2667747,13.0718164,101.7197202,13.3872903",0,0,19052120,6,,boundary
+Ko Chan District,Ko Chan District,อำเภอเกาะจันทร์,"101.266495,13.3319964,101.5489577,13.4749521",0,0,19052334,6,,boundary
+Wiang Chai District,Wiang Chai District,อำเภอเวียงชัย,"99.8576901,19.7316601,100.0988791,19.9927317",0,0,19052466,6,,boundary
+Mae Lao District,Mae Lao District,อำเภอแม่ลาว,"99.6129633,19.6958205,99.8082979,19.8615225",0,0,19052605,6,,boundary
+Don Phut District,Don Phut District,อำเภอดอนพุด,"100.5728496,14.5563623,100.6600678,14.6595494",0,0,19057311,6,,boundary
+Srinagarindra District,Srinagarindra District,อำเภอศรีนครินทร์,"99.7968787,7.4730736,99.9923566,7.6491292",0,0,19096798,6,,boundary
+Bang Rakam District,Bang Rakam District,อำเภอบางระกำ,"99.8534102,16.5712072,100.2261678,16.9164275",0,0,19096932,6,,boundary
+Suk Samran District,Suk Samran District,อำเภอสุขสำราญ,"98.3261311,9.3037708,98.6815388,9.5724569",0,0,19097176,6,,boundary

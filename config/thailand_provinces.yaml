@@ -1,0 +1,31 @@
+# Thailand Provinces Analysis Configuration
+# Analyzes Thailand subdivided by 78 provinces (admin_level=4)
+
+analysis:
+  mode: batch_countries
+
+countries:
+  source: list
+  iso_codes: ['TH']
+
+  subdivide_by_admin_level: true
+  admin_level: 4
+  cache_boundaries: true
+  overpass_timeout: 120
+
+analysis_options:
+  filter: "type:way and building=*"
+  chunked_threshold_km2: 5000
+  include_building_count: true
+  include_user_count: true
+  resume: true
+
+output:
+  directory: ./results/thailand_provinces
+  data_directory: ./data/thailand_provinces
+  logs_directory: ./logs/thailand_provinces
+
+visualization:
+  create_dashboards: false
+  create_time_series_plots: false
+  create_user_correlation_plot: false
