@@ -9,17 +9,17 @@ import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from api_helpers import logger
+from utils.api_helpers import logger
 
 # Import from new modules
-from metrics import (
+from core.metrics import (
     calculate_convex_hull_metrics,
     calculate_node_statistics,
     extract_comprehensive_metrics,
     extract_node_counts
 )
-from ohsome_client import OhsomeClient
-from analyzer import (
+from core.ohsome_client import OhsomeClient
+from core.analyzer import (
     analyze_region_buildings as _analyze_region_buildings,
     analyze_region_buildings_chunked as _analyze_region_buildings_chunked,
     analyze_region_roads as _analyze_region_roads,
@@ -54,7 +54,7 @@ def get_count(bounds, filter="type:way and highway=*", time="2008-01-01/2025-01-
     if result is not None:
         logger.info("Count data successfully retrieved")
         if path and filename:
-            from api_helpers import save_to_file
+            from utils.api_helpers import save_to_file
             data = client._call_endpoint('count', bounds, filter, time, return_type='json')
             if data:
                 save_to_file(data, path, filename, data_format='json')
@@ -86,7 +86,7 @@ def get_len(bounds, filter="type:way and highway=*", time="2008-01-01/2025-01-01
     if result is not None:
         logger.info("Length data successfully retrieved")
         if path and filename:
-            from api_helpers import save_to_file
+            from utils.api_helpers import save_to_file
             data = client._call_endpoint('length', bounds, filter, time, return_type='json')
             if data:
                 save_to_file(data, path, filename, data_format='json')
@@ -118,7 +118,7 @@ def get_area(bounds, filter="type:way and building=*", time="2008-01-01/2025-01-
     if result is not None:
         logger.info("Area data successfully retrieved")
         if path and filename:
-            from api_helpers import save_to_file
+            from utils.api_helpers import save_to_file
             data = client._call_endpoint('area', bounds, filter, time, return_type='json')
             if data:
                 save_to_file(data, path, filename, data_format='json')
@@ -155,7 +155,7 @@ def get_vertices(bounds, filter="type:way and highway=*", time="2025-01-01",
 
     # Save raw data if requested
     if path and filename and features:
-        from api_helpers import save_to_file
+        from utils.api_helpers import save_to_file
         way_ids = np.fromiter(
             (f['properties']['osmID'] for f in features),
             dtype=int

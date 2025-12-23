@@ -15,7 +15,7 @@ import sys
 # Add parent directory to path to import modules
 sys.path.insert(0, str(Path(__file__).parent))
 
-from visualization import plot_sample_polygons
+from visualization.visualization import plot_sample_polygons
 
 
 def main():

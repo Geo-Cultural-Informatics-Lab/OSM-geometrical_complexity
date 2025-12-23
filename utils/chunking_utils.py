@@ -8,7 +8,7 @@ for processing with the Ohsome API, preventing timeouts and connection failures.
 import math
 from math import cos, radians
 from typing import List, Tuple, Dict
-from api_helpers import logger
+from utils.api_helpers import logger
 
 
 # ============================================================================

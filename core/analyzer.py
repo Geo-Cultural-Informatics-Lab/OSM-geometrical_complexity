@@ -11,13 +11,13 @@ import pandas as pd
 import time
 import logging
 
-from ohsome_client import OhsomeClient
-from metrics import (
+from core.ohsome_client import OhsomeClient
+from core.metrics import (
     calculate_convex_hull_metrics,
     extract_comprehensive_metrics,
     calculate_node_statistics
 )
-from resume_manager import ResumeManager
+from utils.resume_manager import ResumeManager
 
 logger = logging.getLogger('geometrical_complexity_analysis')
 
@@ -167,11 +167,11 @@ def analyze_region_buildings_chunked(region_name, bounds, filter="type:way and b
     Returns:
         DataFrame with summary statistics
     """
-    from chunking_utils import (
+    from utils.chunking_utils import (
         split_bbox_into_grid, adaptive_chunk_split,
         bbox_area_km2, print_chunk_summary
     )
-    from api_helpers import save_chunk_data, load_and_aggregate_chunks, cleanup_chunks
+    from utils.api_helpers import save_chunk_data, load_and_aggregate_chunks, cleanup_chunks
 
     start_time = time.time()
 

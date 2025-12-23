@@ -10,10 +10,10 @@ import pandas as pd
 import geopandas as gpd
 from pathlib import Path
 import time
-from api_helpers import logger, setup_logging
-from geometry_analysis import get_poly_coords_chunked, get_poly_coords
-from bbox_utils import get_bbox_by_city
-from chunking_utils import bbox_area_km2
+from utils.api_helpers import logger, setup_logging
+from core.geometry_analysis import get_poly_coords_chunked, get_poly_coords
+from utils.bbox_utils import get_bbox_by_city
+from utils.chunking_utils import bbox_area_km2
 
 
 # ISO 3166-1 alpha-3 to alpha-2 mapping for common countries

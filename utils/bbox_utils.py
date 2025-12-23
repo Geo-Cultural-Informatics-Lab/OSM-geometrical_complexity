@@ -10,8 +10,8 @@ import pandas as pd
 import json
 from math import cos, radians
 from pathlib import Path
-from api_helpers import logger
-from chunking_utils import bbox_area_km2
+from utils.api_helpers import logger
+from utils.chunking_utils import bbox_area_km2
 
 
 # ============================================================================

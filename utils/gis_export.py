@@ -10,8 +10,8 @@ import pandas as pd
 import geopandas as gpd
 from shapely.geometry import shape, Point
 from pathlib import Path
-from api_helpers import logger, call_ohsome_api
-from geometry_analysis import calculate_convex_hull_metrics
+from utils.api_helpers import logger, call_ohsome_api
+from core.geometry_analysis import calculate_convex_hull_metrics
 
 
 def export_buildings_to_shapefile(region_name, bounds, filter="type:way and building=*",

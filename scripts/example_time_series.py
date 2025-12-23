@@ -7,13 +7,13 @@ to track OSM mapping quality evolution over time.
 
 import logging
 from pathlib import Path
-from bbox_utils import get_bbox_by_city, BBOXES
+from utils.bbox_utils import get_bbox_by_city, BBOXES
 from time_series_analysis import (
     analyze_region_time_series,
     compare_regions_time_series,
     generate_time_intervals
 )
-from visualization import (
+from visualization.visualization import (
     plot_time_series_complexity,
     plot_time_series_dashboard,
     plot_growth_comparison

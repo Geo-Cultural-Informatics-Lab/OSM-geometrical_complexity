@@ -10,7 +10,7 @@ import requests
 import json
 import time
 from pathlib import Path
-from api_helpers import logger
+from utils.api_helpers import logger
 
 
 # Administrative level mapping for reference

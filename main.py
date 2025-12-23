@@ -16,24 +16,24 @@ from pathlib import Path
 import pandas as pd
 
 # Core modules
-from api_helpers import setup_logging
-from geometry_analysis import get_poly_coords, get_poly_coords_chunked
-from bbox_utils import get_bbox_by_city, BBOXES
-from chunking_utils import bbox_area_km2
-from time_series_analysis import analyze_region_time_series
+from utils.api_helpers import setup_logging
+from core.geometry_analysis import get_poly_coords, get_poly_coords_chunked
+from utils.bbox_utils import get_bbox_by_city, BBOXES
+from utils.chunking_utils import bbox_area_km2
+from analysis.time_series_analysis import analyze_region_time_series
 
 # New modules
-from config_loader import load_config, validate_config, merge_with_defaults, save_config_template
-from batch_country_analysis import (
+from utils.config_loader import load_config, validate_config, merge_with_defaults, save_config_template
+from analysis.batch_country_analysis import (
     load_countries_from_csv,
     analyze_countries_batch
 )
-from admin_level_analysis import (
+from analysis.admin_level_analysis import (
     analyze_country_by_admin_level,
     analyze_multiple_countries_by_admin_level
 )
-from gis_export import export_summary_to_shapefile, export_buildings_to_shapefile
-from visualization import (
+from utils.gis_export import export_summary_to_shapefile, export_buildings_to_shapefile
+from visualization.visualization import (
     plot_summary_dashboard,
     print_completeness_summary,
     plot_time_series_complexity,

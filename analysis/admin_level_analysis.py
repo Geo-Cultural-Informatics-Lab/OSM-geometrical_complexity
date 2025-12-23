@@ -10,11 +10,11 @@ import os
 import pandas as pd
 from pathlib import Path
 import time
-from api_helpers import logger, setup_logging
-from admin_boundaries import get_admin_boundaries, get_country_iso_code, save_boundaries_to_csv
-from geometry_analysis import get_poly_coords_chunked, get_poly_coords
-from chunking_utils import bbox_area_km2
-from batch_country_analysis import get_country_bbox_with_fallback
+from utils.api_helpers import logger, setup_logging
+from analysis.admin_boundaries import get_admin_boundaries, get_country_iso_code, save_boundaries_to_csv
+from core.geometry_analysis import get_poly_coords_chunked, get_poly_coords
+from utils.chunking_utils import bbox_area_km2
+from analysis.batch_country_analysis import get_country_bbox_with_fallback
 
 
 def create_admin_subdivision_visualizations(

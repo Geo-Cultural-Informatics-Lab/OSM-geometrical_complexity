@@ -10,7 +10,7 @@ Usage:
 
 import pandas as pd
 from pathlib import Path
-from admin_level_analysis import create_admin_subdivision_visualizations
+from analysis.admin_level_analysis import create_admin_subdivision_visualizations
 
 
 def main():

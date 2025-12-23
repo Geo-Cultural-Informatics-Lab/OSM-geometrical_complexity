@@ -90,7 +90,7 @@ def call_ohsome_api(endpoint, bounds, filter_query, time_param, return_type='dat
     Returns:
         DataFrame or dict depending on return_type, None on error
     """
-    from ohsome_client import OhsomeClient
+    from core.ohsome_client import OhsomeClient
 
     client = OhsomeClient()
     return client._call_endpoint(endpoint, bounds, filter_query, time_param, return_type, api_version)
@@ -102,7 +102,7 @@ def get_element_count(bounds, filter_query, time_param):
 
     Get count of OSM elements matching the filter.
     """
-    from ohsome_client import OhsomeClient
+    from core.ohsome_client import OhsomeClient
 
     client = OhsomeClient()
     return client.query_element_count(bounds, filter_query, time_param)
@@ -114,7 +114,7 @@ def get_user_count(bounds, filter_query, time_param):
 
     Get count of unique users/contributors who edited elements matching the filter.
     """
-    from ohsome_client import OhsomeClient
+    from core.ohsome_client import OhsomeClient
 
     client = OhsomeClient()
     return client.query_user_count(bounds, filter_query, time_param)
@@ -462,7 +462,7 @@ def save_processing_status(status_file, completed_chunks, total_chunks, metadata
 
     Save processing status for resume capability.
     """
-    from resume_manager import ResumeManager
+    from utils.resume_manager import ResumeManager
 
     # Extract task ID from status file name
     task_id = os.path.basename(status_file).replace('.status_', '').replace('.json', '')

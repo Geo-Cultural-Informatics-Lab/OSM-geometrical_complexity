@@ -8,7 +8,7 @@ and geometrical complexity metrics, with focus on convex hull analysis.
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from api_helpers import logger
+from utils.api_helpers import logger
 
 
 # ============================================================================
