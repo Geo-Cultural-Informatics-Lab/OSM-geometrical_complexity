@@ -48,10 +48,13 @@ def analyze_region_buildings(region_name, bounds, filter="type:way and building=
     start_time = time.time()
 
     # Check if summary file already exists (for resume capability)
+    # Use region_name to ensure each chunk/region has unique summary file
     if resume and path and filename and not distribution:
-        summary_file = os.path.join(path, os.path.basename(filename) + "_summary.csv")
+        # Create summary filename based on region_name to avoid conflicts between chunks
+        summary_filename = f"{region_name}_summary.csv"
+        summary_file = os.path.join(path, summary_filename)
         if os.path.exists(summary_file):
-            logger.info(f"Loading existing summary data from {os.path.basename(summary_file)}")
+            logger.info(f"Loading existing summary data from {summary_filename}")
             try:
                 existing_summary = pd.read_csv(summary_file)
                 logger.info(f"Loaded cached data - skipping API calls")
@@ -67,9 +70,47 @@ def analyze_region_buildings(region_name, bounds, filter="type:way and building=
         return None
 
     features = data.get("features", [])
+
+    # Handle empty chunks (no buildings found)
+    if not features:
+        logger.info(f"No features found in {region_name} - creating empty summary")
+
+        # Return empty summary with zero counts
+        empty_summary = pd.DataFrame({
+            'region': [region_name],
+            'bbox': [bounds],
+            'building_count': [0],
+            'user_count': [0],
+            'sum_chull_area': [0.0],
+            'mean_chull_area': [0.0],
+            'median_chull_area': [0.0],
+            'sum_area': [0.0],
+            'mean_area': [0.0],
+            'median_area': [0.0],
+            'sum_ratio': [0.0],
+            'mean_ratio': [0.0],
+            'median_ratio': [0.0],
+            'multipolygon_count': [0],
+            'multipolygon_ratio': [0.0],
+            'total_inner_rings': [0],
+            'mean_inner_rings': [0.0]
+        })
+
+        # Save the empty summary
+        if path and filename:
+            os.makedirs(path, exist_ok=True)
+            summary_filename = f"{region_name}_summary.csv"
+            summary_path = os.path.join(path, summary_filename)
+            empty_summary.to_csv(summary_path, index=False)
+            logger.info(f"Saved empty summary to {summary_filename}")
+
+        return empty_summary
+
     df, geom_gdf = calculate_convex_hull_metrics(features, bounds, use_vectorized=use_vectorized)
 
     if df is None:
+        # This should not happen if features exist, but handle it
+        logger.error(f"Failed to calculate metrics for {region_name}")
         return None
 
     # Add region metadata
@@ -123,10 +164,11 @@ def analyze_region_buildings(region_name, bounds, filter="type:way and building=
         df.to_csv(file_path, index=False)
         logger.info(f"Saved raw data to {filename}")
 
-        # Save summary
-        summary_path = os.path.join(path, os.path.basename(filename) + "_summary.csv")
+        # Save summary using region_name to ensure unique file per chunk/region
+        summary_filename = f"{region_name}_summary.csv"
+        summary_path = os.path.join(path, summary_filename)
         summary_statistics.to_csv(summary_path, index=False)
-        logger.info(f"Saved summary to {os.path.basename(summary_path)}")
+        logger.info(f"Saved summary to {summary_filename}")
 
         # Save geometry file for qualitative sampling (as GeoJSON)
         if geom_gdf is not None and len(geom_gdf) > 0:
