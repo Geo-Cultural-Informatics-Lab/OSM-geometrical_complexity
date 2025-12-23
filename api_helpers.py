@@ -68,9 +68,15 @@ logger = setup_logging()
 # API Functions
 # ============================================================================
 
+# ============================================================================
+# Ohsome API Functions (DEPRECATED - use ohsome_client.py)
+# ============================================================================
+
 def call_ohsome_api(endpoint, bounds, filter_query, time_param, return_type='dataframe',
                     api_version='elements'):
     """
+    DEPRECATED: Use ohsome_client.OhsomeClient instead.
+
     Base function for calling Ohsome API endpoints.
 
     Args:
@@ -84,123 +90,34 @@ def call_ohsome_api(endpoint, bounds, filter_query, time_param, return_type='dat
     Returns:
         DataFrame or dict depending on return_type, None on error
     """
-    start_time = time.time()
-    url = f"https://api.ohsome.org/v1/{api_version}/{endpoint}"
+    from ohsome_client import OhsomeClient
 
-    params = {
-        "bboxes": bounds,
-        "time": time_param,
-        "filter": filter_query
-    }
-
-    logger.debug(f"Calling Ohsome API endpoint: {api_version}/{endpoint}")
-    logger.debug(f"Parameters: bounds={bounds}, filter={filter_query}, time={time_param}")
-
-    try:
-        response = requests.get(url, params=params, timeout=300)
-        api_time = time.time() - start_time
-
-        if response.status_code == 200:
-            parse_start = time.time()
-            data = response.json()
-            parse_time = time.time() - parse_start
-
-            logger.debug(f"API call ({api_version}/{endpoint}): {api_time:.2f}s (network: {api_time:.2f}s, parse: {parse_time:.3f}s)")
-            logger.info(f"Successfully retrieved data from {api_version}/{endpoint} endpoint")
-
-            if return_type == 'dataframe':
-                return pd.json_normalize(data['result']) if 'result' in data else data
-            return data
-        else:
-            logger.error(f"API request failed with status {response.status_code}: {response.text}")
-            return None
-
-    except requests.exceptions.Timeout:
-        logger.error(f"API request timed out for endpoint {endpoint} (>300s)")
-        return None
-    except requests.exceptions.RequestException as e:
-        logger.error(f"API request failed for endpoint {endpoint}: {str(e)}")
-        return None
-    except json.JSONDecodeError as e:
-        logger.error(f"Failed to parse JSON response from {endpoint}: {str(e)}")
-        return None
+    client = OhsomeClient()
+    return client._call_endpoint(endpoint, bounds, filter_query, time_param, return_type, api_version)
 
 
 def get_element_count(bounds, filter_query, time_param):
     """
+    DEPRECATED: Use ohsome_client.OhsomeClient().query_element_count() instead.
+
     Get count of OSM elements matching the filter.
-
-    Args:
-        bounds: Bounding box as "min_lon,min_lat,max_lon,max_lat"
-        filter_query: OSM filter query (e.g., "type:way and building=*")
-        time_param: ISO-8601 timestamp or interval
-
-    Returns:
-        Integer count of elements, or None on error
-
-    Example:
-        >>> count = get_element_count(bbox, "type:way and building=*", "2025-01-01")
-        >>> print(f"Found {count} buildings")
     """
-    result = call_ohsome_api('count', bounds, filter_query, time_param, return_type='json')
+    from ohsome_client import OhsomeClient
 
-    if result and 'result' in result:
-        # Extract count from result array
-        # Result format: {'result': [{'timestamp': '...', 'value': count}]}
-        results = result['result']
-        if results and len(results) > 0:
-            count = results[0].get('value', 0)
-            logger.info(f"Element count: {count:,}")
-            return count
-
-    logger.warning("Could not extract element count from API response")
-    return None
+    client = OhsomeClient()
+    return client.query_element_count(bounds, filter_query, time_param)
 
 
 def get_user_count(bounds, filter_query, time_param):
     """
+    DEPRECATED: Use ohsome_client.OhsomeClient().query_user_count() instead.
+
     Get count of unique users/contributors who edited elements matching the filter.
-
-    Note: The /v1/users/count endpoint requires a time interval, not a single timestamp.
-    If a single timestamp is provided, it will be converted to an interval from OSM start (2007-10-08).
-
-    Args:
-        bounds: Bounding box as "min_lon,min_lat,max_lon,max_lat"
-        filter_query: OSM filter query (e.g., "type:way and building=*")
-        time_param: ISO-8601 timestamp or interval
-                    Single timestamp (e.g., "2025-01-01") will be converted to interval
-                    "2007-10-08/2025-01-01" to count all users up to that date
-
-    Returns:
-        Integer count of unique users, or None on error
-
-    Example:
-        >>> user_count = get_user_count(bbox, "type:way and building=*", "2025-01-01")
-        >>> print(f"{user_count} users contributed to buildings")
     """
-    # Convert single timestamp to interval if needed
-    # The users/count endpoint requires an interval, not a single timestamp
-    if '/' not in time_param:
-        # Create interval from OSM history start to the specified timestamp
-        osm_start = "2007-10-08"  # OSM planet history starts around this date
-        time_interval = f"{osm_start}/{time_param}"
-        logger.debug(f"Converting timestamp to interval for user count: {time_interval}")
-    else:
-        time_interval = time_param
+    from ohsome_client import OhsomeClient
 
-    result = call_ohsome_api('count', bounds, filter_query, time_interval,
-                            return_type='json', api_version='users')
-
-    if result and 'result' in result:
-        # Extract count from result array (take the last value if multiple)
-        results = result['result']
-        if results and len(results) > 0:
-            count = results[-1].get('value', 0)  # Last value in the interval
-            logger.info(f"User count: {count:,}")
-            return count
-
-    logger.warning("Could not extract user count from API response")
-    return None
+    client = OhsomeClient()
+    return client.query_user_count(bounds, filter_query, time_param)
 
 
 def get_period_user_count(bounds, filter_query, start_time, end_time):
@@ -535,45 +452,34 @@ def load_and_aggregate_chunks(path, base_filename, aggregation_func=None):
         return None
 
 
+# ============================================================================
+# Resume/Status Management (DEPRECATED - use resume_manager.py)
+# ============================================================================
+
 def save_processing_status(status_file, completed_chunks, total_chunks, metadata=None):
     """
+    DEPRECATED: Use resume_manager.ResumeManager instead.
+
     Save processing status for resume capability.
-
-    Args:
-        status_file: Path to status JSON file
-        completed_chunks: List of completed chunk IDs
-        total_chunks: Total number of chunks
-        metadata: Optional dict with additional metadata
     """
-    try:
-        status = {
-            'completed_chunks': completed_chunks,
-            'total_chunks': total_chunks,
-            'progress': len(completed_chunks) / total_chunks if total_chunks > 0 else 0,
-            'timestamp': pd.Timestamp.now().isoformat()
-        }
+    from resume_manager import ResumeManager
 
-        if metadata:
-            status['metadata'] = metadata
+    # Extract task ID from status file name
+    task_id = os.path.basename(status_file).replace('.status_', '').replace('.json', '')
+    output_dir = os.path.dirname(status_file)
 
-        with open(status_file, 'w', encoding='utf-8') as f:
-            json.dump(status, f, indent=2)
+    mgr = ResumeManager(output_dir, task_id)
+    mgr.set_total(total_chunks)
 
-        logger.debug(f"Processing status saved: {len(completed_chunks)}/{total_chunks} chunks complete")
-
-    except Exception as e:
-        logger.error(f"Failed to save processing status: {str(e)}")
+    for chunk_id in completed_chunks:
+        mgr.mark_completed(chunk_id)
 
 
 def load_processing_status(status_file):
     """
+    DEPRECATED: Use resume_manager.ResumeManager instead.
+
     Load processing status from JSON file.
-
-    Args:
-        status_file: Path to status JSON file
-
-    Returns:
-        Dict with status information or None if file doesn't exist
     """
     if not os.path.exists(status_file):
         return None
@@ -582,8 +488,15 @@ def load_processing_status(status_file):
         with open(status_file, 'r', encoding='utf-8') as f:
             status = json.load(f)
 
-        logger.info(f"Loaded processing status: {len(status.get('completed_chunks', []))}/{status.get('total_chunks', 0)} chunks complete")
-        return status
+        logger.info(f"Loaded processing status: {len(status.get('completed', []))}/{status.get('total', 0)} complete")
+
+        # Convert to old format for backward compatibility
+        return {
+            'completed_chunks': status.get('completed', []),
+            'total_chunks': status.get('total', 0),
+            'progress': status.get('progress', 0),
+            'metadata': status.get('metadata', {})
+        }
 
     except Exception as e:
         logger.error(f"Failed to load processing status: {str(e)}")
