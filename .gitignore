@@ -58,19 +58,13 @@ test_output/
 
 # IDE
 .vscode/
+.idea/
 *.swp
 *.swo
 *~
 .DS_Store
 desktop.ini
 Thumbs.db
-
-# PyCharm (keep .idea/ but ignore some contents)
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/usage.statistics.xml
-.idea/dictionaries
-.idea/shelf
 
 # Temporary files
 *.tmp

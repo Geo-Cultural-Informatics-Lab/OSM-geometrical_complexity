@@ -17,14 +17,14 @@ import time
 # ============================================================================
 
 def setup_logging(log_file='geometrical_complexity_analysis.log', log_level=logging.DEBUG,
-                  console_level=logging.INFO):
+                  console_level=logging.ERROR):
     """
     Configure logging for the analysis module.
 
     Args:
         log_file: Path to log file
         log_level: File logging level (default: DEBUG)
-        console_level: Console logging level (default: INFO)
+        console_level: Console logging level (default: ERROR - changed from INFO to reduce noise)
     """
     # Create logger
     logger = logging.getLogger('geometrical_complexity_analysis')

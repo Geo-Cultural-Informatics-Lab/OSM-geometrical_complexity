@@ -121,7 +121,7 @@ def analyze_region_buildings(region_name, bounds, filter="type:way and building=
 
     # Return full distribution if requested
     if distribution:
-        print(f"Total analysis time: {time.time() - start_time:.2f}s\n")
+        # print(f"Total analysis time: {time.time() - start_time:.2f}s\n")  # Suppressed for report integration
         return df
 
     # Get building and user counts from API
@@ -177,7 +177,7 @@ def analyze_region_buildings(region_name, bounds, filter="type:way and building=
             geom_gdf.to_file(geom_path, driver='GeoJSON')
             logger.info(f"Saved geometry file: {geom_filename}")
 
-    print(f"Total analysis time: {time.time() - start_time:.2f}s\n")
+    # print(f"Total analysis time: {time.time() - start_time:.2f}s\n")  # Suppressed for report integration
     return summary_statistics
 
 
