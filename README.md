@@ -1,37 +1,39 @@
 # OSM Geometrical Complexity Analysis
 
-Analyze OpenStreetMap building geometry completeness using convex hull ratios to detect automated vs. manual mapping quality.
+Measures geometric complexity of OpenStreetMap building and road features using convex hull ratios, tracking how feature shapes evolve over time across countries. Part of the *"Impacts of Corporate Editors on Collective Intelligence in OpenStreetMap"* project.
 
-## Features
+**Authors:** Yair Grinberger (PI), Tomer Vagenfeld, Alexander Shapira
+**Affiliation:** Department of Geography, The Hebrew University of Jerusalem
+**Commissioned by:** Digital Infrastructure Insights Fund (D//F), February 2026
 
-- **Building Complexity Metrics**: Analyze convex hull ratios, multipolygon counts, inner rings
-- **Country-Scale Analysis**: Process entire countries with automatic spatial chunking
-- **Time Series Analysis**: Track mapping quality evolution over time
-- **Batch Processing**: Analyze multiple countries from CSV list
-- **User/Contributor Tracking**: Correlate mapping quality with mapper activity
-- **Rich Visualizations**: Dashboards, time series plots, box plots, qualitative samples
-- **GIS Export**: Export results as Shapefiles and GeoJSON
-
-## Quick Start
-
-### Installation
+## Installation
 
 ```bash
+git clone https://github.com/Geo-Cultural-Informatics-Lab/OSM-geometrical_complexity.git
+cd OSM-geometrical_complexity
 pip install -r requirements.txt
 ```
 
-### Basic Usage
+Or install as a package (required by [OSM-report](https://github.com/Geo-Cultural-Informatics-Lab/OSM-report)):
+```bash
+pip install -e .
+```
 
-1. **Create a configuration file** `config.yaml`:
+**Requirements:** Python 3.7+, see `requirements.txt` for full dependency list.
+
+## Quick Start
+
+1. Create a configuration file `config.yaml`:
 
 ```yaml
 analysis:
-  mode: snapshot  # or time_series, batch_countries
+  mode: time_series          # snapshot, time_series, or batch_countries
+  entity_type: building
 
 regions:
-  london_30km:
+  bangkok:
     type: city
-    name: London
+    name: Bangkok
     radius_km: 30
 
 time_series:
@@ -41,99 +43,48 @@ time_series:
 
 output:
   include_building_count: true
-  include_user_count: true
   export_shapefile: true
 ```
 
-2. **Run analysis**:
-
+2. Run:
 ```bash
 python main.py --config config.yaml
 ```
 
+## Complexity Metric
+
+**Convex hull ratio:** `complexity = 1 - (actual_area / convex_hull_area)`
+
+| Value | Interpretation |
+|-------|---------------|
+| 0.00 -- 0.10 | Very simple shapes (box/automated mapping) |
+| 0.10 -- 0.20 | Simple shapes (basic manual mapping) |
+| 0.20 -- 0.35 | Moderate complexity (decent manual mapping) |
+| 0.35 -- 0.50 | High complexity (detailed manual mapping) |
+| 0.50+ | Very high complexity (excellent detail) |
+
+A value near 0 means the feature is nearly convex (rectangular buildings); near 1 means highly irregular shapes with concavities.
+
 ## Analysis Modes
 
-### Snapshot Analysis
-Analyze regions at a single point in time:
-```yaml
-analysis:
-  mode: snapshot
-  timestamp: "2025-01-01"
-```
+- **Snapshot**: Analyze at a single point in time
+- **Time series**: Track complexity evolution over years/months
+- **Batch countries**: Process multiple countries from a list
 
-### Time Series Analysis
-Track complexity evolution over time:
-```yaml
-analysis:
-  mode: time_series
-time_series:
-  start_year: 2015
-  end_year: 2025
-  interval: yearly  # or monthly, quarterly
-```
+## Output
 
-### Batch Country Analysis
-Process multiple countries:
-```yaml
-analysis:
-  mode: batch_countries
-countries:
-  - DEU  # ISO code
-  - FRA
-  - GBR
-```
-
-## Output Files
-
-- **CSV**: Summary statistics and detailed building data
-- **Shapefiles**: `*_buildings.shp` (individual buildings), `*_summary.shp` (country aggregates)
-- **Visualizations**: PNG dashboards, time series plots, box plots
-- **Logs**: Detailed processing logs in `logs/` directory
-
-## Complexity Metrics
-
-**Convex Hull Ratio**: `1 - (actual_area / convex_hull_area)`
-- **0.00-0.10**: Very simple (likely automated/box mapping)
-- **0.10-0.20**: Simple shapes (basic manual mapping)
-- **0.20-0.35**: Moderate complexity (decent manual mapping)
-- **0.35-0.50**: High complexity (detailed manual mapping)
-- **0.50+**: Very high complexity (excellent detailed mapping)
-
-## Project Structure
-
-```
-├── api_helpers.py           # API calls and logging
-├── geometry_analysis.py     # Core analysis functions
-├── bbox_utils.py            # Bounding box generation
-├── chunking_utils.py        # Spatial chunking for large regions
-├── time_series_analysis.py  # Time series processing
-├── visualization.py         # Plotting functions
-├── qualitative_viz.py       # Individual polygon visualization
-├── batch_country_analysis.py # Country batch processing
-├── config_loader.py         # YAML configuration parsing
-├── main.py                  # Main entry point
-├── config.yaml              # User configuration
-└── config_templates/        # Example configurations
-```
-
-## Performance
-
-- **Processing Speed**: 18,000-25,000 features/second
-- **Scalability**: Linear O(n) with automatic chunking for large regions
-- **Country-Scale**: Handles entire countries with resume capability
+- **CSV**: Summary statistics and per-feature data
+- **Shapefiles**: Individual features and country aggregates (optional)
+- **Visualizations**: Dashboards, time series plots, box plots (optional)
 
 ## API
 
-Uses the [Ohsome API](https://api.ohsome.org/) for OSM data extraction:
-- Element counts, areas, lengths
-- Full geometry retrieval
-- User/contributor statistics
-- Time-based queries
+Uses the [Ohsome API](https://api.ohsome.org/) for OSM data extraction. No API key required.
 
 ## License
 
-See LICENSE file for details.
+MIT License. See [LICENSE](LICENSE).
 
 ## Citation
 
-If you use this tool in research, please cite accordingly.
+> Grinberger, Y., Vagenfeld, T., & Shapira, A. (2026). *Impacts of Corporate Editors on Collective Intelligence in OpenStreetMap*. Department of Geography, The Hebrew University of Jerusalem. Commissioned by the Digital Infrastructure Insights Fund (D//F).
