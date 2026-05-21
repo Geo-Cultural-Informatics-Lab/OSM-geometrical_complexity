@@ -1,10 +1,9 @@
 # OSM Geometrical Complexity Analysis
 
-Measures geometric complexity of OpenStreetMap building and road features using convex hull ratios, tracking how feature shapes evolve over time across countries. Part of the *"Impacts of Corporate Editors on Collective Intelligence in OpenStreetMap"* project.
+Measures geometric complexity of OpenStreetMap building and road features using convex hull ratios, tracking how feature shapes evolve over time across countries. 
 
 **Authors:** Yair Grinberger (PI), Tomer Vagenfeld, Alexander Shapira
-**Affiliation:** Department of Geography, The Hebrew University of Jerusalem
-**Commissioned by:** Digital Infrastructure Insights Fund (D//F), February 2026
+**Affiliation:** Department of Spatial Scinece, The Hebrew University of Jerusalem
 
 ## Installation
 
